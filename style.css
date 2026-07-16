@@ -1,0 +1,91 @@
+/* ==========================================
+   1. GLOBAL STYLES & BACKGROUND
+   ========================================== */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #F3E9DC; /* Project Warm Cream */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden; /* Prevents unwanted horizontal scrolling */
+}
+
+/* ==========================================
+   2. MAIN LANDING CONTAINER
+   ========================================== */
+.landing-container {
+    position: relative;
+    width: 100%;
+    max-width: 1920px; /* Matched to your 1920px Figma frame width */
+    margin: 0 auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); /* Soft shadow for depth */
+}
+
+/* Make sure your main 1920x1080 background image scales cleanly */
+.landing-bg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ==========================================
+   3. CLICKABLE GRAPHICS (GENERAL STYLES)
+   ========================================== */
+.clickable-graphic {
+    position: absolute;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth hover transition */
+    cursor: pointer;
+}
+
+.clickable-graphic img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Subtle scale-up animation on hover to invite clicks */
+.clickable-graphic:hover {
+    transform: scale(1.08); 
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.15)); /* Pops the graphic out slightly */
+}
+
+/* ==========================================
+   4. INDIVIDUAL GRAPHIC POSITIONS (1920x1080)
+   ========================================== */
+/* Calculate your percentages using these formulas:
+   top = (Y / 1080) * 100
+   left = (X / 1920) * 100
+   width = (W / 1920) * 100
+*/
+
+#graphic-1 {
+    top: -8.1%;   /* Change to 0% if you don't want it bleeding off the top edge */
+    left: 57.4%;  
+    width: 26%;
+}
+
+#graphic-2 {
+    top: -2.3%;   /* Sits just slightly off the top edge */
+    left: 78.5%;  /* Positioned toward the right side of the screen */
+    width: 20.2%; /* Scales beautifully at roughly 20% of the screen width */
+}
+
+#graphic-3 {
+    top: 13.5%;   
+    left: 64.2%;  
+    width: 34.9%;
+}
+
+#graphic-4 {
+    top: 49.2%;   
+    left: 65.1%;  
+    width: 34.9%;
+}
+
+#graphic-5 {
+    top: 59.5%;   
+    left: 4.7%;   
+    width: 19.4%;
+}

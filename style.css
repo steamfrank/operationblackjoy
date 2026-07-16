@@ -180,3 +180,14 @@ body {
     left: 28.0%;
     width: 5.2%;
 }
+/* ==========================================
+   PAGE 4: VIRTUAL SCRAPBOOK COORDINATES (1920x1080)
+   ========================================== */
+
+/* Sits slightly off the left edge, matching the welcome back button layout */
+#back-to-welcome-scrapbook {
+    position: absolute;
+    top: 6.1%;
+    left: -3.6%;
+    width: 26.0%;
+}

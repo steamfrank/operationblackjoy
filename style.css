@@ -89,3 +89,20 @@ body {
     left: 4.7%;   
     width: 19.4%;
 }
+/* ==========================================
+   SIDE-A WEB PAGE COORDINATES (1920x1080)
+   ========================================== */
+
+#back-to-welcome {
+    position: absolute;
+    top: 6.1%;   
+    left: -3.6%;  
+    width: 26.0%; 
+}
+
+#p2-graphic-contribute {
+    position: absolute;
+    top: 59.5%;   
+    left: 4.7%;   
+    width: 19.4%; 
+}

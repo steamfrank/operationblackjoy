@@ -33,6 +33,17 @@ html, body {
     position: absolute;
     display: block;
     z-index: 10; 
+    
+    /* Adds a smooth easing transition for the hover effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ==========================================================================
+   INTERACTIVE HOVER EFFECTS
+   ========================================================================== */
+.clickable-graphic:hover {
+    /* Translates the element up along the Y-axis by 8 pixels */
+    transform: translateY(-8px);
 }
 
 .clickable-graphic img {

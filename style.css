@@ -143,31 +143,35 @@ html, body {
         content: url("track03/page-track03-portrait.png");
     }
 
-    /* Landing Page Portrait Positions */
+    /* ==========================================================================
+       Corrected Landing Page Portrait Positions
+       ========================================================================== */
     #finch {
         left: 64.2%;
         top: 12.2%;
         width: 35.9%;
     }
+    
     #bjr {
         left: 45.8%;
         top: 31.6%;
         width: 46.3%;
     }
-    #scrapbook {
-        left: 10.6%;
-        top: 33.8%;
-        width: 34.5%;
-    }
-    #cassette-joy {
-        left: 47.2%;
-        top: 51.6%;
-        width: 48.0%;
-    }
+
+    /* ==========================================================================
+       Corrected Hub Page Portrait Positions (Shared across side-a & side-b)
+       ========================================================================== */
+    #cassette-joy,
     #cassette-resilience {
-        left: 49.6%;
-        top: 69.6%;
-        width: 48.0%;
+        left: 41.6%;
+        top: 53.7%;
+        width: 58.7%;
+    }
+
+    #scrapbook {
+        left: 62.4%;
+        top: 80.1%;
+        width: 34.5%;
     }
 
     /* Universal Track & Hub Overrides */

@@ -19,6 +19,8 @@ html, body {
     max-width: 1920px;
     margin: 0 auto;
     overflow: hidden;
+    /* Forces elements to calculate dimensions relative to a fixed landscape bounding grid */
+    aspect-ratio: 1920 / 1080;
 }
 
 /* Ensure ALL background variants scale cleanly and display as blocks */
@@ -32,8 +34,11 @@ html, body {
 .main-track03-bg {
     width: 100%;
     display: block;
-    height: auto;
-    position: relative;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
     z-index: 1;
 }
 
@@ -125,6 +130,11 @@ html, body {
    ========================================================================== */
 @media (orientation: portrait) {
     
+    .landing-container {
+        /* Flips the aspect grid boundary to portrait proportions */
+        aspect-ratio: 1080 / 1920;
+    }
+
     /* Background Image Asset Swaps with corrected path escaping (../) */
     img.main-landing-bg {
         content: url("index/page-landing-portrait.png") !important;

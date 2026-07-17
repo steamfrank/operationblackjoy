@@ -61,7 +61,7 @@ html, body {
 /* BJR External Link (Bleeds off the top edge) */
 #bjr {
     left: 57.4%;     /* (1102 / 1920) * 100 */
-    top: -8.0%;      /* (-87 / 1080) * 100 */
+    top: 0%;      /* (-87 / 1080) * 100 */
     width: 26.0%;    /* (500 / 1920) * 100 */
 }
 

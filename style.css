@@ -38,6 +38,7 @@ html, body {
 .clickable-graphic {
     position: absolute;
     display: block;
+    z-index: 10; /* Higher layer number puts them on top */
 }
 
 .clickable-graphic img {

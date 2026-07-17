@@ -18,25 +18,26 @@ body {
     overflow-x: hidden;       /* Prevents unwanted horizontal scrolling */
 }
 
-/* The parent box holding your graphics */
+/* 1. The container MUST be relative so it acts as the anchor point */
 .landing-container {
     position: relative;
     width: 100%;
-    max-width: 1920px;        /* Limits width on massive monitors */
-    display: block;
+    max-width: 1920px; /* Or 1080px for portrait */
+    margin: 0 auto;
+    overflow: hidden;
 }
 
-/* Ensures the background expands completely across its wrapper */
+/* 2. ALL clickable graphic links MUST be absolute so they can use top/left */
+.clickable-graphic {
+    position: absolute;
+    display: inline-block;
+}
+
+/* 3. The background image must stretch to fill the container space */
 .landing-bg {
     width: 100%;
     display: block;
     height: auto;
-}
-
-/* Absolute positioning base for all your links */
-.clickable-graphic {
-    position: absolute;
-    display: block;
 }
 
 .clickable-graphic img {

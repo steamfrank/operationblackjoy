@@ -60,7 +60,7 @@ body {
    width = (W / 1920) * 100
 */
 
-#bj&r {
+#bjr {
     top: 0%;   /* Change to 0% if you don't want it bleeding off the top edge */
     left: 57.4%;  
     width: 26%;
@@ -72,13 +72,13 @@ body {
     width: 20.2%; /* Scales beautifully at roughly 20% of the screen width */
 }
 
-#cassette-joy-index {
+#cassette-joy {
     top: 13.5%;   
     left: 64.2%;  
     width: 34.9%;
 }
 
-#cassette-resilience-index {
+#cassette-resilience {
     top: 49.2%;   
     left: 65.1%;  
     width: 34.9%;
@@ -101,16 +101,8 @@ body {
 }
 
 /* ==========================================
-   PAGE 3: SIDE-A-JOY COORDINATES (1920x1080)
+   SIDE A/B COORDINATES (1920x1080)
    ========================================== */
-
-/* Sits off the left edge */
-#back-to-welcome-a {
-    position: absolute;
-    top: 15.5%;
-    left: -43.2%;
-    width: 13.9%;
-}
 
 /* Sits on the left-center side */
 #next-track {
@@ -118,6 +110,14 @@ body {
     top: 26.2%;
     left: 26.7%;
     width: 7.8%;
+}
+
+/* Sits off the left edge */
+#back-to-welcome-a {
+    position: absolute;
+    top: 15.5%;
+    left: -43.2%;
+    width: 13.9%;
 }
 
 /* Sits off the top edge */
@@ -128,11 +128,6 @@ body {
     width: 5.2%;
 }
 
-/* ==========================================
-   PAGE B3: SIDE-B-RESILIENCE COORDINATES (1920x1080)
-   ========================================== */
-
-/* Sits off the left edge */
 #back-to-welcome-b {
     position: absolute;
     top: 15.5%;
@@ -146,4 +141,54 @@ body {
     top: -45.8%;
     left: 28.0%;
     width: 5.2%;
+}
+/* ==========================================
+   PORTRAIT / MOBILE STYLES (Triggers automatically)
+   ========================================== */
+@media screen and (max-width: 768px), screen and (orientation: portrait) {
+    
+    /* 1. Change the background image to your mobile portrait version */
+    .landing-bg-portrait {
+        content: url('index/page-landing-portrait.png'); 
+    }
+
+    /* 1. Finch Graphic */
+    #finch {
+        position: absolute;
+        top: 12.2%;
+        left: 64.2%;
+        width: 35.9%;
+    }
+
+    /* 2. Scrapbook Graphic */
+    #back-to-welcome-scrapbook {
+        position: absolute;
+        top: 33.8%;
+        left: 10.6%;
+        width: 34.5%;
+    }
+
+    /* 3. Black Joy & Resilience Graphic (ID renamed to bj-r) */
+    #bjr {
+        position: absolute;
+        top: 31.6%;
+        left: 45.8%;
+        width: 46.3%;
+    }
+
+    /* 4. Cassette Joy Graphic */
+    #cassette-joy {
+        position: absolute;
+        top: 51.6%;
+        left: 47.2%;
+        width: 48.0%;
+    }
+
+    /* 5. Cassette Resilience Graphic */
+    #cassette-resilience {
+        position: absolute;
+        top: 69.6%;
+        left: 49.6%;
+        width: 48.0%;
+    }
 }

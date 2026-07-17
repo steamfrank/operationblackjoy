@@ -60,31 +60,31 @@ body {
    width = (W / 1920) * 100
 */
 
-#graphic-1 {
+#bj&r {
     top: 0%;   /* Change to 0% if you don't want it bleeding off the top edge */
     left: 57.4%;  
     width: 26%;
 }
 
-#graphic-2 {
+#finch {
     top: -2.3%;   /* Sits just slightly off the top edge */
     left: 78.5%;  /* Positioned toward the right side of the screen */
     width: 20.2%; /* Scales beautifully at roughly 20% of the screen width */
 }
 
-#graphic-3 {
+#cassette-joy-index {
     top: 13.5%;   
     left: 64.2%;  
     width: 34.9%;
 }
 
-#graphic-4 {
+#cassette-resilience-index {
     top: 49.2%;   
     left: 65.1%;  
     width: 34.9%;
 }
 
-#graphic-5 {
+#scrapbook {
     top: 59.5%;   
     left: 4.7%;   
     width: 19.4%;

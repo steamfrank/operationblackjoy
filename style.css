@@ -21,7 +21,15 @@ html, body {
     overflow: hidden;
 }
 
-.landing-bg {
+/* Ensure ALL background variants scale cleanly and display as blocks */
+.landing-bg,
+.main-landing-bg,
+.main-scrapbook-bg,
+.main-side-a-bg,
+.main-side-b-bg,
+.main-track01-bg,
+.main-track02-bg,
+.main-track03-bg {
     width: 100%;
     display: block;
     height: auto;
@@ -33,8 +41,6 @@ html, body {
     position: absolute;
     display: block;
     z-index: 10; 
-    
-    /* Adds a smooth easing transition for the hover effect */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -42,7 +48,6 @@ html, body {
    INTERACTIVE HOVER EFFECTS
    ========================================================================== */
 .clickable-graphic:hover {
-    /* Translates the element up along the Y-axis by 8 pixels */
     transform: translateY(-8px);
 }
 
@@ -99,7 +104,7 @@ html, body {
     width: 13.9%;
 }
 
-/* Universal Back to Hub buttons (Both share the exact same location layout) */
+/* Universal Back to Hub buttons */
 #back-to-side-a, 
 #back-to-side-b {
     left: 28.0%;
@@ -120,64 +125,61 @@ html, body {
    ========================================================================== */
 @media (orientation: portrait) {
     
-    /* Background Image Asset Swaps */
+    /* Background Image Asset Swaps with corrected path escaping (../) */
     img.main-landing-bg {
         content: url("index/page-landing-portrait.png") !important;
     }
-    .main-scrapbook-bg {
-        content: url("scrapbook/page-scrapbook-portrait.png");
+    img.main-scrapbook-bg {
+        content: url("scrapbook/page-scrapbook-portrait.png") !important;
     }
-    .main-side-a-bg {
-        content: url("general/page-cassettes.png");
+    img.main-side-a-bg {
+        content: url("general/page-cassettes.png") !important;
     }
-    .main-side-b-bg {
-        content: url("general/page-cassettes.png");
+    img.main-side-b-bg {
+        content: url("general/page-cassettes.png") !important;
     }
-    .main-track01-bg {
-        content: url("track01/page-track01-portrait.png");
+    img.main-track01-bg {
+        content: url("../track01/page-track01-portrait.png") !important;
     }
-    .main-track02-bg {
-        content: url("track02/page-track02-portrait.png");
+    img.main-track02-bg {
+        content: url("../track02/page-track02-portrait.png") !important;
     }
-    .main-track03-bg {
-        content: url("track03/page-track03-portrait.png");
+    img.main-track03-bg {
+        content: url("../track03/page-track03-portrait.png") !important;
     }
 
- /* ==========================================================================
+    /* ==========================================================================
        1. INDEX.HTML PORTRAIT POSITIONS
        ========================================================================== */
-    /* Finch Link */
     #finch {
         left: 64.2%;
         top: 12.2%;
         width: 35.9%;
     }
     
-    /* BJR Welcome Page Link */
+    /* Adjusted BJR position down to sit level with scrapbook */
     #bjr {
         left: 45.8%;
-        top: 31.6%;
+        top: 33.8%;
         width: 46.3%;
     }
 
-    /* Scrapbook when inside index.html */
     .main-landing-bg ~ #scrapbook {
         left: 10.6%;
         top: 33.8%;
         width: 34.5%;
     }
 
-    /* Cassette Joy when inside index.html */
     .main-landing-bg ~ #cassette-joy {
         left: 47.2%;
         top: 51.6%;
         width: 48.0%;
     }
 
-    /* Cassette Resilience when inside index.html */
+    /* Adjusted Cassette Resilience position so it doesn't overlap Joy */
     .main-landing-bg ~ #cassette-resilience {
-        left: 47.2%;
-        top: 51.6%;
+        left: 49.6%;
+        top: 69.6%;
         width: 48.0%;
     }
 
@@ -185,35 +187,34 @@ html, body {
     /* ==========================================================================
        2. SIDE-A.HTML & SIDE-B.HTML HUB PORTRAIT POSITIONS
        ========================================================================== */
-    /* Cassette Joy layout on the Side A page */
     .main-side-a-bg ~ #cassette-joy {
         left: 41.6%;
         top: 53.7%;
         width: 58.7%;
     }
 
-    /* Cassette Resilience layout on the Side B page */
     .main-side-b-bg ~ #cassette-resilience {
         left: 41.6%;
         top: 53.7%;
         width: 58.7%;
     }
 
-    /* Scrapbook layout when on the Side A page */
     .main-side-a-bg ~ #scrapbook {
         left: 62.4%;
         top: 80.1%;
         width: 34.5%;
     }
 
-    /* Scrapbook layout when on the Side B page */
     .main-side-b-bg ~ #scrapbook {
         left: 62.4%;
         top: 80.1%;
         width: 34.5%;
     }
 
-    /* Universal Track & Hub Overrides */
+
+    /* ==========================================================================
+       3. TRACK PAGES PORTRAIT OVERRIDES
+       ========================================================================== */
     #back-to-welcome {
         left: -9.3%;
         top: -4.8%;
@@ -235,5 +236,4 @@ html, body {
         top: 41.2%;
         width: 13.9%;
     }
-
-} /* <--- Every portrait style is safely contained inside here now! */
+}

@@ -50,6 +50,11 @@ body {
    LANDING/SCRAPBOOK BACK TO WELCOME (1920x1080)
    ========================================================================== */
 
+/* Handles the default desktop landscape background smoothly via CSS */
+.main-landing-bg {
+    content: url("index/page-landing.png");
+}
+
 /* Sits slightly bleeding off the left edge */
 #back-to-welcome {
     left: -3.6%;
@@ -93,11 +98,12 @@ body {
    PORTRAIT MODE STYLES (1080x1920 Layout)
    ========================================================================== */
 @media (orientation: portrait) {
-    
-    /* Swaps out the desktop landscape image for your portrait background asset */
+    /* Handles the portrait background override */
     .main-landing-bg {
-        content: url("index/page-landing-portrait.png");
+        content: url("index/page-landing-portrait.png") !important;
     }
+    
+    /* ... keep your other portrait coordinates exactly the same ... */
 
     /* Recalculated Portrait Positions */
     

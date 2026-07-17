@@ -1,43 +1,46 @@
 /* ==========================================================================
-   FOUNDATIONAL GLOBAL STYLES 
+   GLOBAL RESET (Add to the very top of style.css)
    ========================================================================== */
-html {
+html, body {
     margin: 0;
     padding: 0;
     width: 100%;
+    height: 100%;
+    background-color: #f3e9dc; /* Or whatever your dark background color is */
+    
+    /* Prevents unwanted scrollbars if things shift by a fraction of a pixel */
+    overflow-x: hidden; 
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    background-color: #F3E9DC; /* Project Warm Cream */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    overflow-x: hidden;       /* Prevents unwanted horizontal scrolling */
-}
+/* ==========================================================================
+   BASE CANVAS LAYOUT (Landscape 1920x1080)
+   ========================================================================== */
 
-/* 1. The container MUST be relative so it acts as the anchor point */
 .landing-container {
     position: relative;
-    width: 100%;
-    max-width: 1920px; /* Or 1080px for portrait */
+    width: 100vw;               /* Force container to fill viewport width */
+    height: 56.25vw;            /* Maintain strict 16:9 aspect ratio (1080/1920) */
+    max-width: 1920px;
+    max-height: 1080px;
     margin: 0 auto;
     overflow: hidden;
 }
 
-/* 2. ALL clickable graphic links MUST be absolute so they can use top/left */
-.clickable-graphic {
+/* Ensure the background image acts as a solid, visible canvas sheet */
+.landing-bg {
     position: absolute;
-    display: inline-block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;         /* Guarantees the graphic covers the full canvas */
+    display: block;
 }
 
-/* 3. The background image must stretch to fill the container space */
-.landing-bg {
-    width: 100%;
+/* Force links to have dimensions and block status so they don't hide */
+.clickable-graphic {
+    position: absolute;
     display: block;
-    height: auto;
 }
 
 .clickable-graphic img {
@@ -46,14 +49,14 @@ body {
     display: block;
 }
 
-/* ==========================================================================
-   LANDING/SCRAPBOOK BACK TO WELCOME (1920x1080)
-   ========================================================================== */
-
-/* Handles the default desktop landscape background smoothly via CSS */
+/* The exact HTML fallback configuration */
 .main-landing-bg {
     content: url("index/page-landing.png");
 }
+
+/* ==========================================================================
+   LANDING/SCRAPBOOK BACK TO WELCOME (1920x1080)
+   ========================================================================== */
 
 /* Sits slightly bleeding off the left edge */
 #back-to-welcome {

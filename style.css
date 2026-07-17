@@ -41,50 +41,47 @@ html, body {
     z-index: 10; /* Higher layer number puts them on top */
 }
 
+/* ==========================================================================
+   LANDING PAGE LANDSCAPE COORDINATES (1920x1080)
+   ========================================================================== */
+
+#finch {
+    left: 45.4%;
+    top: 55.4%;
+    width: 16.9%;
+}
+
+#bjr {
+    left: 57.4%;
+    top: -8.0%;
+    width: 26.0%;
+}
+
+#scrapbook {
+    left: 10.6%;
+    top: 61.2%;
+    width: 21.0%;
+}
+
+#cassette-joy {
+    left: 15.0%;  /* Adjust these percentages to position them */
+    top: 25.0%;   /* exactly where they belong on your landscape map */
+    width: 20.0%; /* Adjust the width to scale them correctly */
+}
+
+#cassette-resilience {
+    left: 40.0%;  /* Adjust these percentages to position them */
+    top: 25.0%;   /* exactly where they belong on your landscape map */
+    width: 20.0%; /* Adjust the width to scale them correctly */
+}
+
+/* Ensure the images inside those links stretch to fill their coordinate boxes */
 .clickable-graphic img {
     width: 100%;
     height: auto;
     display: block;
 }
 
-/* ==========================================================================
-   LANDING PAGE LANDSCAPE COORDINATES (1920x1080)
-   ========================================================================== */
-
-/* BJR External Link (Bleeds off the top edge) */
-#bjr {
-    left: 57.4%;
-    top: -8.1%;
-    width: 26.0%;
-}
-
-/* Finch External Link (Bleeds off the top edge) */
-#finch {
-    left: 78.5%;
-    top: -2.3%;
-    width: 20.2%;
-}
-
-/* Virtual Scrapbook Internal Link */
-#scrapbook {
-    left: 4.7%;
-    top: 59.5%;
-    width: 19.4%;
-}
-
-/* Cassette Joy Internal Link */
-#cassette-joy {
-    left: 64.2%;
-    top: 13.5%;
-    width: 34.9%;
-}
-
-/* Cassette Resilience Internal Link */
-#cassette-resilience {
-    left: 65.1%;
-    top: 49.2%;
-    width: 34.9%;
-}
 /* ==========================================================================
    SCRAPBOOK AND SIDE A/B BACK TO WELCOME (1920x1080)
    ========================================================================== */

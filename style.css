@@ -53,9 +53,9 @@ html, body {
 
 /* BJR External Link (Bleeds off the top edge) */
 #bjr {
-    left: 57.4%;     /* (1102 / 1920) * 100 */
-    top: 0%;      /* (-87 / 1080) * 100 */
-    width: 26.0%;    /* (500 / 1920) * 100 */
+    left: 57.4%;
+    top: -8.1%;
+    width: 26.0%;
 }
 
 /* Finch External Link (Bleeds off the top edge) */
@@ -85,7 +85,6 @@ html, body {
     top: 49.2%;
     width: 34.9%;
 }
-
 /* ==========================================================================
    SCRAPBOOK AND SIDE A/B BACK TO WELCOME (1920x1080)
    ========================================================================== */

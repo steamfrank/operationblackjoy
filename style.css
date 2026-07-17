@@ -1,6 +1,12 @@
-/* ==========================================
-   1. GLOBAL STYLES & BACKGROUND
-   ========================================== */
+/* ==========================================================================
+   FOUNDATIONAL GLOBAL STYLES 
+   ========================================================================== */
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -9,34 +15,28 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    overflow-x: hidden; /* Prevents unwanted horizontal scrolling */
+    overflow-x: hidden;       /* Prevents unwanted horizontal scrolling */
 }
 
-/* ==========================================
-   2. MAIN LANDING CONTAINER
-   ========================================== */
+/* The parent box holding your graphics */
 .landing-container {
     position: relative;
     width: 100%;
-    max-width: 1920px; /* Matched to your 1920px Figma frame width */
-    margin: 0 auto;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); /* Soft shadow for depth */
-}
-
-/* Make sure your main 1920x1080 background image scales cleanly */
-.landing-bg {
-    width: 100%;
-    height: auto;
+    max-width: 1920px;        /* Limits width on massive monitors */
     display: block;
 }
 
-/* ==========================================
-   3. CLICKABLE GRAPHICS (GENERAL STYLES)
-   ========================================== */
+/* Ensures the background expands completely across its wrapper */
+.landing-bg {
+    width: 100%;
+    display: block;
+    height: auto;
+}
+
+/* Absolute positioning base for all your links */
 .clickable-graphic {
     position: absolute;
-    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth hover transition */
-    cursor: pointer;
+    display: block;
 }
 
 .clickable-graphic img {
@@ -45,150 +45,93 @@ body {
     display: block;
 }
 
-/* Subtle scale-up animation on hover to invite clicks */
-.clickable-graphic:hover {
-    transform: scale(1.08); 
-    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.15)); /* Pops the graphic out slightly */
+/* ==========================================================================
+   LANDING/SCRAPBOOK BACK TO WELCOME (1920x1080)
+   ========================================================================== */
+
+/* Sits slightly bleeding off the left edge */
+#back-to-welcome {
+    left: -3.6%;
+    top: 6.1%;
+    width: 26.0%;
 }
 
-/* ==========================================
-   4. INDIVIDUAL GRAPHIC POSITIONS (1920x1080)
-   ========================================== */
-/* Calculate your percentages using these formulas:
-   top = (Y / 1080) * 100
-   left = (X / 1920) * 100
-   width = (W / 1920) * 100
-*/
+/* ==========================================================================
+   TRACK PAGES UNIVERSAL LANDSCAPE COORDINATES (1920x1080)
+   ========================================================================== */
 
-#bjr {
-    top: 0%;   /* Change to 0% if you don't want it bleeding off the top edge */
-    left: 57.4%;  
-    width: 26%;
+/* Universal welcome back button layout for all track pages (Sides A & B) */
+#back-to-welcome-tracks {
+    left: -43.2%;
+    top: 15.5%;
+    width: 13.9%;
 }
 
-#finch {
-    top: -2.3%;   /* Sits just slightly off the top edge */
-    left: 78.5%;  /* Positioned toward the right side of the screen */
-    width: 20.2%; /* Scales beautifully at roughly 20% of the screen width */
+/* Universal Back to Hub buttons (Both share the exact same location layout) */
+#back-to-side-a, 
+#back-to-side-b {
+    left: 28.0%;
+    top: -45.8%;
+    width: 5.2%;
 }
 
-#cassette-joy {
-    top: 13.5%;   
-    left: 64.2%;  
-    width: 34.9%;
+/* Universal Next Track link */
+#next-track {
+    left: 26.7%;
+    top: 26.2%;
+    width: 7.8%;
 }
 
-#cassette-resilience {
-    top: 49.2%;   
-    left: 65.1%;  
-    width: 34.9%;
-}
-
-#scrapbook {
-    top: 59.5%;   
-    left: 4.7%;   
-    width: 19.4%;
-}
 /* ==========================================
    SCRAPBOOK COORDINATES (1920x1080)
    ========================================== */
 
-#back-to-welcome {
-    position: absolute;
-    top: 6.1%;   
-    left: -3.6%;  
-    width: 26.0%; 
-}
 
-/* ==========================================
-   SIDE A/B COORDINATES (1920x1080)
-   ========================================== */
 
-/* Sits on the left-center side */
-#next-track {
-    position: absolute;
-    top: 26.2%;
-    left: 26.7%;
-    width: 7.8%;
-}
-
-/* Sits off the left edge */
-#back-to-welcome-a {
-    position: absolute;
-    top: 15.5%;
-    left: -43.2%;
-    width: 13.9%;
-}
-
-/* Sits off the top edge */
-#back-to-side-a {
-    position: absolute;
-    top: -45.8%;
-    left: 28.0%;
-    width: 5.2%;
-}
-
-#back-to-welcome-b {
-    position: absolute;
-    top: 15.5%;
-    left: -43.2%;
-    width: 13.9%;
-}
-
-/* Sits off the top edge */
-#back-to-side-b {
-    position: absolute;
-    top: -45.8%;
-    left: 28.0%;
-    width: 5.2%;
-}
-/* ==========================================
-   PORTRAIT / MOBILE STYLES (Triggers automatically)
-   ========================================== */
-@media screen and (max-width: 768px), screen and (orientation: portrait) {
+/* ==========================================================================
+   PORTRAIT MODE STYLES (1080x1920 Layout)
+   ========================================================================== */
+@media (orientation: portrait) {
     
-    /* 1. Change the background image to your mobile portrait version */
-    .landing-bg-portrait {
-        content: url('index/page-landing-portrait.png'); 
+    /* Swaps out the desktop landscape image for your portrait background asset */
+    .main-landing-bg {
+        content: url("index/page-landing-portrait.png");
     }
 
-    /* 1. Finch Graphic */
+    /* Recalculated Portrait Positions */
+    
+    /* Finch Link */
     #finch {
-        position: absolute;
-        top: 12.2%;
         left: 64.2%;
+        top: 12.2%;
         width: 35.9%;
     }
 
-    /* 2. Scrapbook Graphic */
-    #back-to-welcome-scrapbook {
-        position: absolute;
-        top: 33.8%;
-        left: 10.6%;
-        width: 34.5%;
-    }
-
-    /* 3. Black Joy & Resilience Graphic (ID renamed to bj-r) */
+    /* BJR Link */
     #bjr {
-        position: absolute;
-        top: 31.6%;
         left: 45.8%;
+        top: 31.6%;
         width: 46.3%;
     }
 
-    /* 4. Cassette Joy Graphic */
+    /* Virtual Scrapbook */
+    #scrapbook {
+        left: 10.6%;
+        top: 33.8%;
+        width: 34.5%;
+    }
+
+    /* Cassette Joy (Side A) */
     #cassette-joy {
-        position: absolute;
-        top: 51.6%;
         left: 47.2%;
+        top: 51.6%;
         width: 48.0%;
     }
 
-    /* 5. Cassette Resilience Graphic */
+    /* Cassette Resilience (Side B) */
     #cassette-resilience {
-        position: absolute;
-        top: 69.6%;
         left: 49.6%;
+        top: 69.6%;
         width: 48.0%;
     }
 }

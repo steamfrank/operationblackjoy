@@ -134,4 +134,85 @@ body {
         top: 69.6%;
         width: 48.0%;
     }
-}
+/* Swaps out the desktop landscape image for your portrait scrapbook background */
+    .main-scrapbook-bg {
+        content: url("scrapbook/page-scrapbook-portrait.png");
+    }
+
+    /* Recalculated Portrait Position for the universal back button */
+    #back-to-welcome {
+        left: -9.3%;
+        top: -4.8%;
+        width: 34.7%;
+    }
+
+   /* Swaps out the desktop landscape image for your portrait side-a cassettes background */
+    .main-side-a-bg {
+        content: url("general/page-cassettes.png");
+    }
+
+    /* Recalculated Portrait Position for Cassette Joy graphic on Side A Hub */
+    #cassette-joy {
+        left: 41.6%;
+        top: 53.7%;
+        width: 58.7%;
+    }
+
+    /* Recalculated Portrait Position for the Scrapbook graphic link on Side A Hub */
+    #scrapbook {
+        left: 62.4%;
+        top: 80.1%;
+        width: 34.5%;
+    }
+
+   /* Swaps out the desktop landscape image for your portrait side-b cassettes background */
+    .main-side-b-bg {
+        content: url("general/page-cassettes.png");
+    }
+
+    /* Recalculated Portrait Position for Cassette Resilience graphic on Side B Hub */
+    #cassette-resilience {
+        left: 41.6%;
+        top: 53.7%;
+        width: 58.7%;
+    }
+
+    /* Recalculated Portrait Position for the Scrapbook graphic link on Side B Hub */
+    /* (Note: Since this matches Side A, we can let them share the rule seamlessly) */
+
+   /* -----------------------------------------
+       Track Background Swaps
+       ----------------------------------------- */
+    .main-track01-bg {
+        content: url("track01/page-track01-portrait.png");
+    }
+    .main-track02-bg {
+        content: url("track02/page-track02-portrait.png");
+    }
+    .main-track03-bg {
+        content: url("track03/page-track03-portrait.png");
+    }
+
+    /* -----------------------------------------
+       Universal Track Page Portrait Layouts
+       ----------------------------------------- */
+    #back-to-welcome-tracks {
+        left: 71.3%;
+        top: 70.5%;
+        width: 24.6%;
+    }
+
+    #back-to-side-a,
+    #back-to-side-b {
+        left: 80.6%;
+        top: 6.8%;
+        width: 9.3%;
+    }
+
+    #next-track {
+        left: 78.3%;
+        top: 41.2%;
+        width: 13.9%;
+    }
+
+} /* <--- This is the final closing bracket for the entire portrait section */

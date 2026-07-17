@@ -1,31 +1,18 @@
 /* ==========================================================================
-   GLOBAL RESET (Add to the very top of style.css)
+   1. GLOBAL RESET
    ========================================================================== */
 html, body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    background-color: #f3e9dc; /* Or whatever your dark background color is */
-    
-    /* Prevents unwanted scrollbars if things shift by a fraction of a pixel */
+    background-color: #f3e9dc;
     overflow-x: hidden; 
 }
 
 /* ==========================================================================
-   BASE CANVAS LAYOUT (Landscape 1920x1080)
+   2. BASE CANVAS LAYOUT (Landscape 1920x1080)
    ========================================================================== */
-
-/* Base settings for the background image */
-.landing-bg {
-    width: 100%;
-    display: block;
-    height: auto;
-    position: relative;
-    z-index: 1;
-}
-
-/* Ensure the container stretches open naturally based on the image size */
 .landing-container {
     position: relative;
     width: 100%;
@@ -34,17 +21,29 @@ html, body {
     overflow: hidden;
 }
 
-/* Force links to have dimensions and block status so they don't hide */
+.landing-bg {
+    width: 100%;
+    display: block;
+    height: auto;
+    position: relative;
+    z-index: 1;
+}
+
 .clickable-graphic {
     position: absolute;
     display: block;
-    z-index: 10; /* Higher layer number puts them on top */
+    z-index: 10; 
+}
+
+.clickable-graphic img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 /* ==========================================================================
-   LANDING PAGE LANDSCAPE COORDINATES (1920x1080)
+   3. LANDING PAGE LANDSCAPE COORDINATES (1920x1080)
    ========================================================================== */
-
 #finch {
     left: 45.4%;
     top: 55.4%;
@@ -64,47 +63,30 @@ html, body {
 }
 
 #cassette-joy {
-    left: 15.0%;  /* Adjust these percentages to position them */
-    top: 25.0%;   /* exactly where they belong on your landscape map */
-    width: 20.0%; /* Adjust the width to scale them correctly */
+    left: 15.0%;  
+    top: 25.0%;   
+    width: 20.0%; 
 }
 
 #cassette-resilience {
-    left: 40.0%;  /* Adjust these percentages to position them */
-    top: 25.0%;   /* exactly where they belong on your landscape map */
-    width: 20.0%; /* Adjust the width to scale them correctly */
+    left: 40.0%;  
+    top: 25.0%;   
+    width: 20.0%; 
 }
 
-/* Ensure the images inside those links stretch to fill their coordinate boxes */
-.clickable-graphic img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* ==========================================================================
-   SCRAPBOOK AND SIDE A/B BACK TO WELCOME (1920x1080)
-   ========================================================================== */
-
-/* Sits slightly bleeding off the left edge */
+/* Universal Page Navigation */
 #back-to-welcome {
     left: -3.6%;
     top: 6.1%;
     width: 26.0%;
 }
 
-/* ==========================================================================
-   TRACK PAGES UNIVERSAL LANDSCAPE COORDINATES (1920x1080)
-   ========================================================================== */
-
-/* Universal welcome back button layout for all track pages (Sides A & B) */
 #back-to-welcome-tracks {
     left: -43.2%;
     top: 15.5%;
     width: 13.9%;
 }
 
-/* Universal Back to Hub buttons (Both share the exact same location layout) */
 #back-to-side-a, 
 #back-to-side-b {
     left: 28.0%;
@@ -112,117 +94,31 @@ html, body {
     width: 5.2%;
 }
 
-/* Universal Next Track link */
 #next-track {
     left: 26.7%;
     top: 26.2%;
     width: 7.8%;
 }
 
-/* ==========================================
-   SCRAPBOOK COORDINATES (1920x1080)
-   ========================================== */
-
-
 
 /* ==========================================================================
-   PORTRAIT MODE STYLES (1080x1920 Layout)
+   4. PORTRAIT MODE STYLES (1080x1920 Layout)
    ========================================================================== */
 @media (orientation: portrait) {
     
-    /* Force the portrait background replacement seamlessly */
+    /* Background Image Asset Swaps */
     img.main-landing-bg {
         content: url("index/page-landing-portrait.png") !important;
     }
-
-    /* Your portrait coordinates stay exactly as they were */
-}
-
-    /* Recalculated Portrait Positions */
-    
-    /* Finch Link */
-    #finch {
-        left: 64.2%;
-        top: 12.2%;
-        width: 35.9%;
-    }
-
-    /* BJR Link */
-    #bjr {
-        left: 45.8%;
-        top: 31.6%;
-        width: 46.3%;
-    }
-
-    /* Virtual Scrapbook */
-    #scrapbook {
-        left: 10.6%;
-        top: 33.8%;
-        width: 34.5%;
-    }
-
-    /* Cassette Joy (Side A) */
-    #cassette-joy {
-        left: 47.2%;
-        top: 51.6%;
-        width: 48.0%;
-    }
-
-    /* Cassette Resilience (Side B) */
-    #cassette-resilience {
-        left: 49.6%;
-        top: 69.6%;
-        width: 48.0%;
-    }
-/* Swaps out the desktop landscape image for your portrait scrapbook background */
     .main-scrapbook-bg {
         content: url("scrapbook/page-scrapbook-portrait.png");
     }
-
-    /* Recalculated Portrait Position for the universal back button */
-    #back-to-welcome {
-        left: -9.3%;
-        top: -4.8%;
-        width: 34.7%;
-    }
-
-   /* Swaps out the desktop landscape image for your portrait side-a cassettes background */
     .main-side-a-bg {
         content: url("general/page-cassettes.png");
     }
-
-    /* Recalculated Portrait Position for Cassette Joy graphic on Side A Hub */
-    #cassette-joy {
-        left: 41.6%;
-        top: 53.7%;
-        width: 58.7%;
-    }
-
-    /* Recalculated Portrait Position for the Scrapbook graphic link on Side A Hub */
-    #scrapbook {
-        left: 62.4%;
-        top: 80.1%;
-        width: 34.5%;
-    }
-
-   /* Swaps out the desktop landscape image for your portrait side-b cassettes background */
     .main-side-b-bg {
         content: url("general/page-cassettes.png");
     }
-
-    /* Recalculated Portrait Position for Cassette Resilience graphic on Side B Hub */
-    #cassette-resilience {
-        left: 41.6%;
-        top: 53.7%;
-        width: 58.7%;
-    }
-
-    /* Recalculated Portrait Position for the Scrapbook graphic link on Side B Hub */
-    /* (Note: Since this matches Side A, we can let them share the rule seamlessly) */
-
-   /* -----------------------------------------
-       Track Background Swaps
-       ----------------------------------------- */
     .main-track01-bg {
         content: url("track01/page-track01-portrait.png");
     }
@@ -233,26 +129,54 @@ html, body {
         content: url("track03/page-track03-portrait.png");
     }
 
-    /* -----------------------------------------
-       Universal Track Page Portrait Layouts
-       ----------------------------------------- */
+    /* Landing Page Portrait Positions */
+    #finch {
+        left: 64.2%;
+        top: 12.2%;
+        width: 35.9%;
+    }
+    #bjr {
+        left: 45.8%;
+        top: 31.6%;
+        width: 46.3%;
+    }
+    #scrapbook {
+        left: 10.6%;
+        top: 33.8%;
+        width: 34.5%;
+    }
+    #cassette-joy {
+        left: 47.2%;
+        top: 51.6%;
+        width: 48.0%;
+    }
+    #cassette-resilience {
+        left: 49.6%;
+        top: 69.6%;
+        width: 48.0%;
+    }
+
+    /* Universal Track & Hub Overrides */
+    #back-to-welcome {
+        left: -9.3%;
+        top: -4.8%;
+        width: 34.7%;
+    }
     #back-to-welcome-tracks {
         left: 71.3%;
         top: 70.5%;
         width: 24.6%;
     }
-
     #back-to-side-a,
     #back-to-side-b {
         left: 80.6%;
         top: 6.8%;
         width: 9.3%;
     }
-
     #next-track {
         left: 78.3%;
         top: 41.2%;
         width: 13.9%;
     }
 
-} /* <--- This is the final closing bracket for the entire portrait section */
+} /* <--- Every portrait style is safely contained inside here now! */

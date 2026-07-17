@@ -51,7 +51,7 @@ html, body {
 
 /* The exact HTML fallback configuration */
 .main-landing-bg {
-    content: url("index/page-landing.png");
+    content: url("index/page-landing.png") !important;
 }
 
 /* ==========================================================================

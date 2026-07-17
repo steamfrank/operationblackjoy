@@ -33,8 +33,15 @@ html, body {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;         /* Guarantees the graphic covers the full canvas */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: block;
+    z-index: 1; /* Puts it safely behind your clickable graphics */
+}
+
+.main-landing-bg {
+    background-image: url("index/page-landing.png");
 }
 
 /* Force links to have dimensions and block status so they don't hide */
@@ -47,11 +54,6 @@ html, body {
     width: 100%;
     height: auto;
     display: block;
-}
-
-/* The exact HTML fallback configuration */
-.main-landing-bg {
-    content: url("index/page-landing.png") !important;
 }
 
 /* ==========================================================================
@@ -140,12 +142,13 @@ html, body {
    PORTRAIT MODE STYLES (1080x1920 Layout)
    ========================================================================== */
 @media (orientation: portrait) {
-    /* Handles the portrait background override */
-    .main-landing-bg {
-        content: url("index/page-landing-portrait.png") !important;
-    }
     
-    /* ... keep your other portrait coordinates exactly the same ... */
+    .main-landing-bg {
+        background-image: url("index/page-landing-portrait.png") !important;
+    }
+
+    /* ... leave all your graphic coordinates exactly as they are ... */
+}
 
     /* Recalculated Portrait Positions */
     

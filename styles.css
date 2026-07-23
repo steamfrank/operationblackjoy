@@ -117,11 +117,11 @@ img {
 
 .graphic-item {
   display: inline-block;
-  transition: transform 0.2s ease;
+  transition: transform 0.3s ease;
 }
 
 .graphic-item:hover {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 .inline-graphic {
@@ -129,7 +129,17 @@ img {
   height: auto;
 }
 
-/* Middle BJR Welcome Link Element */
+/* Soft, natural blend/fade shadow for PNG transparent edges */
+.soft-fade-shadow {
+  filter: drop-shadow(0px 8px 16px rgba(0, 0, 0, 0.08));
+  transition: filter 0.3s ease;
+}
+
+.graphic-item:hover .soft-fade-shadow {
+  filter: drop-shadow(0px 12px 24px rgba(0, 0, 0, 0.14));
+}
+
+/* Middle BJR Welcome Element */
 .welcome-center-item {
   display: flex;
   flex-direction: column;
@@ -147,16 +157,6 @@ img {
   font-weight: 600;
   font-size: 0.95rem;
   color: #4a4a4a;
-}
-
-.graphic-link {
-  text-decoration: none;
-  color: inherit;
-  transition: transform 0.2s ease;
-}
-
-.graphic-link:hover {
-  transform: scale(1.02);
 }
 
 /* ==========================================================================

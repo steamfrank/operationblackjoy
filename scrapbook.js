@@ -2,10 +2,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const scrapbookGrid = document.getElementById("scrapbook-grid");
   const emptyStateMsg = document.getElementById("empty-gallery-msg");
 
-  // Helper function: Uses QR Server API to generate a reliable QR image URL
-  function getQRCodeUrl(targetUrl) {
-    const safeUrl = encodeURIComponent(targetUrl || "https://blackjoy.pacscl.org/omeka/s/bjr/page/welcome");
-    return `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${safeUrl}`;
+  // Helper function: Generates a QR code pointing to the AR Viewer page on your site
+  function getARQRCodeUrl(cardId) {
+    // Gets the current site domain/origin (or defaults to current path)
+    const baseUrl = window.location.origin + window.location.pathname.replace("scrapbook.html", "");
+    
+    // Target AR viewer URL with the specific card ID in query params
+    const arTargetUrl = `${baseUrl}ar.html?id=${cardId}`;
+    
+    // Encodes for QR Server API
+    const safeUrl = encodeURIComponent(arTargetUrl);
+    return `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${safeUrl}`;
   }
 
   // Load saved postcards from localStorage
@@ -36,7 +43,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const cardItem = document.createElement("div");
     cardItem.className = "scrapbook-card-item";
 
-    const qrCodeImageUrl = getQRCodeUrl(cardData.archiveUrl);
+    // Generate AR launch QR code using card's unique ID
+    const arQrCodeUrl = getARQRCodeUrl(cardData.id);
     const orientationClass = cardData.orientation === "portrait" ? "format-portrait" : "format-landscape";
 
     cardItem.innerHTML = `
@@ -46,8 +54,8 @@ document.addEventListener("DOMContentLoaded", () => {
             <img src="${cardData.frontImage}" alt="Saved Postcard Photo">
           </div>
           <div class="front-qr-badge">
-            <img src="${qrCodeImageUrl}" alt="Scan AR QR Code" width="55" height="55">
-            <span>Scan Source</span>
+            <img src="${arQrCodeUrl}" alt="Scan to Launch AR" width="65" height="65">
+            <span>Scan for AR</span>
           </div>
         </div>
       </div>
@@ -56,6 +64,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return cardItem;
   }
 
-  // Initialize scrapbook on page load
+  // Initialize scrapbook gallery on load
   loadScrapbook();
 });

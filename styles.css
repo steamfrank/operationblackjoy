@@ -546,3 +546,43 @@ img {
   padding: 0.75rem 1.5rem;
 }
 
+/* Banner Header Wrapper (Logo + Side-by-Side Back Button) */
+.banner-header-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  max-width: 95%;
+  margin: 0 auto 1.5rem auto;
+}
+
+.scrapbook-hero .hero-logo-banner {
+  flex: 1;
+  max-width: 800px;
+  margin: 0; /* Clears bottom margin to align smoothly with back button */
+}
+
+/* Back Button proportioned to ~1/4 of the banner size */
+.back-btn-img-hero {
+  width: 100%;
+  max-width: 140px; /* ~25% relative scale of banner width */
+  height: auto;
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.back-btn-img-hero:hover {
+  transform: scale(1.06);
+}
+
+/* Responsive Scaling for Mobile Screens */
+@media (max-width: 768px) {
+  .banner-header-wrapper {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .back-btn-img-hero {
+    max-width: 90px;
+  }
+}

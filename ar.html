@@ -132,39 +132,38 @@
     document.addEventListener("DOMContentLoaded", () => {
       const urlParams = new URLSearchParams(window.location.search);
       const cardId = urlParams.get("id");
-
+      
+      // URL Parameter Fallbacks (Allows QR codes to work on any phone/device)
+      const urlMsg = urlParams.get("msg");
+      const urlStamp = urlParams.get("stamp");
+      const urlSource = urlParams.get("src");
+    
       const displayMessage = document.getElementById("ar-display-message");
       const selectedStamp = document.getElementById("ar-selected-stamp");
       const archiveLink = document.getElementById("ar-archive-source-link");
-
-      // Load saved cards from LocalStorage
+    
+      // 1. Try loading from LocalStorage first
       const savedCards = JSON.parse(localStorage.getItem("operationBlackJoyScrapbook")) || [];
       const cardData = savedCards.find((card) => String(card.id) === String(cardId));
-
+    
       if (cardData) {
-        // 1. Retrieve message from any possible storage property key
-        const userNote = cardData.message || cardData.note || cardData.userMessage || cardData.text || "";
-        if (displayMessage) {
-          displayMessage.textContent = userNote || "Celebrating Black Joy & Resilience!";
-        }
-
-        // 2. Populate stamp image
-        if (selectedStamp && cardData.stamp) {
-          selectedStamp.src = cardData.stamp;
-        }
-
-        // 3. Populate direct source URL
-        const itemUrl = cardData.archiveUrl || cardData.sourceUrl || cardData.url;
-        if (archiveLink && itemUrl) {
-          archiveLink.href = itemUrl;
-        }
+        if (displayMessage) displayMessage.textContent = cardData.message || cardData.note || "";
+        if (selectedStamp) selectedStamp.src = cardData.stamp || "assets/stamp-aaam2026.png";
+        if (archiveLink && cardData.archiveUrl) archiveLink.href = cardData.archiveUrl;
       } else {
-        // Fallback message if accessed directly without card ID in URL
+        // 2. Fallback to URL parameters if opened on a different device (Mobile Phone)
         if (displayMessage) {
-          displayMessage.textContent = "Operation: Black Joy — Preserving community resilience and stories.";
+          displayMessage.textContent = urlMsg ? decodeURIComponent(urlMsg) : "Celebrating Black Joy & Resilience!";
+        }
+        if (selectedStamp) {
+          selectedStamp.src = urlStamp ? decodeURIComponent(urlStamp) : "assets/stamp-aaam2026.png";
+        }
+        if (archiveLink && urlSource) {
+          archiveLink.href = decodeURIComponent(urlSource);
         }
       }
     });
+
   </script>
 
 </body>

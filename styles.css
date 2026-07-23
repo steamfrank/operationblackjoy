@@ -585,3 +585,37 @@ img {
     width: 32px;
   }
 }
+/* Static Postcard Cards (Non-flipping) */
+.scrapbook-postcard.static-card {
+  transform: none !important;
+  transition: none !important;
+  perspective: none !important;
+}
+
+.scrapbook-postcard.static-card .card-side {
+  position: relative;
+  backface-visibility: visible;
+}
+
+.front-qr-badge {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 6px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+}
+
+.front-qr-badge span {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #111;
+  margin-top: 3px;
+}
+

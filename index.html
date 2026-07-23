@@ -5,44 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Operation: Black Joy — Welcome</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
   <main class="main-content">
     
     <section class="hero-section">
-      <img src="assets/logo.png" alt="Operation: Black Joy Logo" class="hero-logo-banner">
-      <h1>Operation: Black Joy</h1>
-      <p class="subtitle">An interactive digital archive celebrating joy, resilience, and community history.</p>
-    </section>
-
-    <section class="cassette-section">
-      <div class="cassette-grid">
-        <div class="cassette-card">
-          <img src="assets/index/cassette-joy.png" alt="Side A: Joy Cassette Tape" class="cassette-img">
-        </div>
-        <div class="cassette-card">
-          <img src="assets/index/cassette-resilience.png" alt="Side B: Resilience Cassette Tape" class="cassette-img">
-        </div>
+      <div class="banner-header-wrapper">
+        <img src="assets/logo.png" alt="Operation: Black Joy Logo" class="hero-logo-banner">
       </div>
+      <h1>Operation: Black Joy</h1>
+      <p class="subtitle">An interactive archive preserving community stories, joy, and resilience through digital postcards and augmented reality.</p>
     </section>
 
-        <section class="badges-section">
-      <div class="badges-grid">
+    <section class="landing-grid-container">
+      <div class="landing-grid">
         
-        <a href="https://finch.go.link/iiAFW?adj_label=ShRQR" target="_blank" rel="noopener noreferrer" class="graphic-item">
-          <img src="assets/index/finch.png" alt="Create a Postcard - Finch" class="inline-graphic soft-fade-shadow">
+        <a href="postcard.html" class="cassette-link-card">
+          <img src="assets/cassette-creator.png" alt="Create a Postcard" class="cassette-img" onerror="this.onerror=null; this.src='assets/default-postcard.png';">
+          <div class="card-info">
+            <h2>Postcard Creator</h2>
+            <p>Customize a digital archive postcard with your handwritten note and custom event stamp.</p>
+          </div>
         </a>
 
-        <div class="welcome-center-item">
-          <a href="https://blackjoy.pacscl.org/omeka/s/bjr/page/welcome" target="_blank" rel="noopener noreferrer" class="graphic-item">
-            <img src="assets/index/bjr-welcome.png" alt="Black Joy and Resilience Welcome" class="welcome-graphic soft-fade-shadow">
-          </a>
-          <span class="welcome-label">Learn more about Black Joy & Resilience here</span>
-        </div>
-
-        <a href="scrapbook.html" class="graphic-item">
-          <img src="assets/index/scrapbook-link.png" alt="Virtual Scrapbook Link" class="inline-graphic soft-fade-shadow">
+        <a href="scrapbook.html" class="cassette-link-card">
+          <img src="assets/cassette-scrapbook.png" alt="Virtual Scrapbook" class="cassette-img" onerror="this.onerror=null; this.src='assets/default-postcard.png';">
+          <div class="card-info">
+            <h2>Virtual Scrapbook</h2>
+            <p>Explore community contributions saved to the gallery and scan cards for mobile AR view.</p>
+          </div>
         </a>
 
       </div>

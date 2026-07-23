@@ -5,12 +5,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // Retrieve saved postcards from localStorage
   const savedPostcards = JSON.parse(localStorage.getItem("operationBlackJoyScrapbook")) || [];
 
+  // Show or hide empty state message
   if (savedPostcards.length === 0) {
-    emptyGalleryMsg.style.display = "block";
+    if (emptyGalleryMsg) emptyGalleryMsg.style.display = "block";
     return;
+  } else {
+    if (emptyGalleryMsg) emptyGalleryMsg.style.display = "none";
   }
-
-  emptyGalleryMsg.style.display = "none";
 
   // Render each postcard item into the gallery
   savedPostcards.forEach((data, index) => {
@@ -25,12 +26,12 @@ document.addEventListener("DOMContentLoaded", () => {
         
         <div class="card-side card-front ${formatClass}">
           <div class="photo-frame">
-            <img src="${data.frontImage}" alt="Scrapbook Postcard Front">
+            <img src="${data.frontImage}" alt="Scrapbook Postcard Front" onerror="this.src='assets/default-postcard.png'">
           </div>
           
-          <div class="front-qr-badge" id="qr-btn-${index}" title="Scan or click to flip to back">
+          <div class="front-qr-badge" id="qr-badge-wrapper-${index}" title="Scan to launch back of card or click to flip">
             <div id="${qrContainerId}"></div>
-            <span>Flip Back</span>
+            <span>Scan / Flip</span>
           </div>
         </div>
 
@@ -38,13 +39,13 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="back-header">
             <img src="assets/logo-transparent.png" alt="Operation Black Joy" class="back-logo-transparent">
             <div class="stamp-area">
-              <img src="${data.stamp}" alt="Postcard Stamp">
+              <img src="${data.stamp || 'assets/stamp-aaam2026.png'}" alt="Postcard Stamp">
             </div>
           </div>
 
           <div class="back-body">
             <div class="message-area">
-              <p class="handwritten-text">${data.message}</p>
+              <p class="handwritten-text">${data.message || 'Sending joy & resilience from Operation: Black Joy!'}</p>
             </div>
 
             <div class="divider-line"></div>
@@ -57,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
               </div>
 
               <div class="source-link-container">
-                <a href="${data.archiveUrl}" target="_blank" rel="noopener noreferrer" class="external-image-link">
+                <a href="${data.archiveUrl || 'https://blackjoy.pacscl.org/omeka/s/bjr/page/welcome'}" target="_blank" rel="noopener noreferrer" class="external-image-link" onclick="event.stopPropagation();">
                   🔗 Original Source
                 </a>
               </div>
@@ -70,20 +71,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
     scrapbookGrid.appendChild(cardItem);
 
-    // Generate QR Code on the front badge
-    new QRCode(document.getElementById(qrContainerId), {
-      text: data.archiveUrl || "https://blackjoy.pacscl.org/omeka/s/bjr/page/welcome",
-      width: 42,
-      height: 42,
-      colorDark: "#000000",
-      colorLight: "#ffffff",
-      correctLevel: QRCode.CorrectLevel.M
-    });
+    // Render the QR code into the container after element is appended to DOM
+    setTimeout(() => {
+      const qrContainer = document.getElementById(qrContainerId);
+      if (qrContainer && typeof QRCode !== "undefined") {
+        qrContainer.innerHTML = ""; // Clear any previous instance
+        
+        const qrUrl = data.archiveUrl && data.archiveUrl.startsWith("http") 
+          ? data.archiveUrl 
+          : "https://blackjoy.pacscl.org/omeka/s/bjr/page/welcome";
 
-    // Toggle 3D Flip on QR Code Badge click or Card click
+        new QRCode(qrContainer, {
+          text: qrUrl,
+          width: 52,
+          height: 52,
+          colorDark: "#000000",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.H
+        });
+      }
+    }, 50);
+
+    // Toggle 3D Flip on card click
     const cardElement = document.getElementById(`scrapbook-card-${index}`);
-    cardElement.addEventListener("click", () => {
-      cardElement.classList.toggle("is-flipped");
-    });
+    if (cardElement) {
+      cardElement.addEventListener("click", () => {
+        cardElement.classList.toggle("is-flipped");
+      });
+    }
   });
 });

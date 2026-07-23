@@ -192,3 +192,266 @@ img {
     order: -1;
   }
 }
+/* ==========================================================================
+   Interactive Postcard Web App Styles
+   ========================================================================== */
+
+/* Event Selection Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1.5rem;
+}
+
+.modal-card {
+  background: #ffffff;
+  padding: 2.5rem;
+  border-radius: 16px;
+  max-width: 520px;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.modal-card h2 {
+  font-size: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.modal-card p {
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.event-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.event-option-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.event-option-card:hover {
+  border-color: #2b2b2b;
+  background-color: #fcfcfc;
+}
+
+.option-details strong {
+  display: block;
+  font-size: 1rem;
+  color: #1a1a1a;
+}
+
+.option-details small {
+  color: #777;
+  font-size: 0.85rem;
+}
+
+/* Page # Row Styling */
+.page-num-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.page-num-row input {
+  width: 80px;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.char-counter {
+  text-align: right;
+  font-size: 0.8rem;
+  color: #777;
+  margin-top: 0.25rem;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.action-btn.secondary {
+  background-color: #666;
+}
+
+/* Postcard Flip & Dynamic Aspect Ratio Formatting */
+.postcard-container {
+  flex: 1.5;
+  perspective: 1000px;
+}
+
+.postcard {
+  width: 100%;
+  aspect-ratio: 3 / 2; /* Always Landscape baseline for flip symmetry */
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+  border-radius: 8px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.postcard.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.card-side {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 8px;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+/* Front Side Aspect Formatting Rules */
+.card-front {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f7f6f2;
+}
+
+/* Landscape / Square Formatting (With Border Frame) */
+.card-front.format-landscape {
+  padding: 16px;
+}
+
+.card-front.format-landscape .photo-frame {
+  width: 100%;
+  height: 100%;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+}
+
+.card-front.format-landscape img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Portrait Formatting (Centered vertically/horizontally without squeezing) */
+.card-front.format-portrait .photo-frame {
+  height: 90%;
+  width: auto;
+  aspect-ratio: 2 / 3;
+}
+
+.card-front.format-portrait img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+/* Back Side (Always Landscape) Layout */
+.card-back {
+  transform: rotateY(180deg);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  background-color: #fdfbf7;
+  border: 1px solid #e2ded4;
+}
+
+.back-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.back-logo-transparent {
+  max-height: 45px;
+  width: auto;
+}
+
+.stamp-area {
+  width: 70px;
+  height: 70px;
+  border: 2px dashed #bbb;
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stamp-area img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.back-body {
+  display: flex;
+  flex: 1;
+  gap: 1.25rem;
+}
+
+.message-area {
+  flex: 1.1;
+}
+
+.handwritten-text {
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  line-height: 1.35;
+  color: #1a2a3a;
+  word-break: break-word;
+}
+
+.divider-line {
+  width: 1px;
+  background-color: #d1ccc0;
+}
+
+.credit-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: #444;
+}
+
+.credit-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.credit-line strong {
+  color: #111;
+}
+
+.external-image-link {
+  display: inline-block;
+  color: #1b5e20;
+  font-weight: 600;
+  text-decoration: underline;
+  font-size: 0.85rem;
+}

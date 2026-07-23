@@ -14,7 +14,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* AR Camera Overlay Overrides */
     body {
       margin: 0;
       overflow: hidden;
@@ -36,27 +35,53 @@
       box-sizing: border-box;
     }
 
-    .ar-top-bar, .ar-bottom-bar {
+    .ar-top-bar {
       pointer-events: auto;
     }
 
-    /* Floating AR Card Styling */
+    /* Floating Postcard Back Container (Fixed single-side display) */
     .ar-floating-card-container {
       position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 85vw;
-      max-width: 450px;
+      width: 88vw;
+      max-width: 460px;
       aspect-ratio: 3 / 2;
       pointer-events: auto;
-      perspective: 1000px;
       z-index: 900;
     }
 
     .ar-card-shadow {
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.45);
       border-radius: 12px;
+    }
+
+    .ar-single-back {
+      position: relative !important;
+      transform: none !important;
+      backface-visibility: visible !important;
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+    }
+
+    .simplified-link-btn {
+      display: inline-block;
+      margin-top: 0.75rem;
+      padding: 0.6rem 0.85rem;
+      background-color: #2563eb;
+      color: #ffffff !important;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      transition: background-color 0.2s ease;
+    }
+
+    .simplified-link-btn:hover {
+      background-color: #1d4ed8;
     }
   </style>
 </head>
@@ -75,80 +100,67 @@
     </div>
 
     <div class="ar-floating-card-container">
-      <div id="ar-postcard-wrapper" class="postcard-wrapper is-flipped ar-card-shadow">
+      <div class="card-side card-back ar-single-back ar-card-shadow">
         
-        <div class="card-side card-front">
-          <div class="photo-frame">
-            <img id="ar-postcard-photo" src="" alt="Postcard Front Photo">
+        <div class="back-header">
+          <img src="assets/logo-transparent.png" alt="Operation Black Joy" class="back-logo-transparent">
+          <div class="stamp-area">
+            <img id="ar-selected-stamp" src="assets/stamp-aaam2026.png" alt="Event Stamp">
           </div>
         </div>
 
-        <div class="card-side card-back">
-          <div class="back-header">
-            <img src="assets/logo-transparent.png" alt="Operation Black Joy" class="back-logo-transparent">
-            <div class="stamp-area">
-              <img id="ar-selected-stamp" src="assets/stamp-aaam2026.png" alt="Event Stamp">
-            </div>
+        <div class="back-body">
+          <div class="message-area">
+            <p id="ar-display-message" class="handwritten-text"></p>
           </div>
 
-          <div class="back-body">
-            <div class="message-area">
-              <p id="ar-display-message" class="handwritten-text"></p>
-            </div>
-            <div class="divider-line"></div>
-            <div class="credit-area">
-              <div class="credit-block">
-                <p class="credit-line"><strong>Archive Credit:</strong></p>
-                <a id="ar-archive-source-link" href="#" target="_blank" rel="noopener noreferrer" class="external-image-link">
-                  🔗 PACSCL Collection
-                </a>
-              </div>
-            </div>
+          <div class="divider-line"></div>
+
+          <div class="credit-area" style="justify-content: center; align-items: center; text-align: center;">
+            <p class="credit-line" style="font-size: 0.85rem; color: #475569;">
+              <strong>Archival Context</strong>
+            </p>
+            <a id="ar-archive-source-link" href="https://blackjoy.pacscl.org/omeka/s/bjr/page/welcome" target="_blank" rel="noopener noreferrer" class="simplified-link-btn">
+              🔗 View Original Item
+            </a>
           </div>
         </div>
 
       </div>
     </div>
 
-    <div class="ar-bottom-bar" style="text-align: center;">
-      <button id="ar-flip-btn" class="action-btn" style="width: auto; padding: 0.75rem 1.5rem;">
-        🔄 Flip Card
-      </button>
-    </div>
-
-  </div>
+    <div></div> </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const urlParams = new URLSearchParams(window.location.search);
       const cardId = urlParams.get("id");
 
-      const postcardWrapper = document.getElementById("ar-postcard-wrapper");
-      const flipBtn = document.getElementById("ar-flip-btn");
+      const displayMessage = document.getElementById("ar-display-message");
+      const selectedStamp = document.getElementById("ar-selected-stamp");
+      const archiveLink = document.getElementById("ar-archive-source-link");
 
       // Load saved cards from LocalStorage
       const savedCards = JSON.parse(localStorage.getItem("operationBlackJoyScrapbook")) || [];
       const cardData = savedCards.find((card) => String(card.id) === String(cardId));
 
       if (cardData) {
-        // Populate Front & Back Data
-        document.getElementById("ar-postcard-photo").src = cardData.frontImage;
-        document.getElementById("ar-display-message").textContent = cardData.message || "Sending joy & resilience!";
-        document.getElementById("ar-selected-stamp").src = cardData.stamp || "assets/stamp-aaam2026.png";
-        
-        const archiveLink = document.getElementById("ar-archive-source-link");
+        // 1. Populate handwritten message (checks all potential key names)
+        const messageText = cardData.message || cardData.note || cardData.userMessage || "Celebrating Black Joy & Resilience!";
+        if (displayMessage) displayMessage.textContent = messageText;
+
+        // 2. Populate selected stamp image
+        if (selectedStamp && cardData.stamp) {
+          selectedStamp.src = cardData.stamp;
+        }
+
+        // 3. Set simplified link back to original Black Joy item page
         if (archiveLink && cardData.archiveUrl) {
           archiveLink.href = cardData.archiveUrl;
         }
       } else {
-        document.getElementById("ar-display-message").textContent = "Operation: Black Joy Postcard";
-      }
-
-      // Flip toggle between front photo and back credit view
-      if (flipBtn && postcardWrapper) {
-        flipBtn.addEventListener("click", () => {
-          postcardWrapper.classList.toggle("is-flipped");
-        });
+        // Default text if accessed without card parameters
+        if (displayMessage) displayMessage.textContent = "Operation: Black Joy — Preserving community resilience and stories.";
       }
     });
   </script>

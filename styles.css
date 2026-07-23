@@ -251,6 +251,11 @@ h1 {
   margin-bottom: 1rem;
   line-height: 1.35;
 }
+.required-asterisk {
+  color: #ef4444;
+  font-weight: bold;
+}
+
 
 /* ==========================================================================
    5. POSTCARD 3D STAGE & CARD BACK ENLARGEMENTS

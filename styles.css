@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Base Styles & Resets
+   1. Base Resets & Typography
    ========================================================================== */
 * {
   box-sizing: border-box;
@@ -17,6 +17,7 @@ body {
   min-height: 100vh;
 }
 
+/* Prevents images from overflowing outside their containers */
 img {
   max-width: 100%;
   height: auto;
@@ -24,7 +25,7 @@ img {
 }
 
 /* ==========================================================================
-   Header & Navigation
+   2. Header & Navigation
    ========================================================================== */
 .site-header {
   background-color: #ffffff;
@@ -36,7 +37,7 @@ img {
 }
 
 .header-container {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -46,7 +47,7 @@ img {
 }
 
 .site-logo {
-  max-height: 50px;
+  max-height: 48px;
   width: auto;
 }
 
@@ -59,7 +60,8 @@ img {
   text-decoration: none;
   color: #4a4a4a;
   font-weight: 600;
-  transition: color 0.2s ease;
+  padding-bottom: 0.25rem;
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 .nav-link:hover,
@@ -69,12 +71,12 @@ img {
 }
 
 /* ==========================================================================
-   Main Layout & Sections
+   3. Main Container & Sections
    ========================================================================== */
 .main-content {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 2rem 1.5rem;
+  padding: 2.5rem 1.5rem;
   width: 100%;
   flex: 1;
 }
@@ -82,62 +84,79 @@ img {
 /* Hero Section */
 .hero-section {
   text-align: center;
-  padding: 2rem 0;
+  margin-bottom: 3.5rem;
 }
 
 .hero-banner-img {
-  max-width: 600px;
+  max-width: 550px;
   margin: 0 auto 1.5rem auto;
+  border-radius: 8px;
 }
 
 .hero-section h1 {
   font-size: 2.25rem;
   margin-bottom: 0.5rem;
+  color: #1a1a1a;
 }
 
 .subtitle {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   color: #666666;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-/* Cassettes Section */
-.cassette-section,
-.badges-section {
-  margin-top: 3rem;
+/* Cassette Section */
+.cassette-section {
   text-align: center;
+  margin-bottom: 4rem;
 }
 
 .cassette-section h2,
 .badges-section h2 {
   font-size: 1.75rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
+  color: #1a1a1a;
 }
 
 .cassette-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
-  align-items: center;
+  justify-items: center;
 }
 
 .cassette-card {
   background: #ffffff;
-  padding: 1.5rem;
+  padding: 1.75rem;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  transition: transform 0.2s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+  width: 100%;
+  max-width: 400px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .cassette-card:hover {
   transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
 .cassette-img {
   margin: 0 auto 1rem auto;
-  max-width: 320px;
+  max-width: 280px;
 }
 
-/* Navigation Badges Section */
+.cassette-card h3 {
+  font-size: 1.1rem;
+  color: #333333;
+}
+
+/* Badges Section */
+.badges-section {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
 .badges-grid {
   display: flex;
   justify-content: center;
@@ -147,50 +166,56 @@ img {
 
 .badge-card {
   text-decoration: none;
-  color: inherit;
+  color: #2b2b2b;
   display: flex;
   flex-direction: column;
   align-items: center;
   background: #ffffff;
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.06);
   width: 220px;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .badge-card:hover {
   transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
 .badge-img {
-  max-width: 120px;
+  max-width: 110px;
   margin-bottom: 1rem;
 }
 
 .badge-card span {
   font-weight: 600;
+  font-size: 1rem;
 }
 
 /* ==========================================================================
-   Footer
+   4. Footer
    ========================================================================== */
 .site-footer {
   text-align: center;
   padding: 2rem;
   background-color: #f1f0ec;
-  color: #777;
+  color: #777777;
   font-size: 0.9rem;
-  margin-top: 4rem;
+  margin-top: auto;
 }
 
 /* ==========================================================================
-   Responsive Breakpoints (Mobile < 768px)
+   5. Mobile Responsiveness (< 768px)
    ========================================================================== */
 @media (max-width: 768px) {
   .header-container {
     flex-direction: column;
     text-align: center;
+  }
+
+  .main-nav {
+    margin-top: 0.5rem;
   }
 
   .hero-section h1 {
@@ -204,6 +229,6 @@ img {
 
   .badge-card {
     width: 100%;
-    max-width: 300px;
+    max-width: 320px;
   }
 }

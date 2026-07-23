@@ -240,6 +240,18 @@ h1 {
   background: #cbd5e1;
 }
 
+.input-helper-note {
+  font-size: 0.8rem;
+  color: #475569;
+  background-color: #f1f5f9;
+  border-left: 3px solid #2563eb;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  margin-top: -0.25rem;
+  margin-bottom: 1rem;
+  line-height: 1.35;
+}
+
 /* ==========================================================================
    5. POSTCARD 3D STAGE & CARD BACK ENLARGEMENTS
    ========================================================================== */

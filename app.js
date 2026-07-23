@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let activeStampPath = "assets/stamp-aaam2026.png";
   const defaultFallbackImage = "assets/default-postcard.png";
 
-  // 1. Modal Setup
+  // 1. Modal Event Selection
   if (startAppBtn) {
     startAppBtn.addEventListener("click", () => {
       const selectedEvent = document.querySelector('input[name="event-selection"]:checked').value;
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 2. Character Counter & Live Note Update
+  // 2. Handwritten Message & Counter
   if (messageInput) {
     messageInput.addEventListener("input", (e) => {
       const currentLength = e.target.value.length;
@@ -42,14 +42,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 3. Flip Toggle
+  // 3. Card Flip Handler
   if (flipBtn && postcard) {
     flipBtn.addEventListener("click", () => {
       postcard.classList.toggle("is-flipped");
     });
   }
 
-  // 4. Image Aspect Ratio & Frame Formatting Helper
+  // 4. Image Formatting & Aspect Ratio Processor
   function processImageAspect(imgSrc) {
     const targetUrl = (imgSrc && imgSrc.trim() !== "") ? imgSrc.trim() : defaultFallbackImage;
     
@@ -80,44 +80,46 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
-  // 5. Direct File Upload Handler (NEW!)
+  // 5. Input 1: Direct File Upload for Front Photo
   if (imageUploadInput) {
     imageUploadInput.addEventListener("change", (e) => {
       const file = e.target.files[0];
       if (file) {
         const reader = new FileReader();
-        
         reader.onload = (event) => {
-          const localImageDataUrl = event.target.result;
-          processImageAspect(localImageDataUrl);
-          
-          // Clear URL input field when file is uploaded
-          if (archiveUrlInput) archiveUrlInput.value = "";
+          processImageAspect(event.target.result);
         };
-
         reader.readAsDataURL(file);
       }
     });
   }
 
-  // 6. Live Archive URL Input Handler
+  // 6. Input 2: PACSCL Link for Back Credit Info
   if (archiveUrlInput) {
     archiveUrlInput.addEventListener("input", () => {
       const url = archiveUrlInput.value.trim();
       if (archiveSourceLink) {
         archiveSourceLink.href = url || "https://blackjoy.pacscl.org/omeka/s/bjr/page/welcome";
       }
-      if (url) {
-        // Clear file input when typing a URL
-        if (imageUploadInput) imageUploadInput.value = "";
-        processImageAspect(url);
-      }
     });
   }
 
-  // 7. Save to Scrapbook
+  // 7. Save Postcard to Scrapbook with Validation
   if (saveScrapbookBtn) {
     saveScrapbookBtn.addEventListener("click", () => {
+      // Validate required inputs
+      if (!imageUploadInput.files || imageUploadInput.files.length === 0) {
+        alert("Please upload an image file for the front of your postcard!");
+        imageUploadInput.focus();
+        return;
+      }
+
+      if (!archiveUrlInput.value.trim()) {
+        alert("Please enter the PACSCL Archive item address for credit attribution!");
+        archiveUrlInput.focus();
+        return;
+      }
+
       const isPortrait = cardFrontWrapper ? cardFrontWrapper.classList.contains("format-portrait") : false;
 
       const postcardData = {
@@ -126,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
         orientation: isPortrait ? "portrait" : "landscape",
         message: displayMessage ? displayMessage.textContent : "Sending joy & resilience from Operation: Black Joy!",
         stamp: activeStampPath,
-        archiveUrl: archiveSourceLink ? archiveSourceLink.href : "https://blackjoy.pacscl.org/omeka/s/bjr/page/welcome",
+        archiveUrl: archiveUrlInput.value.trim(),
         dateCreated: new Date().toLocaleDateString()
       };
 
@@ -138,6 +140,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Initial Load Default
+  // Initial setup with fallback asset
   processImageAspect(defaultFallbackImage);
 });

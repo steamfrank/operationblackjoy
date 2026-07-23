@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Operation: Black Joy — Create Postcard</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+
+  <div id="event-modal" class="modal-overlay">
+    <div class="modal-card">
+      <h2>Welcome to Operation: Black Joy!</h2>
+      <p>To get started creating your personalized archive postcard, please select your current location/event:</p>
+      
+      <div class="event-options">
+        <label class="event-option-card">
+          <input type="radio" name="event-selection" value="aaam" checked>
+          <div class="option-details">
+            <strong>AAAM 2026 Annual Conference</strong>
+            <small>Uses AAAM 2026 Commemorative Stamp</small>
+          </div>
+        </label>
+
+        <label class="event-option-card">
+          <input type="radio" name="event-selection" value="sugarhill">
+          <div class="option-details">
+            <strong>Sugar Hill Children’s Museum of Art & Storytelling</strong>
+            <small>Uses Anyone Can Fly Stamp</small>
+          </div>
+        </label>
+      </div>
+
+      <button id="start-app-btn" class="action-btn">Continue to Postcard Creator →</button>
+    </div>
+  </div>
+
+  <main class="main-content">
+    
+    <div class="app-header">
+      <a href="index.html" class="back-btn-link">
+        <img src="assets/back-button.png" alt="Back" class="back-btn-img">
+      </a>
+      <h1>Interactive Postcard Creator</h1>
+    </div>
+
+    <div class="postcard-workspace">
+      
+      <div class="controls-panel">
+        <h2>Postcard Setup</h2>
+
+        <div class="control-group">
+          <label>1. Select Image from PACSCL Archive:</label>
+          <p class="instruction-text">
+            Visit the <a href="https://blackjoy.pacscl.org/omeka/s/bjr/page/welcome" target="_blank" rel="noopener noreferrer">Black Joy & Resilience Archive</a>, select an item, and enter the image URL or page number:
+          </p>
+          <input type="url" id="archive-url-input" placeholder="Paste image link or page URL here..." value="https://blackjoy.pacscl.org/omeka/s/bjr/page/welcome">
+          
+          <div class="page-num-row">
+            <label for="page-number-input">Page / Slide #:</label>
+            <input type="number" id="page-number-input" min="1" max="20" value="1" placeholder="1">
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label for="message-input">2. Your Postcard Note:</label>
+          <textarea id="message-input" rows="4" maxlength="180" placeholder="Type your message here..."></textarea>
+          <div class="char-counter"><span id="char-count">0</span> / 180 characters</div>
+        </div>
+
+        <div class="button-group">
+          <button id="flip-btn" class="action-btn secondary">🔄 Flip Postcard</button>
+          <button id="save-scrapbook-btn" class="action-btn">✨ Add to Virtual Scrapbook</button>
+        </div>
+      </div>
+
+      <div class="postcard-container">
+        <div class="postcard" id="postcard-element">
+          
+          <div class="card-side card-front" id="card-front-wrapper">
+            <div class="photo-frame" id="photo-frame-element">
+              <img id="postcard-photo" src="assets/default-postcard.png" alt="Postcard Front Image">
+            </div>
+          </div>
+
+          <div class="card-side card-back">
+            
+            <div class="back-header">
+              <img src="assets/logo-transparent.png" alt="Operation Black Joy" class="back-logo-transparent">
+              <div class="stamp-area">
+                <img id="selected-stamp" src="assets/stamp-aaam2026.png" alt="Event Stamp">
+              </div>
+            </div>
+
+            <div class="back-body">
+              <div class="message-area">
+                <p id="display-message" class="handwritten-text">Sending joy & resilience from Operation: Black Joy!</p>
+              </div>
+
+              <div class="divider-line"></div>
+
+              <div class="credit-area">
+                <div class="credit-block">
+                  <p class="credit-line"><strong>Creator:</strong> <span id="credit-creator">PACSCL Archive Community</span></p>
+                  <p class="credit-line"><strong>Format & Publisher:</strong> <span id="credit-format-pub">Digital Archive Image, PACSCL</span></p>
+                  <p class="credit-line"><strong>Identifier & Contributor:</strong> <span id="credit-id-contrib">BJR-2026-OBJ, Operation: Black Joy</span></p>
+                </div>
+
+                <div class="source-link-container">
+                  <a id="archive-source-link" href="https://blackjoy.pacscl.org/omeka/s/bjr/page/welcome" target="_blank" rel="noopener noreferrer" class="external-image-link">
+                    🔗 View Original Archive Source
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; Operation: Black Joy. All rights reserved.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

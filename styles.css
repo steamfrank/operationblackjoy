@@ -24,45 +24,7 @@ img {
 }
 
 /* ==========================================================================
-   2. Header & Navigation Bar
-   ========================================================================== */
-.site-header {
-  background-color: #ffffff;
-  border-bottom: 1px solid #e5e5e5;
-  padding: 1rem 2rem;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.header-container {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-}
-
-.main-nav {
-  display: flex;
-  gap: 2rem;
-}
-
-.nav-link {
-  text-decoration: none;
-  color: #4a4a4a;
-  font-weight: 600;
-  padding-bottom: 0.25rem;
-  transition: color 0.2s ease, border-color 0.2s ease;
-}
-
-.nav-link:hover,
-.nav-link.active {
-  color: #000000;
-  border-bottom: 2px solid #000000;
-}
-
-/* ==========================================================================
-   3. Main Content & Hero Section
+   2. Main Content & Hero Section
    ========================================================================== */
 .main-content {
   max-width: 1100px;
@@ -100,7 +62,7 @@ img {
 }
 
 /* ==========================================================================
-   4. Cassette Section (Borderless, Clean)
+   3. Cassette Section (Borderless, Clean)
    ========================================================================== */
 .cassette-section {
   text-align: center;
@@ -138,7 +100,7 @@ img {
 }
 
 /* ==========================================================================
-   5. Explore / Badges Section
+   4. Explore / Badges Section
    ========================================================================== */
 .badges-section {
   text-align: center;
@@ -198,7 +160,7 @@ img {
 }
 
 /* ==========================================================================
-   6. Footer
+   5. Footer
    ========================================================================== */
 .site-footer {
   text-align: center;
@@ -210,7 +172,7 @@ img {
 }
 
 /* ==========================================================================
-   7. Mobile Responsiveness (< 768px)
+   6. Mobile Responsiveness (< 768px)
    ========================================================================== */
 @media (max-width: 768px) {
   .hero-section h1 {

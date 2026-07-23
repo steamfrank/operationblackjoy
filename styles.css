@@ -295,8 +295,14 @@ h1 {
 
 .panel-actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.75rem;
   margin-top: 1rem;
+}
+
+.scrapbook-nav-btn {
+  text-decoration: none;
+  text-align: center;
 }
 
 .action-btn, .secondary-btn {

@@ -1,7 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ==========================================================================
-  // 1. DOM Element References
-  // ==========================================================================
   const eventModal = document.getElementById("event-modal");
   const startAppBtn = document.getElementById("start-app-btn");
   const selectedStampImg = document.getElementById("selected-stamp");
@@ -23,32 +20,18 @@ document.addEventListener("DOMContentLoaded", () => {
   let activeStampPath = "assets/stamp-aaam2026.png";
   const defaultFallbackImage = "assets/default-postcard.png";
 
-  // ==========================================================================
-  // 2. Event Selection Modal Logic
-  // ==========================================================================
+  // Modal Setup
   if (startAppBtn) {
     startAppBtn.addEventListener("click", () => {
       const selectedEvent = document.querySelector('input[name="event-selection"]:checked').value;
+      activeStampPath = selectedEvent === "aaam" ? "assets/stamp-aaam2026.png" : "assets/stamp-anyonecanfly.png";
       
-      if (selectedEvent === "aaam") {
-        activeStampPath = "assets/stamp-aaam2026.png";
-      } else {
-        activeStampPath = "assets/stamp-anyonecanfly.png";
-      }
-      
-      if (selectedStampImg) {
-        selectedStampImg.src = activeStampPath;
-      }
-      
-      if (eventModal) {
-        eventModal.style.display = "none";
-      }
+      if (selectedStampImg) selectedStampImg.src = activeStampPath;
+      if (eventModal) eventModal.style.display = "none";
     });
   }
 
-  // ==========================================================================
-  // 3. Message Note Character Counter (180 Chars Max)
-  // ==========================================================================
+  // Character Counter & Live Note Update
   if (messageInput) {
     messageInput.addEventListener("input", (e) => {
       const currentLength = e.target.value.length;
@@ -59,36 +42,28 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ==========================================================================
-  // 4. Flip Card Animation Toggle
-  // ==========================================================================
+  // Flip Toggle
   if (flipBtn && postcard) {
     flipBtn.addEventListener("click", () => {
       postcard.classList.toggle("is-flipped");
     });
   }
 
-  // ==========================================================================
-  // 5. Image Aspect Ratio Detection & Resilient Loading
-  // ==========================================================================
+  // Resilient Image Loader
   function processImageAspect(imgUrl) {
-    if (!imgUrl || imgUrl.trim() === "") {
-      imgUrl = defaultFallbackImage;
-    }
-
+    const targetUrl = (imgUrl && imgUrl.trim() !== "") ? imgUrl.trim() : defaultFallbackImage;
+    
     const tempImg = new Image();
-    tempImg.crossOrigin = "anonymous"; // Helps prevent CORS issues with external archive images
-    tempImg.src = imgUrl;
+    tempImg.crossOrigin = "anonymous";
+    tempImg.src = targetUrl;
 
     tempImg.onload = () => {
-      if (postcardPhoto) postcardPhoto.src = imgUrl;
+      if (postcardPhoto) postcardPhoto.src = targetUrl;
       const width = tempImg.naturalWidth;
       const height = tempImg.naturalHeight;
 
       if (cardFrontWrapper) {
         cardFrontWrapper.classList.remove("format-landscape", "format-portrait");
-
-        // Format aspect ratio: Portrait vs Landscape/Square
         if (height > width) {
           cardFrontWrapper.classList.add("format-portrait");
         } else {
@@ -98,7 +73,6 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     tempImg.onerror = () => {
-      console.warn("Could not load image at provided URL:", imgUrl);
       if (postcardPhoto) postcardPhoto.src = defaultFallbackImage;
       if (cardFrontWrapper) {
         cardFrontWrapper.classList.remove("format-portrait");
@@ -107,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
-  // Update image when URL input changes
+  // Live Archive URL input change
   if (archiveUrlInput) {
     archiveUrlInput.addEventListener("input", () => {
       const url = archiveUrlInput.value.trim();
@@ -118,27 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Update archive link anchor on page number change
-  if (pageNumberInput) {
-    pageNumberInput.addEventListener("input", () => {
-      const pageNum = pageNumberInput.value || 1;
-      const baseUrl = archiveUrlInput ? archiveUrlInput.value.trim() : "https://blackjoy.pacscl.org/omeka/s/bjr/page/welcome";
-      
-      const updatedUrl = `${baseUrl}#page=${pageNum}`;
-      if (archiveSourceLink) {
-        archiveSourceLink.href = updatedUrl;
-      }
-    });
-  }
-
-  // Initialize Default Image Format on Load
-  if (postcardPhoto) {
-    processImageAspect(postcardPhoto.src);
-  }
-
-  // ==========================================================================
-  // 6. Save Postcard to Virtual Scrapbook (localStorage)
-  // ==========================================================================
+  // Save to Scrapbook
   if (saveScrapbookBtn) {
     saveScrapbookBtn.addEventListener("click", () => {
       const isPortrait = cardFrontWrapper ? cardFrontWrapper.classList.contains("format-portrait") : false;
@@ -153,7 +107,6 @@ document.addEventListener("DOMContentLoaded", () => {
         dateCreated: new Date().toLocaleDateString()
       };
 
-      // Retrieve existing list, push new card, and save back to localStorage
       const existingScrapbook = JSON.parse(localStorage.getItem("operationBlackJoyScrapbook")) || [];
       existingScrapbook.push(postcardData);
       localStorage.setItem("operationBlackJoyScrapbook", JSON.stringify(existingScrapbook));
@@ -161,4 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("✨ Postcard saved! It has been added to your Virtual Scrapbook.");
     });
   }
+
+  // Initial Load Default
+  processImageAspect(defaultFallbackImage);
 });

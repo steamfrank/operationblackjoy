@@ -17,7 +17,6 @@ body {
   min-height: 100vh;
 }
 
-/* Prevents images from overflowing outside their containers */
 img {
   max-width: 100%;
   height: auto;
@@ -25,7 +24,7 @@ img {
 }
 
 /* ==========================================================================
-   2. Header & Navigation
+   2. Header & Navigation Bar
    ========================================================================== */
 .site-header {
   background-color: #ffffff;
@@ -40,20 +39,12 @@ img {
   max-width: 1100px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.site-logo {
-  max-height: 48px;
-  width: auto;
+  justify-content: center; /* Centered menu bar */
 }
 
 .main-nav {
   display: flex;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 .nav-link {
@@ -71,7 +62,7 @@ img {
 }
 
 /* ==========================================================================
-   3. Main Container & Sections
+   3. Main Content & Sections
    ========================================================================== */
 .main-content {
   max-width: 1100px;
@@ -81,16 +72,16 @@ img {
   flex: 1;
 }
 
-/* Hero Section */
+/* Hero Section with Centered Banner Logo */
 .hero-section {
   text-align: center;
   margin-bottom: 3.5rem;
 }
 
-.hero-banner-img {
-  max-width: 550px;
+.hero-logo-banner {
+  max-width: 480px; /* Adjust banner width as needed */
+  width: 100%;
   margin: 0 auto 1.5rem auto;
-  border-radius: 8px;
 }
 
 .hero-section h1 {
@@ -106,7 +97,7 @@ img {
   margin: 0 auto;
 }
 
-/* Cassette Section */
+/* Cassette Section ("Pick A Side") */
 .cassette-section {
   text-align: center;
   margin-bottom: 4rem;
@@ -121,37 +112,42 @@ img {
 
 .cassette-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   justify-items: center;
 }
 
 .cassette-card {
   background: #ffffff;
-  padding: 1.75rem;
+  padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.06);
   width: 100%;
-  max-width: 400px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s ease;
 }
 
 .cassette-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.tape-label {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #2b2b2b;
 }
 
 .cassette-img {
-  margin: 0 auto 1rem auto;
-  max-width: 280px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
-.cassette-card h3 {
-  font-size: 1.1rem;
-  color: #333333;
-}
-
-/* Badges Section */
+/* Explore Section (Finch | BJR Welcome | Scrapbook) */
 .badges-section {
   text-align: center;
   margin-bottom: 2rem;
@@ -160,37 +156,44 @@ img {
 .badges-grid {
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
-.badge-card {
-  text-decoration: none;
-  color: #2b2b2b;
+/* Standalone Finch & Scrapbook graphics (no box, no text label) */
+.graphic-item {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.graphic-item:hover {
+  transform: scale(1.05);
+}
+
+.inline-graphic {
+  max-width: 180px; /* Clean size for Finch and Scrapbook graphics */
+  height: auto;
+}
+
+/* Middle BJR Welcome Banner */
+.welcome-center-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #ffffff;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-  width: 220px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  max-width: 380px;
 }
 
-.badge-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+.welcome-graphic {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
 }
 
-.badge-img {
-  max-width: 110px;
-  margin-bottom: 1rem;
-}
-
-.badge-card span {
+.welcome-label {
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 0.95rem;
+  color: #4a4a4a;
 }
 
 /* ==========================================================================
@@ -209,26 +212,20 @@ img {
    5. Mobile Responsiveness (< 768px)
    ========================================================================== */
 @media (max-width: 768px) {
-  .header-container {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .main-nav {
-    margin-top: 0.5rem;
-  }
-
   .hero-section h1 {
     font-size: 1.75rem;
   }
 
   .badges-grid {
     flex-direction: column;
-    align-items: center;
+    gap: 2rem;
   }
 
-  .badge-card {
-    width: 100%;
-    max-width: 320px;
+  .inline-graphic {
+    max-width: 150px;
+  }
+
+  .welcome-center-item {
+    order: -1; /* Keeps BJR banner prominent on mobile screens */
   }
 }

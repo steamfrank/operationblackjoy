@@ -47,14 +47,6 @@ h1 {
    ========================================================================== */
 
 /* 1. Center Hero Header & Subheading */
-.hero-section {
-  text-align: center;
-  margin-bottom: 2.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
 
 .hero-section h1 {
   text-align: center;
@@ -168,6 +160,89 @@ h1 {
 
 .soft-fade-shadow {
   filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.1));
+}
+
+/* ==========================================================================
+   UNIFIED HERO HEADER & BANNER WRAPPER
+   ========================================================================== */
+
+.hero-section {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.banner-header-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 1rem auto;
+}
+
+/* Hero Logo Banner */
+.hero-logo-banner {
+  max-width: 100%;
+  height: auto;
+  max-height: 140px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Absolute Positioned Back Button on Secondary Pages */
+.back-btn-link {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  z-index: 10;
+}
+
+.back-btn-link:hover {
+  transform: translateY(-50%) scale(1.08);
+  opacity: 0.9;
+}
+
+.back-btn-img-hero {
+  height: 48px;
+  width: auto;
+  display: block;
+}
+
+/* Responsive Scaling for Mobile Screens */
+@media (max-width: 640px) {
+  .banner-header-wrapper {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .back-btn-link {
+    position: static;
+    transform: none;
+    align-self: flex-start;
+  }
+
+  .back-btn-link:hover {
+    transform: scale(1.05);
+  }
+
+  .back-btn-img-hero {
+    height: 40px;
+  }
+
+  .hero-logo-banner {
+    max-height: 100px;
+  }
 }
 
 /* ==========================================================================

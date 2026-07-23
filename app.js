@@ -21,26 +21,27 @@ document.addEventListener("DOMContentLoaded", () => {
   const defaultFallbackImage = "assets/default-postcard.png";
 
   // 1. Modal Event Selection (Fixed Stamp Image Switch)
-  if (startAppBtn) {
-    startAppBtn.addEventListener("click", () => {
-      const selectedRadio = document.querySelector('input[name="event-selection"]:checked');
-      const selectedEvent = selectedRadio ? selectedRadio.value : "aaam";
-      
-      // Select correct stamp path based on radio value
-      activeStampPath = (selectedEvent === "sugarhill" || selectedEvent === "anyonecanfly") 
-        ? "assets/stamp-anyonecanfly.png" 
-        : "assets/stamp-aaam2026.png";
-      
-      // Update DOM element directly
-      if (selectedStampImg) {
-        selectedStampImg.src = activeStampPath;
-      }
-      
-      if (eventModal) {
-        eventModal.style.display = "none";
-      }
-    });
-  }
+    if (startAppBtn) {
+      startAppBtn.addEventListener("click", () => {
+        const selectedRadio = document.querySelector('input[name="event-selection"]:checked');
+        const selectedEvent = selectedRadio ? selectedRadio.value : "aaam";
+        
+        // Select correct stamp path based on radio value
+        activeStampPath = (selectedEvent === "sugarhill" || selectedEvent === "anyonecanfly") 
+          ? "assets/stamp-anyonecanfly.png" 
+          : "assets/stamp-aaam2026.png";
+        
+        // Force update the visible image element immediately
+        if (selectedStampImg) {
+          selectedStampImg.src = activeStampPath;
+        }
+        
+        if (eventModal) {
+          eventModal.style.display = "none";
+        }
+      });
+    }
+
 
   // 2. Handwritten Message & Counter
   if (messageInput) {

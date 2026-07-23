@@ -39,7 +39,7 @@
       pointer-events: auto;
     }
 
-    /* Floating Postcard Back Container (Fixed single-side display) */
+    /* Floating Single-Sided Postcard Back Container */
     .ar-floating-card-container {
       position: fixed;
       top: 50%;
@@ -68,8 +68,7 @@
 
     .simplified-link-btn {
       display: inline-block;
-      margin-top: 0.75rem;
-      padding: 0.6rem 0.85rem;
+      padding: 0.75rem 1rem;
       background-color: #2563eb;
       color: #ffffff !important;
       text-decoration: none;
@@ -78,6 +77,7 @@
       font-weight: 600;
       text-align: center;
       transition: background-color 0.2s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     }
 
     .simplified-link-btn:hover {
@@ -116,10 +116,7 @@
 
           <div class="divider-line"></div>
 
-          <div class="credit-area" style="justify-content: center; align-items: center; text-align: center;">
-            <p class="credit-line" style="font-size: 0.85rem; color: #475569;">
-              <strong>Archival Context</strong>
-            </p>
+          <div class="credit-area" style="justify-content: center; align-items: center; text-align: center; padding-left: 0.5rem;">
             <a id="ar-archive-source-link" href="https://blackjoy.pacscl.org/omeka/s/bjr/page/welcome" target="_blank" rel="noopener noreferrer" class="simplified-link-btn">
               🔗 View Original Item
             </a>
@@ -145,22 +142,27 @@
       const cardData = savedCards.find((card) => String(card.id) === String(cardId));
 
       if (cardData) {
-        // 1. Populate handwritten message (checks all potential key names)
-        const messageText = cardData.message || cardData.note || cardData.userMessage || "Celebrating Black Joy & Resilience!";
-        if (displayMessage) displayMessage.textContent = messageText;
+        // 1. Retrieve message from any possible storage property key
+        const userNote = cardData.message || cardData.note || cardData.userMessage || cardData.text || "";
+        if (displayMessage) {
+          displayMessage.textContent = userNote || "Celebrating Black Joy & Resilience!";
+        }
 
-        // 2. Populate selected stamp image
+        // 2. Populate stamp image
         if (selectedStamp && cardData.stamp) {
           selectedStamp.src = cardData.stamp;
         }
 
-        // 3. Set simplified link back to original Black Joy item page
-        if (archiveLink && cardData.archiveUrl) {
-          archiveLink.href = cardData.archiveUrl;
+        // 3. Populate direct source URL
+        const itemUrl = cardData.archiveUrl || cardData.sourceUrl || cardData.url;
+        if (archiveLink && itemUrl) {
+          archiveLink.href = itemUrl;
         }
       } else {
-        // Default text if accessed without card parameters
-        if (displayMessage) displayMessage.textContent = "Operation: Black Joy — Preserving community resilience and stories.";
+        // Fallback message if accessed directly without card ID in URL
+        if (displayMessage) {
+          displayMessage.textContent = "Operation: Black Joy — Preserving community resilience and stories.";
+        }
       }
     });
   </script>

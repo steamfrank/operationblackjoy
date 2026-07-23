@@ -1,38 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Operation Black Joy</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Operation Black Joy — Welcome</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <div class="landing-container">
-        
-        <img src="page-landing.png" class="landing-bg main-landing-bg" alt="Landing Page Background">
-        
-        <a href="https://blackjoy.pacscl.org/omeka/s/bjr/page/welcome" target="_blank" rel="noopener noreferrer" class="clickable-graphic" id="bjr">
-            <img src="index/bjr.png" alt="BJR Welcome Page">
-        </a>
-
-        <a href="https://finch.go.link/iiAFW?adj_label=ShRQR" target="_blank" rel="noopener noreferrer" class="clickable-graphic" id="finch">
-            <img src="index/finch.png" alt="Finch Link">
-        </a>
-
-        <a href="scrapbook.html" class="clickable-graphic" id="scrapbook">
-            <img src="general/scrapbook.png" alt="Virtual Scrapbook">
-        </a>
-
-        <a href="side-a.html" class="clickable-graphic" id="cassette-joy">
-            <img src="general/cassette-joy.png" alt="Side A: Joy">
-        </a>
-
-        <a href="side-b.html" class="clickable-graphic" id="cassette-resilience">
-            <img src="general/cassette-resilience.png" alt="Side B: Resilience">
-        </a>
-
+  <header class="site-header">
+    <div class="header-container">
+      <img src="assets/logo.png" alt="Operation Black Joy Logo" class="site-logo">
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="postcard.html" class="nav-link">Interactive Postcard</a>
+        <a href="scrapbook.html" class="nav-link">Virtual Scrapbook</a>
+      </nav>
     </div>
+  </header>
+
+  <main class="main-content">
+    
+    <section class="hero-section">
+      <div class="hero-text">
+        <img src="assets/index/bjr-welcome.png" alt="Black Joy and Resilience Welcome" class="hero-banner-img">
+        <h1>Operation Black Joy</h1>
+        <p class="subtitle">An interactive digital archive celebrating joy, resilience, and community history.</p>
+      </div>
+    </section>
+
+    <section class="cassette-section">
+      <h2>Featured Tapes</h2>
+      <div class="cassette-grid">
+        <div class="cassette-card">
+          <img src="assets/index/cassette-joy.png" alt="Side A: Joy Cassette Tape" class="cassette-img">
+          <h3>Side A: Joy</h3>
+        </div>
+        <div class="cassette-card">
+          <img src="assets/index/cassette-resilience.png" alt="Side B: Resilience Cassette Tape" class="cassette-img">
+          <h3>Side B: Resilience</h3>
+        </div>
+      </div>
+    </section>
+
+    <section class="badges-section">
+      <h2>Explore the Archive</h2>
+      <div class="badges-grid">
+        
+        <a href="postcard.html" class="badge-card">
+          <img src="assets/index/finch.png" alt="Create a Postcard - Finch" class="badge-img">
+          <span>Create Postcard</span>
+        </a>
+
+        <a href="scrapbook.html" class="badge-card">
+          <img src="assets/index/scrapbook-link.png" alt="Virtual Scrapbook Link" class="badge-img">
+          <span>Explore Scrapbook</span>
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; Operation Black Joy. All rights reserved.</p>
+  </footer>
 
 </body>
 </html>

@@ -45,41 +45,46 @@
     <section class="creator-workspace">
       
       <div class="control-panel card-panel">
-        <div class="panel-section">
-          <h3>1. Archive Image Source</h3>
-          
-          <label for="image-upload-input">Upload Image File (Recommended):</label>
-          <input 
-            type="file" 
-            id="image-upload-input" 
-            accept="image/*"
-          >
-          
-          <div style="text-align: center; font-weight: bold; margin: 0.5rem 0; color: #94a3b8;">— OR —</div>
-        
-          <label for="archive-url-input">PACSCL Archive Image Address:</label>
-          <input 
-            type="url" 
-            id="archive-url-input" 
-            placeholder="Paste direct image address (e.g., https://.../image.jpg)" 
-            autocomplete="off"
-          >
-          
-          <label for="page-number-input">Archive Page # (Optional):</label>
-          <input type="number" id="page-number-input" min="1" placeholder="e.g. 1">
-        </div>
+  
+  <div class="panel-section">
+    <h3>1. Front Photo</h3>
+    <label for="image-upload-input">Upload Postcard Image <span class="required-asterisk">*</span></label>
+    <input 
+      type="file" 
+      id="image-upload-input" 
+      accept="image/*" 
+      required
+    >
+  </div>
 
-        <div class="panel-section">
-          <h3>2. Postcard Message</h3>
-          <textarea id="message-input" maxlength="180" placeholder="Type your handwritten note here... (180 chars max)"></textarea>
-          <div class="char-counter"><span id="char-count">0</span> / 180 characters</div>
-        </div>
+  <div class="panel-section">
+    <h3>2. Archive Source Link</h3>
+    <label for="archive-url-input">PACSCL Item / Collection Address <span class="required-asterisk">*</span></label>
+    <input 
+      type="url" 
+      id="archive-url-input" 
+      placeholder="https://blackjoy.pacscl.org/omeka/s/bjr/item/..." 
+      autocomplete="off"
+      required
+    >
+    <p class="input-helper-note">
+      🔗 Paste the Omeka/PACSCL web link here to credit the source on the back.
+    </p>
+  </div>
 
-        <div class="panel-actions">
-          <button id="flip-btn" class="secondary-btn">🔄 Flip Postcard</button>
-          <button id="save-scrapbook-btn" class="action-btn">✨ Save to Scrapbook</button>
-        </div>
-      </div>
+  <div class="panel-section">
+    <h3>3. Postcard Note</h3>
+    <label for="message-input">Handwritten Message</label>
+    <textarea id="message-input" maxlength="180" placeholder="Type your handwritten note here... (180 chars max)"></textarea>
+    <div class="char-counter"><span id="char-count">0</span> / 180 characters</div>
+  </div>
+
+  <div class="panel-actions">
+    <button id="flip-btn" class="secondary-btn">🔄 Flip Postcard</button>
+    <button id="save-scrapbook-btn" class="action-btn">✨ Save to Scrapbook</button>
+  </div>
+
+</div>
 
       <div class="preview-panel card-panel">
         <div class="postcard-stage">

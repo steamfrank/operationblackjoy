@@ -5,8 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
   
   const postcardPhoto = document.getElementById("postcard-photo");
   const cardFrontWrapper = document.getElementById("card-front-wrapper");
+  const imageUploadInput = document.getElementById("image-upload-input");
   const archiveUrlInput = document.getElementById("archive-url-input");
-  const pageNumberInput = document.getElementById("page-number-input");
   
   const messageInput = document.getElementById("message-input");
   const charCount = document.getElementById("char-count");
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let activeStampPath = "assets/stamp-aaam2026.png";
   const defaultFallbackImage = "assets/default-postcard.png";
 
-  // Modal Setup
+  // 1. Modal Setup
   if (startAppBtn) {
     startAppBtn.addEventListener("click", () => {
       const selectedEvent = document.querySelector('input[name="event-selection"]:checked').value;
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Character Counter & Live Note Update
+  // 2. Character Counter & Live Note Update
   if (messageInput) {
     messageInput.addEventListener("input", (e) => {
       const currentLength = e.target.value.length;
@@ -42,40 +42,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Flip Toggle
+  // 3. Flip Toggle
   if (flipBtn && postcard) {
     flipBtn.addEventListener("click", () => {
       postcard.classList.toggle("is-flipped");
     });
   }
 
- // Asynchronous image loader that handles direct URLs and Omeka web links
-async function processImageAspect(imgUrl) {
-  const defaultFallbackImage = "assets/default-postcard.png";
-  
-  if (!imgUrl || imgUrl.trim() === "") {
-    loadFallback(defaultFallbackImage);
-    return;
-  }
-
-  let targetUrl = imgUrl.trim();
-
-  try {
-    // 1. Fetch image directly as a binary blob (bypasses standard tag hotlinking blocks)
-    const response = await fetch(targetUrl, { mode: 'cors' });
+  // 4. Image Aspect Ratio & Frame Formatting Helper
+  function processImageAspect(imgSrc) {
+    const targetUrl = (imgSrc && imgSrc.trim() !== "") ? imgSrc.trim() : defaultFallbackImage;
     
-    if (!response.ok) throw new Error("Image request failed");
-
-    const blob = await response.blob();
-    const localBlobUrl = URL.createObjectURL(blob);
-
-    // 2. Load into DOM Image object to detect dimensions
     const tempImg = new Image();
-    tempImg.src = localBlobUrl;
+    tempImg.src = targetUrl;
 
     tempImg.onload = () => {
-      if (postcardPhoto) postcardPhoto.src = localBlobUrl;
-      
+      if (postcardPhoto) postcardPhoto.src = targetUrl;
       const width = tempImg.naturalWidth;
       const height = tempImg.naturalHeight;
 
@@ -90,35 +72,50 @@ async function processImageAspect(imgUrl) {
     };
 
     tempImg.onerror = () => {
-      loadFallback(defaultFallbackImage);
+      if (postcardPhoto) postcardPhoto.src = defaultFallbackImage;
+      if (cardFrontWrapper) {
+        cardFrontWrapper.classList.remove("format-portrait");
+        cardFrontWrapper.classList.add("format-landscape");
+      }
     };
-
-  } catch (error) {
-    console.warn("Direct blob fetch unsuccessful, attempting direct URL fallback:", error);
-    // Direct URL fallback if CORS fetch is blocked
-    if (postcardPhoto) postcardPhoto.src = targetUrl;
   }
-}
 
-function loadFallback(fallbackPath) {
-  if (postcardPhoto) postcardPhoto.src = fallbackPath;
-  if (cardFrontWrapper) {
-    cardFrontWrapper.classList.remove("format-portrait");
-    cardFrontWrapper.classList.add("format-landscape");
+  // 5. Direct File Upload Handler (NEW!)
+  if (imageUploadInput) {
+    imageUploadInput.addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        
+        reader.onload = (event) => {
+          const localImageDataUrl = event.target.result;
+          processImageAspect(localImageDataUrl);
+          
+          // Clear URL input field when file is uploaded
+          if (archiveUrlInput) archiveUrlInput.value = "";
+        };
+
+        reader.readAsDataURL(file);
+      }
+    });
   }
-}
-  // Live Archive URL input change
+
+  // 6. Live Archive URL Input Handler
   if (archiveUrlInput) {
     archiveUrlInput.addEventListener("input", () => {
       const url = archiveUrlInput.value.trim();
       if (archiveSourceLink) {
         archiveSourceLink.href = url || "https://blackjoy.pacscl.org/omeka/s/bjr/page/welcome";
       }
-      processImageAspect(url);
+      if (url) {
+        // Clear file input when typing a URL
+        if (imageUploadInput) imageUploadInput.value = "";
+        processImageAspect(url);
+      }
     });
   }
 
-  // Save to Scrapbook
+  // 7. Save to Scrapbook
   if (saveScrapbookBtn) {
     saveScrapbookBtn.addEventListener("click", () => {
       const isPortrait = cardFrontWrapper ? cardFrontWrapper.classList.contains("format-portrait") : false;

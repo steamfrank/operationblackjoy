@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Operation: Black Joy — AR Postcard Viewer</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="ar-viewer-body">
+
+  <main class="main-content ar-content-wrapper">
+    
+    <header class="ar-header">
+      <a href="index.html" class="back-btn-link">
+        <img src="assets/back-button.png" alt="Back to Home" class="back-btn-img-hero">
+      </a>
+      <h2>✨ AR Mobile Viewer</h2>
+    </header>
+
+    <div id="ar-card-container" class="ar-card-stage">
+      <div id="ar-postcard-element" class="postcard-wrapper">
+        
+        <div class="card-side card-front">
+          <div class="photo-frame">
+            <img id="ar-postcard-photo" src="" alt="AR Postcard Image">
+          </div>
+        </div>
+
+        <div class="card-side card-back">
+          <div class="back-header">
+            <img src="assets/logo.png" alt="Operation Black Joy" class="back-logo-transparent">
+            <div class="stamp-area">
+              <img id="ar-selected-stamp" src="assets/stamp-aaam2026.png" alt="Event Stamp">
+            </div>
+          </div>
+
+          <div class="back-body">
+            <div class="message-area">
+              <p id="ar-display-message" class="handwritten-text"></p>
+            </div>
+            <div class="divider-line"></div>
+            <div class="credit-area">
+              <div class="credit-block">
+                <p class="credit-line"><strong>Archive Source:</strong></p>
+                <a id="ar-archive-source-link" href="#" target="_blank" rel="noopener noreferrer" class="external-image-link">
+                  🔗 PACSCL Collection
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="ar-actions">
+      <button id="ar-flip-btn" class="action-btn">🔄 Flip Postcard</button>
+      <a href="scrapbook.html" class="secondary-btn">📖 Back to Scrapbook</a>
+    </div>
+
+    <div id="ar-not-found" class="empty-gallery-msg" style="display: none;">
+      <p>⚠️ Postcard not found or localStorage was cleared on this device.</p>
+      <a href="scrapbook.html" class="action-btn">View Public Scrapbook</a>
+    </div>
+
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Get postcard ID from URL parameters (e.g., ar.html?id=1721750000000)
+      const urlParams = new URLSearchParams(window.location.search);
+      const cardId = urlParams.get("id");
+
+      const arCardContainer = document.getElementById("ar-card-container");
+      const arNotFoundMsg = document.getElementById("ar-not-found");
+      const postcardElement = document.getElementById("ar-postcard-element");
+      const flipBtn = document.getElementById("ar-flip-btn");
+
+      if (!cardId) {
+        showNotFound();
+        return;
+      }
+
+      // 2. Load saved cards from LocalStorage
+      const savedCards = JSON.parse(localStorage.getItem("operationBlackJoyScrapbook")) || [];
+      const cardData = savedCards.find((card) => String(card.id) === String(cardId));
+
+      if (!cardData) {
+        showNotFound();
+        return;
+      }
+
+      // 3. Populate Card Data
+      document.getElementById("ar-postcard-photo").src = cardData.frontImage;
+      document.getElementById("ar-display-message").textContent = cardData.message;
+      document.getElementById("ar-selected-stamp").src = cardData.stamp || "assets/stamp-aaam2026.png";
+      
+      const archiveLink = document.getElementById("ar-archive-source-link");
+      if (archiveLink && cardData.archiveUrl) {
+        archiveLink.href = cardData.archiveUrl;
+      }
+
+      // 4. Handle Card Flip Button
+      if (flipBtn && postcardElement) {
+        flipBtn.addEventListener("click", () => {
+          postcardElement.classList.toggle("is-flipped");
+        });
+      }
+
+      function showNotFound() {
+        if (arCardContainer) arCardContainer.style.display = "none";
+        if (flipBtn) flipBtn.style.display = "none";
+        if (arNotFoundMsg) arNotFoundMsg.style.display = "block";
+      }
+    });
+  </script>
+</body>
+</html>

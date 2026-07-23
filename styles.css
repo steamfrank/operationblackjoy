@@ -41,11 +41,11 @@ img {
 }
 
 .hero-logo-banner {
-  max-width: 95%;
+  max-width: 600px; /* Reduced max-width to prevent over-stretching */
   width: 100%;
-  height: auto;
-  margin: 0 auto 1.5rem auto;
+  height: auto;     /* Maintains correct aspect ratio */
   display: block;
+  margin: 0 auto 1.5rem auto;
 }
 
 .hero-section h1 {

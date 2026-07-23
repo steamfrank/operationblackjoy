@@ -8,10 +8,13 @@ document.addEventListener("DOMContentLoaded", () => {
   let cardRotations = [];
 
   // Helper function: Generates dynamic QR code for AR viewer
-  function getARQRCodeUrl(cardId) {
+  function getARQRCodeUrl(cardData) {
     const currentPath = window.location.href.split('#')[0].split('?')[0];
     const baseUrl = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
-    const arTargetUrl = `${baseUrl}ar.html?id=${cardId}`;
+    
+    // Pass message, stamp, and archive link inside the QR code URL
+    const arTargetUrl = `${baseUrl}ar.html?id=${cardData.id}&msg=${encodeURIComponent(cardData.message)}&stamp=${encodeURIComponent(cardData.stamp)}&src=${encodeURIComponent(cardData.archiveUrl)}`;
+    
     return `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(arTargetUrl)}`;
   }
 

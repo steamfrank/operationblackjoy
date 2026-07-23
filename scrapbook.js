@@ -12,37 +12,53 @@ document.addEventListener("DOMContentLoaded", () => {
     const currentPath = window.location.href.split('#')[0].split('?')[0];
     const baseUrl = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
     
-    // Pass message, stamp, and archive link inside the QR code URL
-    const arTargetUrl = `${baseUrl}ar.html?id=${cardData.id}&msg=${encodeURIComponent(cardData.message)}&stamp=${encodeURIComponent(cardData.stamp)}&src=${encodeURIComponent(cardData.archiveUrl)}`;
+    // Pass message, stamp, and archive link inside the QR code URL so mobile scanning works seamlessly
+    const arTargetUrl = `${baseUrl}ar.html?id=${cardData.id}&msg=${encodeURIComponent(cardData.message || cardData.note || '')}&stamp=${encodeURIComponent(cardData.stamp || '')}&src=${encodeURIComponent(cardData.archiveUrl || '')}`;
     
     return `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(arTargetUrl)}`;
   }
 
-  function loadScrapbook() {
-    savedCards = JSON.parse(localStorage.getItem("operationBlackJoyScrapbook")) || [];
+  // Real-time listener: Fetches live postcards from Firebase ordered with the newest on top
+  db.collection("postcards")
+    .orderBy("dateCreated", "desc")
+    .onSnapshot((snapshot) => {
+      savedCards = [];
+      
+      snapshot.forEach((doc) => {
+        savedCards.push({
+          id: doc.id,
+          ...doc.data()
+        });
+      });
 
-    if (!scrapbookGrid) return;
-    scrapbookGrid.innerHTML = "";
+      if (!scrapbookGrid) return;
+      scrapbookGrid.innerHTML = "";
 
-    if (savedCards.length === 0) {
-      if (emptyStateMsg) emptyStateMsg.style.display = "block";
-      return;
-    }
+      if (savedCards.length === 0) {
+        if (emptyStateMsg) emptyStateMsg.style.display = "block";
+        return;
+      }
 
-    if (emptyStateMsg) emptyStateMsg.style.display = "none";
+      if (emptyStateMsg) emptyStateMsg.style.display = "none";
 
-    // Setup wrapper for photo stack
-    scrapbookGrid.classList.add("photo-stack-wrapper");
+      // Setup wrapper for photo stack
+      scrapbookGrid.classList.add("photo-stack-wrapper");
 
-    // Generate fixed random rotations for messy look
-    cardRotations = savedCards.map(() => {
-      // Random tilt between -8deg and +8deg (avoiding 0deg for background cards)
-      const angle = (Math.random() * 14 - 7);
-      return Math.abs(angle) < 2 ? (angle < 0 ? -4 : 4) : angle;
+      // Generate fixed random rotations for messy stack look
+      cardRotations = savedCards.map(() => {
+        const angle = (Math.random() * 14 - 7);
+        return Math.abs(angle) < 2 ? (angle < 0 ? -4 : 4) : angle;
+      });
+
+      // Reset index if out of bounds after deletion or refresh
+      if (currentIndex >= savedCards.length) {
+        currentIndex = 0;
+      }
+
+      renderStack();
+    }, (error) => {
+      console.error("Error fetching Firestore postcards:", error);
     });
-
-    renderStack();
-  }
 
   function renderStack() {
     scrapbookGrid.innerHTML = "";
@@ -67,13 +83,13 @@ document.addEventListener("DOMContentLoaded", () => {
         cardItem.style.transform = `rotate(0deg) scale(1)`;
       } else {
         // Messy stacked cards behind: apply saved random tilt and slight scaling/offset
-        const rotation = cardRotations[index];
+        const rotation = cardRotations[index] || 0;
         const depthOffset = Math.min(position * 3, 12); // Subtle vertical depth shift
         cardItem.style.transform = `rotate(${rotation}deg) translateY(${depthOffset}px) scale(0.97)`;
         cardItem.classList.add("stacked-behind");
       }
 
-      const arQrCodeUrl = getARQRCodeUrl(cardData.id);
+      const arQrCodeUrl = getARQRCodeUrl(cardData);
       const orientationClass = cardData.orientation === "portrait" ? "format-portrait" : "format-landscape";
 
       cardItem.innerHTML = `
@@ -120,6 +136,4 @@ document.addEventListener("DOMContentLoaded", () => {
     currentIndex = (currentIndex + 1) % savedCards.length;
     renderStack();
   }
-
-  loadScrapbook();
 });

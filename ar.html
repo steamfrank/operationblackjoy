@@ -165,6 +165,25 @@
     });
 
   </script>
-
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  
+  <script>
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyC7HLmdI8Rv300Bb64_zwq_ITIxJN3USAI",
+      authDomain: "operation-black-joy.firebaseapp.com",
+      projectId: "operation-black-joy",
+      storageBucket: "operation-black-joy.firebasestorage.app",
+      messagingSenderId: "792469296028",
+      appId: "1:792469296028:web:45c06a4863aa3389376e59",
+      measurementId: "G-FYSKSQZXRK"
+    };
+  
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    // Global database instance
+    const db = firebase.firestore();
+  </script>
 </body>
 </html>

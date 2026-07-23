@@ -1,249 +1,209 @@
 /* ==========================================================================
-   1. GLOBAL RESET
+   Base Styles & Resets
    ========================================================================== */
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #f3e9dc;
-    overflow-x: hidden; 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.6;
+  color: #2b2b2b;
+  background-color: #faf9f6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* ==========================================================================
-   2. BASE CANVAS LAYOUT (Landscape 1920x1080)
+   Header & Navigation
    ========================================================================== */
-.landing-container {
-    position: relative;
-    width: 100%;
-    max-width: 1920px;
-    margin: 0 auto;
-    overflow: hidden;
-    /* Forces elements to calculate dimensions relative to a fixed landscape bounding grid */
-    aspect-ratio: 1920 / 1080;
+.site-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-/* Ensure ALL background variants scale cleanly and display as blocks */
-.landing-bg,
-.main-landing-bg,
-.main-scrapbook-bg,
-.main-side-a-bg,
-.main-side-b-bg,
-.main-track01-bg,
-.main-track02-bg,
-.main-track03-bg {
-    width: 100%;
-    display: block;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
-.clickable-graphic {
-    position: absolute;
-    display: block;
-    z-index: 10; 
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.site-logo {
+  max-height: 50px;
+  width: auto;
+}
+
+.main-nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #4a4a4a;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #000000;
+  border-bottom: 2px solid #000000;
 }
 
 /* ==========================================================================
-   INTERACTIVE HOVER EFFECTS
+   Main Layout & Sections
    ========================================================================== */
-.clickable-graphic:hover {
-    transform: translateY(-8px);
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  width: 100%;
+  flex: 1;
 }
 
-.clickable-graphic img {
+/* Hero Section */
+.hero-section {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.hero-banner-img {
+  max-width: 600px;
+  margin: 0 auto 1.5rem auto;
+}
+
+.hero-section h1 {
+  font-size: 2.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #666666;
+}
+
+/* Cassettes Section */
+.cassette-section,
+.badges-section {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.cassette-section h2,
+.badges-section h2 {
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.cassette-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  align-items: center;
+}
+
+.cassette-card {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
+
+.cassette-card:hover {
+  transform: translateY(-4px);
+}
+
+.cassette-img {
+  margin: 0 auto 1rem auto;
+  max-width: 320px;
+}
+
+/* Navigation Badges Section */
+.badges-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.badge-card {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  width: 220px;
+  transition: transform 0.2s ease;
+}
+
+.badge-card:hover {
+  transform: translateY(-4px);
+}
+
+.badge-img {
+  max-width: 120px;
+  margin-bottom: 1rem;
+}
+
+.badge-card span {
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.site-footer {
+  text-align: center;
+  padding: 2rem;
+  background-color: #f1f0ec;
+  color: #777;
+  font-size: 0.9rem;
+  margin-top: 4rem;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints (Mobile < 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-section h1 {
+    font-size: 1.75rem;
+  }
+
+  .badges-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .badge-card {
     width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* ==========================================================================
-   3. LANDING PAGE LANDSCAPE COORDINATES (1920x1080)
-   ========================================================================== */
-#finch {
-    left: 78.5%;
-    top: -2.3%;
-    width: 20.2%;
-}
-
-#bjr {
-    left: 57.4%;
-    top: 0%;
-    width: 26.0%;
-}
-
-#scrapbook {
-    left: 10.6%;
-    top: 61.2%;
-    width: 21.0%;
-}
-
-#cassette-joy {
-    left: 64.2%;  
-    top: 13.5%;   
-    width: 34.9%; 
-}
-
-#cassette-resilience {
-    left: 65.1%;  
-    top: 49.2%;   
-    width: 34.9%; 
-}
-
-/* Universal Page Navigation */
-#back-to-welcome {
-    left: -3.6%;
-    top: 6.1%;
-    width: 26.0%;
-}
-
-/* Universal welcome back button layout for all track pages (Sides A & B) */
-#back-to-welcome-tracks {
-    left: -43.2%;
-    top: 15.5%;
-    width: 13.9%;
-}
-
-/* Universal Back to Hub buttons */
-#back-to-side-a, 
-#back-to-side-b {
-    left: 28.0%;
-    top: -45.8%;
-    width: 5.2%;
-}
-
-/* Universal Next Track link */
-#next-track {
-    left: 26.7%;
-    top: 26.2%;
-    width: 7.8%;
-}
-
-
-/* ==========================================================================
-   4. PORTRAIT MODE STYLES (1080x1920 Layout)
-   ========================================================================== */
-@media (orientation: portrait) {
-    
-    .landing-container {
-        /* Flips the aspect grid boundary to portrait proportions */
-        aspect-ratio: 1080 / 1920;
-    }
-
-    /* Background Image Asset Swaps with corrected path escaping (../) */
-    img.main-landing-bg {
-        content: url("index/page-landing-portrait.png") !important;
-    }
-    img.main-scrapbook-bg {
-        content: url("scrapbook/page-scrapbook-portrait.png") !important;
-    }
-    img.main-side-a-bg {
-        content: url("general/page-cassettes.png") !important;
-    }
-    img.main-side-b-bg {
-        content: url("general/page-cassettes.png") !important;
-    }
-    img.main-track01-bg {
-        content: url("../track01/page-track01-portrait.png") !important;
-    }
-    img.main-track02-bg {
-        content: url("../track02/page-track02-portrait.png") !important;
-    }
-    img.main-track03-bg {
-        content: url("../track03/page-track03-portrait.png") !important;
-    }
-
-    /* ==========================================================================
-       1. INDEX.HTML PORTRAIT POSITIONS
-       ========================================================================== */
-    #finch {
-        left: 64.2%;
-        top: 12.2%;
-        width: 35.9%;
-    }
-    
-    /* Adjusted BJR position down to sit level with scrapbook */
-    #bjr {
-        left: 45.8%;
-        top: 33.8%;
-        width: 46.3%;
-    }
-
-    .main-landing-bg ~ #scrapbook {
-        left: 10.6%;
-        top: 33.8%;
-        width: 34.5%;
-    }
-
-    .main-landing-bg ~ #cassette-joy {
-        left: 47.2%;
-        top: 51.6%;
-        width: 48.0%;
-    }
-
-    /* Adjusted Cassette Resilience position so it doesn't overlap Joy */
-    .main-landing-bg ~ #cassette-resilience {
-        left: 49.6%;
-        top: 69.6%;
-        width: 48.0%;
-    }
-
-
-    /* ==========================================================================
-       2. SIDE-A.HTML & SIDE-B.HTML HUB PORTRAIT POSITIONS
-       ========================================================================== */
-    .main-side-a-bg ~ #cassette-joy {
-        left: 41.6%;
-        top: 53.7%;
-        width: 58.7%;
-    }
-
-    .main-side-b-bg ~ #cassette-resilience {
-        left: 41.6%;
-        top: 53.7%;
-        width: 58.7%;
-    }
-
-    .main-side-a-bg ~ #scrapbook {
-        left: 62.4%;
-        top: 80.1%;
-        width: 34.5%;
-    }
-
-    .main-side-b-bg ~ #scrapbook {
-        left: 62.4%;
-        top: 80.1%;
-        width: 34.5%;
-    }
-
-
-    /* ==========================================================================
-       3. TRACK PAGES PORTRAIT OVERRIDES
-       ========================================================================== */
-    #back-to-welcome {
-        left: -9.3%;
-        top: -4.8%;
-        width: 34.7%;
-    }
-    #back-to-welcome-tracks {
-        left: 71.3%;
-        top: 70.5%;
-        width: 24.6%;
-    }
-    #back-to-side-a,
-    #back-to-side-b {
-        left: 80.6%;
-        top: 6.8%;
-        width: 9.3%;
-    }
-    #next-track {
-        left: 78.3%;
-        top: 41.2%;
-        width: 13.9%;
-    }
+    max-width: 300px;
+  }
 }

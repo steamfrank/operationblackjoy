@@ -8,6 +8,24 @@
   <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
   <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
   
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyC7HLmdI8Rv300Bb64_zwq_ITIxJN3USAI",
+      authDomain: "operation-black-joy.firebaseapp.com",
+      projectId: "operation-black-joy",
+      storageBucket: "operation-black-joy.firebasestorage.app",
+      messagingSenderId: "792469296028",
+      appId: "1:792469296028:web:45c06a4863aa3389376e59",
+      measurementId: "G-FYSKSQZXRK"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+  </script>
+
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -126,14 +144,14 @@
       </div>
     </div>
 
-    <div></div> </div>
+    <div></div>
+  </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const urlParams = new URLSearchParams(window.location.search);
       const cardId = urlParams.get("id");
       
-      // URL Parameter Fallbacks (Allows QR codes to work on any phone/device)
       const urlMsg = urlParams.get("msg");
       const urlStamp = urlParams.get("stamp");
       const urlSource = urlParams.get("src");
@@ -142,16 +160,27 @@
       const selectedStamp = document.getElementById("ar-selected-stamp");
       const archiveLink = document.getElementById("ar-archive-source-link");
     
-      // 1. Try loading from LocalStorage first
-      const savedCards = JSON.parse(localStorage.getItem("operationBlackJoyScrapbook")) || [];
-      const cardData = savedCards.find((card) => String(card.id) === String(cardId));
-    
-      if (cardData) {
-        if (displayMessage) displayMessage.textContent = cardData.message || cardData.note || "";
-        if (selectedStamp) selectedStamp.src = cardData.stamp || "assets/stamp-aaam2026.png";
-        if (archiveLink && cardData.archiveUrl) archiveLink.href = cardData.archiveUrl;
+      // Fetch card directly from Firestore if ID exists
+      if (cardId) {
+        db.collection("postcards").doc(cardId).get()
+          .then((doc) => {
+            if (doc.exists) {
+              const cardData = doc.data();
+              if (displayMessage) displayMessage.textContent = cardData.message || cardData.note || "";
+              if (selectedStamp) selectedStamp.src = cardData.stamp || "assets/stamp-aaam2026.png";
+              if (archiveLink && cardData.archiveUrl) archiveLink.href = cardData.archiveUrl;
+            } else {
+              applyURLFallbacks();
+            }
+          })
+          .catch(() => {
+            applyURLFallbacks();
+          });
       } else {
-        // 2. Fallback to URL parameters if opened on a different device (Mobile Phone)
+        applyURLFallbacks();
+      }
+
+      function applyURLFallbacks() {
         if (displayMessage) {
           displayMessage.textContent = urlMsg ? decodeURIComponent(urlMsg) : "Celebrating Black Joy & Resilience!";
         }
@@ -163,27 +192,6 @@
         }
       }
     });
-
-  </script>
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-  
-  <script>
-    // Your web app's Firebase configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyC7HLmdI8Rv300Bb64_zwq_ITIxJN3USAI",
-      authDomain: "operation-black-joy.firebaseapp.com",
-      projectId: "operation-black-joy",
-      storageBucket: "operation-black-joy.firebasestorage.app",
-      messagingSenderId: "792469296028",
-      appId: "1:792469296028:web:45c06a4863aa3389376e59",
-      measurementId: "G-FYSKSQZXRK"
-    };
-  
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    // Global database instance
-    const db = firebase.firestore();
   </script>
 </body>
 </html>

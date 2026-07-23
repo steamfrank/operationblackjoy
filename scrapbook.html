@@ -1,21 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virtual Scrapbook</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Operation: Black Joy — Virtual Scrapbook</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
 
-    <div class="landing-container">
-        <img src="scrapbook/page-scrapbook.png" class="landing-bg main-scrapbook-bg" alt="Virtual Scrapbook Background">
-        
-        <a href="index.html" class="clickable-graphic" id="back-to-welcome">
-            <img src="general/back-to-welcome.png" alt="Back to Welcome">
-        </a>
-
+  <main class="main-content">
+    
+    <div class="app-header">
+      <a href="index.html" class="back-btn-link">
+        <img src="assets/back-button.png" alt="Back" class="back-btn-img">
+      </a>
+      <h1>Virtual Scrapbook</h1>
     </div>
 
+    <section class="scrapbook-intro">
+      <p>Explore community contributions saved from the Interactive Postcard Creator!</p>
+    </section>
+
+    <section class="scrapbook-gallery-container">
+      <div id="scrapbook-grid" class="scrapbook-grid">
+        </div>
+
+      <div id="empty-gallery-msg" class="empty-gallery-msg">
+        <p>No postcards in your scrapbook yet!</p>
+        <a href="postcard.html" class="action-btn inline-btn">Create Your First Postcard →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; Operation: Black Joy. All rights reserved.</p>
+  </footer>
+
+  <script src="scrapbook.js"></script>
 </body>
 </html>

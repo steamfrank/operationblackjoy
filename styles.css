@@ -319,7 +319,7 @@ h1 {
 }
 
 /* ==========================================================================
-   ENLARGED & REPROPORTIONED POSTCARD BACK LAYOUT
+   POSTCARD BACK - BALANCED LOGO & STAMP SIZING
    ========================================================================== */
 .card-back {
   background-color: #fffdf9 !important;
@@ -331,47 +331,48 @@ h1 {
   box-sizing: border-box !important;
 }
 
-/* Header Area: Scaled relative to Stamp */
+/* Header Area: Matches Logo and Stamp Heights */
 .back-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 0.75rem;
-  height: 90px; /* Fixed height container to anchor stamp and logo proportional heights */
+  height: 90px; /* Fixed height matching both elements */
 }
 
-/* Stamp Base Size */
-.stamp-area img {
-  height: 45px !important; /* Base reference size for stamp */
-  width: auto;
-  border: 1px dashed #cbd5e1;
-  padding: 3px;
-  background: #ffffff;
-  display: block;
-}
-
-/* Logo transparent set to TWICE the height/size of the stamp */
+/* Logo Sizing */
 .back-logo-transparent {
-  height: 90px !important; /* 2x Stamp size */
+  height: 90px !important;
   width: auto !important;
   max-width: 240px;
   object-fit: contain;
 }
 
-/* Main Postcard Body: Expands upward into full space */
+/* Stamp Sizing (Updated to match logo height) */
+.stamp-area img {
+  height: 90px !important; /* Matches logo height */
+  width: auto !important;
+  border: 1px dashed #cbd5e1;
+  padding: 4px;
+  background: #ffffff;
+  display: block;
+  object-fit: contain;
+}
+
+/* Main Postcard Body */
 .back-body {
   display: flex;
   gap: 1.25rem;
-  flex: 1; /* Drives body elements to fill remaining postcard height */
+  flex: 1;
   align-items: stretch;
-  margin-top: 0.25rem;
+  margin-top: 0.5rem;
 }
 
-/* Left Side: Handwritten Message */
+/* Message Area */
 .message-area {
   flex: 1.2;
   display: flex;
-  align-items: flex-start; /* Pushes written text to start right under the logo */
+  align-items: flex-start;
   padding-right: 0.5rem;
 }
 
@@ -384,14 +385,14 @@ h1 {
   width: 100%;
 }
 
-/* Vertical Divider (Acts as standard postcard divider line) */
+/* Divider Line */
 .divider-line {
   width: 2px;
   background-color: #cbd5e1;
   border-radius: 1px;
 }
 
-/* Right Side: Credit & Address Info */
+/* Credit Area */
 .credit-area {
   flex: 1;
   display: flex;
@@ -419,7 +420,6 @@ h1 {
 .external-image-link:hover {
   text-decoration: underline;
 }
-
 /* ==========================================================================
    6. VIRTUAL SCRAPBOOK GALLERY & STATIC CARDS
    ========================================================================== */

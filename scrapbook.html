@@ -1,89 +1,46 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const scrapbookGrid = document.getElementById("scrapbook-grid");
-  const emptyGalleryMsg = document.getElementById("empty-gallery-msg");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Operation: Black Joy — Virtual Scrapbook</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
 
-  // Retrieve saved postcards from localStorage
-  const savedPostcards = JSON.parse(localStorage.getItem("operationBlackJoyScrapbook")) || [];
-
-  if (savedPostcards.length === 0) {
-    emptyGalleryMsg.style.display = "block";
-    return;
-  }
-
-  emptyGalleryMsg.style.display = "none";
-
-  // Render each postcard item into the gallery
-  savedPostcards.forEach((data, index) => {
-    const cardItem = document.createElement("div");
-    cardItem.className = "scrapbook-card-item";
-
-    const formatClass = data.orientation === "portrait" ? "format-portrait" : "format-landscape";
-    const qrContainerId = `qr-code-badge-${index}`;
-
-    cardItem.innerHTML = `
-      <div class="scrapbook-postcard" id="scrapbook-card-${index}">
-        
-        <div class="card-side card-front ${formatClass}">
-          <div class="photo-frame">
-            <img src="${data.frontImage}" alt="Scrapbook Postcard Front">
-          </div>
-          
-          <div class="front-qr-badge" id="qr-btn-${index}" title="Scan or click to flip to back">
-            <div id="${qrContainerId}"></div>
-            <span>Flip Back</span>
-          </div>
-        </div>
-
-        <div class="card-side card-back">
-          <div class="back-header">
-            <img src="assets/logo-transparent.png" alt="Operation Black Joy" class="back-logo-transparent">
-            <div class="stamp-area">
-              <img src="${data.stamp}" alt="Postcard Stamp">
-            </div>
-          </div>
-
-          <div class="back-body">
-            <div class="message-area">
-              <p class="handwritten-text">${data.message}</p>
-            </div>
-
-            <div class="divider-line"></div>
-
-            <div class="credit-area">
-              <div class="credit-block">
-                <p class="credit-line"><strong>Creator:</strong> PACSCL Archive Community</p>
-                <p class="credit-line"><strong>Format & Publisher:</strong> Digital Archive Image, PACSCL</p>
-                <p class="credit-line"><strong>Identifier:</strong> BJR-2026-OBJ</p>
-              </div>
-
-              <div class="source-link-container">
-                <a href="${data.archiveUrl}" target="_blank" rel="noopener noreferrer" class="external-image-link">
-                  🔗 Original Source
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
+  <main class="main-content">
+    
+    <section class="hero-section scrapbook-hero">
+      <div class="banner-header-wrapper">
+        <a href="index.html" class="back-btn-link">
+          <img src="assets/back-button.png" alt="Back to Home" class="back-btn-img-hero">
+        </a>
+        <img src="assets/logo.png" alt="Operation: Black Joy Logo" class="hero-logo-banner">
       </div>
-    `;
+      <h1>Virtual Scrapbook</h1>
+      <p class="subtitle">Explore community contributions saved from the Interactive Postcard Creator!</p>
+    </section>
 
-    scrapbookGrid.appendChild(cardItem);
+    <section class="scrapbook-gallery-container">
+      <div id="scrapbook-grid" class="scrapbook-grid">
+        </div>
 
-    // Generate QR Code on the front badge
-    new QRCode(document.getElementById(qrContainerId), {
-      text: data.archiveUrl || "https://blackjoy.pacscl.org/omeka/s/bjr/page/welcome",
-      width: 42,
-      height: 42,
-      colorDark: "#000000",
-      colorLight: "#ffffff",
-      correctLevel: QRCode.CorrectLevel.M
-    });
+      <div id="empty-gallery-msg" class="empty-gallery-msg">
+        <p>No postcards in your scrapbook yet!</p>
+        <a href="postcard.html" class="action-btn inline-btn">Create Your First Postcard →</a>
+      </div>
+    </section>
 
-    // Toggle 3D Flip on QR Code Badge click or Card click
-    const cardElement = document.getElementById(`scrapbook-card-${index}`);
-    cardElement.addEventListener("click", () => {
-      cardElement.classList.toggle("is-flipped");
-    });
-  });
-});
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; Operation: Black Joy. All rights reserved.</p>
+  </footer>
+
+  <script src="scrapbook.js"></script>
+</body>
+</html>

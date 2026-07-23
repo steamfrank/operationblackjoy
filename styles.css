@@ -688,6 +688,80 @@ h1 {
   color: #64748b;
   margin-bottom: 1.25rem;
 }
+/* ==========================================================================
+   INTERACTIVE MESSY PHOTO STACK (VIRTUAL SCRAPBOOK)
+   ========================================================================== */
+
+.photo-stack-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  width: 100%;
+}
+
+.photo-stack-container {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  aspect-ratio: 3 / 2;
+  margin: 1.5rem auto;
+  cursor: pointer;
+  perspective: 1000px;
+}
+
+.stacked-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1), z-index 0.45s ease, box-shadow 0.3s ease;
+  user-select: none;
+}
+
+/* Card Shadow Effects */
+.stacked-card .scrapbook-postcard {
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.18), 0 2px 6px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.stacked-card.active-card .scrapbook-postcard {
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.28), 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.stacked-card:hover {
+  transform: translateY(-6px) scale(1.02) !important;
+}
+
+.stacked-card.active-card:hover {
+  transform: rotate(0deg) translateY(-6px) scale(1.02) !important;
+}
+
+/* Controls & Counter Below Stack */
+.stack-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.stack-counter {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.stack-counter em {
+  font-weight: 400;
+  color: #64748b;
+  font-style: normal;
+}
 
 /* ==========================================================================
    7. FOOTER & RESPONSIVE BREAKPOINTS

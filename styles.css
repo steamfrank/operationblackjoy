@@ -349,7 +349,32 @@ h1 {
   font-weight: bold;
 }
 
+/* Card Front Empty Placeholder State */
+.card-front.empty-state {
+  background-color: #f1f5f9 !important;
+  border: 2px dashed #cbd5e1;
+}
 
+.photo-placeholder-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.placeholder-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.photo-placeholder-content p {
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin: 0;
+}
 /* ==========================================================================
    5. POSTCARD 3D STAGE & CARD BACK ENLARGEMENTS
    ========================================================================== */

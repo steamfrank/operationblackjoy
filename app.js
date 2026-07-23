@@ -121,48 +121,51 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 7. Save Postcard to Scrapbook with Validation
-  if (saveScrapbookBtn) {
-    saveScrapbookBtn.addEventListener("click", () => {
-      if (!imageUploadInput.files || imageUploadInput.files.length === 0) {
-        alert("Please upload an image file for the front of your postcard!");
-        imageUploadInput.focus();
-        return;
-      }
+    // 7. Save Postcard to Scrapbook with Validation
+    if (saveScrapbookBtn) {
+      saveScrapbookBtn.addEventListener("click", () => {
+        if (!imageUploadInput.files || imageUploadInput.files.length === 0) {
+          alert("Please upload an image file for the front of your postcard!");
+          imageUploadInput.focus();
+          return;
+        }
+  
+        if (!archiveUrlInput.value.trim()) {
+          alert("Please enter the PACSCL Archive item address for credit attribution!");
+          archiveUrlInput.focus();
+          return;
+        }
+  
+        const typedNote = messageInput ? messageInput.value.trim() : "";
+        if (!typedNote) {
+          alert("Please type a message for your postcard!");
+          messageInput.focus();
+          return;
+        }
+  
+        const isPortrait = cardFrontWrapper ? cardFrontWrapper.classList.contains("format-portrait") : false;
+  
+        const postcardData = {
+          id: Date.now(),
+          frontImage: postcardPhoto ? postcardPhoto.src : defaultFallbackImage,
+          orientation: isPortrait ? "portrait" : "landscape",
+          message: typedNote,
+          note: typedNote,
+          stamp: activeStampPath,
+          archiveUrl: archiveUrlInput.value.trim(),
+          dateCreated: new Date().toLocaleDateString()
+        };
+  
+        const existingScrapbook = JSON.parse(localStorage.getItem("operationBlackJoyScrapbook")) || [];
+        
+        // Use unshift instead of push so newest cards are always saved first!
+        existingScrapbook.unshift(postcardData);
+        localStorage.setItem("operationBlackJoyScrapbook", JSON.stringify(existingScrapbook));
+  
+        alert("✨ Postcard saved! It has been added to your Virtual Scrapbook.");
+      });
+    }
 
-      if (!archiveUrlInput.value.trim()) {
-        alert("Please enter the PACSCL Archive item address for credit attribution!");
-        archiveUrlInput.focus();
-        return;
-      }
-
-      const typedNote = messageInput ? messageInput.value.trim() : "";
-      if (!typedNote) {
-        alert("Please type a message for your postcard!");
-        messageInput.focus();
-        return;
-      }
-
-      const isPortrait = cardFrontWrapper ? cardFrontWrapper.classList.contains("format-portrait") : false;
-
-      const postcardData = {
-        id: Date.now(),
-        frontImage: postcardPhoto ? postcardPhoto.src : defaultFallbackImage,
-        orientation: isPortrait ? "portrait" : "landscape",
-        message: typedNote,
-        note: typedNote,
-        stamp: activeStampPath,
-        archiveUrl: archiveUrlInput.value.trim(),
-        dateCreated: new Date().toLocaleDateString()
-      };
-
-      const existingScrapbook = JSON.parse(localStorage.getItem("operationBlackJoyScrapbook")) || [];
-      existingScrapbook.push(postcardData);
-      localStorage.setItem("operationBlackJoyScrapbook", JSON.stringify(existingScrapbook));
-
-      alert("✨ Postcard saved! It has been added to your Virtual Scrapbook.");
-    });
-  }
 
   // Initial setup with fallback asset
   processImageAspect(defaultFallbackImage);

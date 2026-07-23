@@ -57,19 +57,25 @@
     >
   </div>
 
-  <div class="panel-section">
+   <div class="panel-section">
     <h3>2. Archive Source Link</h3>
-    <label for="archive-url-input">PACSCL Item / Collection Address <span class="required-asterisk">*</span></label>
+    <label for="archive-url-input">PACSCL Item Address <span class="required-asterisk">*</span></label>
     <input 
       type="url" 
       id="archive-url-input" 
-      placeholder="https://blackjoy.pacscl.org/omeka/s/bjr/item/..." 
+      placeholder="https://blackjoy.pacscl.org/omeka/s/bjr/item/186" 
       autocomplete="off"
       required
     >
     <p class="input-helper-note">
-      🔗 Paste the Omeka/PACSCL web link here to credit the source on the back.
+      🔗 Paste the Omeka item web link to auto-fetch metadata for the postcard back.
     </p>
+  
+    <label for="input-item-title">Item Title:</label>
+    <input type="text" id="input-item-title" placeholder="Auto-populated or type title...">
+  
+    <label for="input-item-creator">Creator / Author:</label>
+    <input type="text" id="input-item-creator" placeholder="Auto-populated or type creator...">
   </div>
 
   <div class="panel-section">
@@ -119,11 +125,11 @@
 
                 <div class="credit-area">
                   <div class="credit-block">
-                    <p class="credit-line"><strong>Creator:</strong> PACSCL Archive Community</p>
-                    <p class="credit-line"><strong>Format:</strong> Digital Archive Image</p>
-                    <p class="credit-line"><strong>Identifier:</strong> BJR-2026-OBJ</p>
+                    <p class="credit-line"><strong>Item:</strong> <span id="credit-title">Black Joy & Resilience Archive</span></p>
+                    <p class="credit-line"><strong>Creator:</strong> <span id="credit-creator">PACSCL Community</span></p>
+                    <p class="credit-line"><strong>Source:</strong> <span id="credit-source">PACSCL Digital Collection</span></p>
                   </div>
-
+                
                   <div class="source-link-container">
                     <a id="archive-source-link" href="https://blackjoy.pacscl.org/omeka/s/bjr/page/welcome" target="_blank" rel="noopener noreferrer" class="external-image-link">
                       🔗 Original Source

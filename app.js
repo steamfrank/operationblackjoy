@@ -51,34 +51,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 4. Image Formatting & Aspect Ratio Processor
   function processImageAspect(imgSrc) {
-    const targetUrl = (imgSrc && imgSrc.trim() !== "") ? imgSrc.trim() : defaultFallbackImage;
-    
-    const tempImg = new Image();
-    tempImg.src = targetUrl;
+  const photoPlaceholder = document.getElementById("photo-placeholder");
+  
+  if (!imgSrc) {
+    if (postcardPhoto) postcardPhoto.style.display = "none";
+    if (photoPlaceholder) photoPlaceholder.style.display = "flex";
+    if (cardFrontWrapper) cardFrontWrapper.classList.add("empty-state");
+    return;
+  }
 
-    tempImg.onload = () => {
-      if (postcardPhoto) postcardPhoto.src = targetUrl;
-      const width = tempImg.naturalWidth;
-      const height = tempImg.naturalHeight;
+  const tempImg = new Image();
+  tempImg.src = imgSrc;
 
-      if (cardFrontWrapper) {
-        cardFrontWrapper.classList.remove("format-landscape", "format-portrait");
-        if (height > width) {
-          cardFrontWrapper.classList.add("format-portrait");
-        } else {
-          cardFrontWrapper.classList.add("format-landscape");
-        }
-      }
-    };
+  tempImg.onload = () => {
+    if (postcardPhoto) {
+      postcardPhoto.src = imgSrc;
+      postcardPhoto.style.display = "block";
+    }
+    if (photoPlaceholder) photoPlaceholder.style.display = "none";
+    if (cardFrontWrapper) cardFrontWrapper.classList.remove("empty-state");
 
-    tempImg.onerror = () => {
-      if (postcardPhoto) postcardPhoto.src = defaultFallbackImage;
-      if (cardFrontWrapper) {
-        cardFrontWrapper.classList.remove("format-portrait");
+    const width = tempImg.naturalWidth;
+    const height = tempImg.naturalHeight;
+
+    if (cardFrontWrapper) {
+      cardFrontWrapper.classList.remove("format-landscape", "format-portrait");
+      if (height > width) {
+        cardFrontWrapper.classList.add("format-portrait");
+      } else {
         cardFrontWrapper.classList.add("format-landscape");
       }
-    };
-  }
+    }
+  };
+}
+
 
   // 5. Input 1: Direct File Upload for Front Photo
   if (imageUploadInput) {

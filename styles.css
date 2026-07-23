@@ -455,3 +455,94 @@ img {
   text-decoration: underline;
   font-size: 0.85rem;
 }
+/* ==========================================================================
+   Virtual Scrapbook Gallery Styles
+   ========================================================================== */
+.scrapbook-intro {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  color: #555;
+  font-size: 1.1rem;
+}
+
+.scrapbook-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+.scrapbook-card-item {
+  width: 100%;
+  max-width: 400px;
+  perspective: 1000px;
+}
+
+.scrapbook-postcard {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  background: #ffffff;
+}
+
+.scrapbook-postcard.is-flipped {
+  transform: rotateY(180deg);
+}
+
+/* Front Side QR Code Overlay Badge */
+.front-qr-badge {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.92);
+  padding: 6px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  z-index: 10;
+}
+
+.front-qr-badge:hover {
+  transform: scale(1.08);
+}
+
+.front-qr-badge span {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #333;
+  margin-top: 2px;
+}
+
+/* Empty State Message */
+.empty-gallery-msg {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background: #ffffff;
+  border-radius: 12px;
+  max-width: 480px;
+  margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.empty-gallery-msg p {
+  font-size: 1.1rem;
+  margin-bottom: 1.25rem;
+  color: #666;
+}
+
+.inline-btn {
+  display: inline-block;
+  text-decoration: none;
+  width: auto;
+  padding: 0.75rem 1.5rem;
+}
+

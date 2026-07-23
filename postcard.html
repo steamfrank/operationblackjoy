@@ -47,6 +47,16 @@
       <div class="control-panel card-panel">
         <div class="panel-section">
           <h3>1. Archive Image Source</h3>
+          
+          <label for="image-upload-input">Upload Image File (Recommended):</label>
+          <input 
+            type="file" 
+            id="image-upload-input" 
+            accept="image/*"
+          >
+          
+          <div style="text-align: center; font-weight: bold; margin: 0.5rem 0; color: #94a3b8;">— OR —</div>
+        
           <label for="archive-url-input">PACSCL Archive Image Address:</label>
           <input 
             type="url" 
@@ -54,9 +64,6 @@
             placeholder="Paste direct image address (e.g., https://.../image.jpg)" 
             autocomplete="off"
           >
-          <p class="input-helper-note">
-            💡 <strong>Tip:</strong> Right-click on your chosen archive photo and select <em>"Copy Image Address"</em> (not the webpage URL).
-          </p>
           
           <label for="page-number-input">Archive Page # (Optional):</label>
           <input type="number" id="page-number-input" min="1" placeholder="e.g. 1">

@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Retrieve saved postcards from localStorage
   const savedPostcards = JSON.parse(localStorage.getItem("operationBlackJoyScrapbook")) || [];
 
-  // Show or hide empty state message
   if (savedPostcards.length === 0) {
     if (emptyGalleryMsg) emptyGalleryMsg.style.display = "block";
     return;
@@ -13,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (emptyGalleryMsg) emptyGalleryMsg.style.display = "none";
   }
 
-  // Render each postcard item into the gallery
+  // Render each postcard front item into the gallery
   savedPostcards.forEach((data, index) => {
     const cardItem = document.createElement("div");
     cardItem.className = "scrapbook-card-item";
@@ -21,48 +20,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const formatClass = data.orientation === "portrait" ? "format-portrait" : "format-landscape";
     const qrContainerId = `qr-code-badge-${index}`;
 
+    // Valid fallback image path if data.frontImage fails to load
+    const imageSrc = data.frontImage && data.frontImage.trim() !== "" 
+      ? data.frontImage 
+      : "assets/default-postcard.png";
+
     cardItem.innerHTML = `
-      <div class="scrapbook-postcard" id="scrapbook-card-${index}">
+      <div class="scrapbook-postcard static-card" id="scrapbook-card-${index}">
         
         <div class="card-side card-front ${formatClass}">
           <div class="photo-frame">
-            <img src="${data.frontImage}" alt="Scrapbook Postcard Front" onerror="this.src='assets/default-postcard.png'">
+            <img src="${imageSrc}" alt="Scrapbook Postcard Front" onerror="this.onerror=null; this.src='assets/default-postcard.png';">
           </div>
           
-          <div class="front-qr-badge" id="qr-badge-wrapper-${index}" title="Scan to launch back of card or click to flip">
+          <div class="front-qr-badge" id="qr-badge-wrapper-${index}" title="Scan to view AR Postcard Back on device">
             <div id="${qrContainerId}"></div>
-            <span>Scan / Flip</span>
-          </div>
-        </div>
-
-        <div class="card-side card-back">
-          <div class="back-header">
-            <img src="assets/logo-transparent.png" alt="Operation Black Joy" class="back-logo-transparent">
-            <div class="stamp-area">
-              <img src="${data.stamp || 'assets/stamp-aaam2026.png'}" alt="Postcard Stamp">
-            </div>
-          </div>
-
-          <div class="back-body">
-            <div class="message-area">
-              <p class="handwritten-text">${data.message || 'Sending joy & resilience from Operation: Black Joy!'}</p>
-            </div>
-
-            <div class="divider-line"></div>
-
-            <div class="credit-area">
-              <div class="credit-block">
-                <p class="credit-line"><strong>Creator:</strong> PACSCL Archive Community</p>
-                <p class="credit-line"><strong>Format & Publisher:</strong> Digital Archive Image, PACSCL</p>
-                <p class="credit-line"><strong>Identifier:</strong> BJR-2026-OBJ</p>
-              </div>
-
-              <div class="source-link-container">
-                <a href="${data.archiveUrl || 'https://blackjoy.pacscl.org/omeka/s/bjr/page/welcome'}" target="_blank" rel="noopener noreferrer" class="external-image-link" onclick="event.stopPropagation();">
-                  🔗 Original Source
-                </a>
-              </div>
-            </div>
+            <span>Scan for AR Back</span>
           </div>
         </div>
 
@@ -71,33 +44,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
     scrapbookGrid.appendChild(cardItem);
 
-    // Render the QR code into the container after element is appended to DOM
+    // Build the AR target URL carrying postcard data to render on the mobile device
+    const baseUrl = window.location.origin + window.location.pathname.replace("scrapbook.html", "ar-view.html");
+    const arPayloadUrl = `${baseUrl}?id=${data.id || index}&msg=${encodeURIComponent(data.message || '')}&stamp=${encodeURIComponent(data.stamp || '')}`;
+
+    // Render QR Code after DOM insertion
     setTimeout(() => {
       const qrContainer = document.getElementById(qrContainerId);
       if (qrContainer && typeof QRCode !== "undefined") {
-        qrContainer.innerHTML = ""; // Clear any previous instance
+        qrContainer.innerHTML = "";
         
-        const qrUrl = data.archiveUrl && data.archiveUrl.startsWith("http") 
-          ? data.archiveUrl 
-          : "https://blackjoy.pacscl.org/omeka/s/bjr/page/welcome";
-
         new QRCode(qrContainer, {
-          text: qrUrl,
-          width: 52,
-          height: 52,
+          text: arPayloadUrl,
+          width: 58,
+          height: 58,
           colorDark: "#000000",
           colorLight: "#ffffff",
-          correctLevel: QRCode.CorrectLevel.H
+          correctLevel: QRCode.CorrectLevel.M
         });
       }
     }, 50);
-
-    // Toggle 3D Flip on card click
-    const cardElement = document.getElementById(`scrapbook-card-${index}`);
-    if (cardElement) {
-      cardElement.addEventListener("click", () => {
-        cardElement.classList.toggle("is-flipped");
-      });
-    }
   });
 });

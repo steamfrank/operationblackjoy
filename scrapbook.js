@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let savedCards = [];
   let currentIndex = 0;
-  // Pre-generate random organic rotations for each card index so they remain consistent during cycle
   let cardRotations = [];
 
   // Helper function: Generates dynamic QR code for AR viewer
@@ -12,13 +11,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const currentPath = window.location.href.split('#')[0].split('?')[0];
     const baseUrl = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
     
-    // Pass message, stamp, and archive link inside the QR code URL so mobile scanning works seamlessly
+    // Encodes card details into QR code URL for cross-device mobile AR viewing
     const arTargetUrl = `${baseUrl}ar.html?id=${cardData.id}&msg=${encodeURIComponent(cardData.message || cardData.note || '')}&stamp=${encodeURIComponent(cardData.stamp || '')}&src=${encodeURIComponent(cardData.archiveUrl || '')}`;
     
     return `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(arTargetUrl)}`;
   }
 
-  // Real-time listener: Fetches live postcards from Firebase ordered with the newest on top
+  // Real-time listener: Reads from Firebase Firestore live!
   db.collection("postcards")
     .orderBy("dateCreated", "desc")
     .onSnapshot((snapshot) => {
@@ -41,16 +40,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (emptyStateMsg) emptyStateMsg.style.display = "none";
 
-      // Setup wrapper for photo stack
       scrapbookGrid.classList.add("photo-stack-wrapper");
 
-      // Generate fixed random rotations for messy stack look
+      // Organic random rotations for the physical scrapbook stack look
       cardRotations = savedCards.map(() => {
         const angle = (Math.random() * 14 - 7);
         return Math.abs(angle) < 2 ? (angle < 0 ? -4 : 4) : angle;
       });
 
-      // Reset index if out of bounds after deletion or refresh
       if (currentIndex >= savedCards.length) {
         currentIndex = 0;
       }
@@ -63,7 +60,6 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderStack() {
     scrapbookGrid.innerHTML = "";
 
-    // Create a container for controls
     const stackContainer = document.createElement("div");
     stackContainer.className = "photo-stack-container";
 
@@ -71,20 +67,17 @@ document.addEventListener("DOMContentLoaded", () => {
       const cardItem = document.createElement("div");
       cardItem.className = "stacked-card";
 
-      // Determine stacking position relative to current active index
       const position = (index - currentIndex + savedCards.length) % savedCards.length;
       const zIndex = savedCards.length - position;
 
       cardItem.style.zIndex = zIndex;
 
       if (position === 0) {
-        // Active top card: straight, highlighted, scale 1.0
         cardItem.classList.add("active-card");
         cardItem.style.transform = `rotate(0deg) scale(1)`;
       } else {
-        // Messy stacked cards behind: apply saved random tilt and slight scaling/offset
         const rotation = cardRotations[index] || 0;
-        const depthOffset = Math.min(position * 3, 12); // Subtle vertical depth shift
+        const depthOffset = Math.min(position * 3, 12);
         cardItem.style.transform = `rotate(${rotation}deg) translateY(${depthOffset}px) scale(0.97)`;
         cardItem.classList.add("stacked-behind");
       }
@@ -106,7 +99,6 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       `;
 
-      // Clicking any card cycles to the next image in the stack
       cardItem.addEventListener("click", () => {
         cycleNextCard();
       });
@@ -114,7 +106,6 @@ document.addEventListener("DOMContentLoaded", () => {
       stackContainer.appendChild(cardItem);
     });
 
-    // Append navigation helper & counter below stack
     const controlsDiv = document.createElement("div");
     controlsDiv.className = "stack-controls";
     controlsDiv.innerHTML = `

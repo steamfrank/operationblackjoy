@@ -49,16 +49,33 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Resilient Image Loader
-  function processImageAspect(imgUrl) {
-    const targetUrl = (imgUrl && imgUrl.trim() !== "") ? imgUrl.trim() : defaultFallbackImage;
+ // Asynchronous image loader that handles direct URLs and Omeka web links
+async function processImageAspect(imgUrl) {
+  const defaultFallbackImage = "assets/default-postcard.png";
+  
+  if (!imgUrl || imgUrl.trim() === "") {
+    loadFallback(defaultFallbackImage);
+    return;
+  }
+
+  let targetUrl = imgUrl.trim();
+
+  try {
+    // 1. Fetch image directly as a binary blob (bypasses standard tag hotlinking blocks)
+    const response = await fetch(targetUrl, { mode: 'cors' });
     
+    if (!response.ok) throw new Error("Image request failed");
+
+    const blob = await response.blob();
+    const localBlobUrl = URL.createObjectURL(blob);
+
+    // 2. Load into DOM Image object to detect dimensions
     const tempImg = new Image();
-    tempImg.crossOrigin = "anonymous";
-    tempImg.src = targetUrl;
+    tempImg.src = localBlobUrl;
 
     tempImg.onload = () => {
-      if (postcardPhoto) postcardPhoto.src = targetUrl;
+      if (postcardPhoto) postcardPhoto.src = localBlobUrl;
+      
       const width = tempImg.naturalWidth;
       const height = tempImg.naturalHeight;
 
@@ -73,14 +90,23 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     tempImg.onerror = () => {
-      if (postcardPhoto) postcardPhoto.src = defaultFallbackImage;
-      if (cardFrontWrapper) {
-        cardFrontWrapper.classList.remove("format-portrait");
-        cardFrontWrapper.classList.add("format-landscape");
-      }
+      loadFallback(defaultFallbackImage);
     };
-  }
 
+  } catch (error) {
+    console.warn("Direct blob fetch unsuccessful, attempting direct URL fallback:", error);
+    // Direct URL fallback if CORS fetch is blocked
+    if (postcardPhoto) postcardPhoto.src = targetUrl;
+  }
+}
+
+function loadFallback(fallbackPath) {
+  if (postcardPhoto) postcardPhoto.src = fallbackPath;
+  if (cardFrontWrapper) {
+    cardFrontWrapper.classList.remove("format-portrait");
+    cardFrontWrapper.classList.add("format-landscape");
+  }
+}
   // Live Archive URL input change
   if (archiveUrlInput) {
     archiveUrlInput.addEventListener("input", () => {

@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 7. Save Postcard to Scrapbook with Validation
+ // 7. Save Postcard to Scrapbook with Validation
   if (saveScrapbookBtn) {
     saveScrapbookBtn.addEventListener("click", () => {
       // Validate required inputs
@@ -204,6 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("✨ Postcard saved! It has been added to your Virtual Scrapbook.");
     });
   }
+
 
   // Initial setup with fallback asset
   processImageAspect(defaultFallbackImage);

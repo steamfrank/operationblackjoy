@@ -101,12 +101,71 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // 6. Input 2: PACSCL Link for Back Credit Info
+  // Reference elements
+  const creditTitle = document.getElementById("credit-title");
+  const creditCreator = document.getElementById("credit-creator");
+  const creditSource = document.getElementById("credit-source");
+  
+  const inputItemTitle = document.getElementById("input-item-title");
+  const inputItemCreator = document.getElementById("input-item-creator");
+  
+  // Function to fetch metadata from Omeka S API
+  async function fetchOmekaMetadata(url) {
+    // Extract item ID from URL (e.g., .../item/186 or .../item/51)
+    const itemMatch = url.match(/\/item\/(\d+)/);
+    if (!itemMatch) return;
+  
+    const itemId = itemMatch[1];
+    const apiUrl = `https://blackjoy.pacscl.org/omeka/api/items/${itemId}`;
+  
+    try {
+      const response = await fetch(apiUrl);
+      if (!response.ok) throw new Error("API network response was not ok");
+  
+      const data = await response.json();
+  
+      // Parse standard Dublin Core metadata fields from Omeka API response
+      const title = data["dcterms:title"]?.[0]?.["@value"] || "Black Joy & Resilience Source";
+      const creator = data["dcterms:creator"]?.[0]?.["@value"] || "PACSCL Contributor";
+      const source = data["dcterms:source"]?.[0]?.["@value"] || "PACSCL Digital Archives";
+  
+      // Update Postcard Back Display
+      if (creditTitle) creditTitle.textContent = title;
+      if (creditCreator) creditCreator.textContent = creator;
+      if (creditSource) creditSource.textContent = source;
+  
+      // Pre-fill input fields
+      if (inputItemTitle) inputItemTitle.value = title;
+      if (inputItemCreator) inputItemCreator.value = creator;
+  
+    } catch (error) {
+      console.warn("Could not auto-fetch Omeka metadata via API, using default/manual values:", error);
+    }
+  }
+  
+  // Event Listeners for URL and Manual Fields
   if (archiveUrlInput) {
     archiveUrlInput.addEventListener("input", () => {
       const url = archiveUrlInput.value.trim();
       if (archiveSourceLink) {
         archiveSourceLink.href = url || "https://blackjoy.pacscl.org/omeka/s/bjr/page/welcome";
       }
+      if (url) {
+        fetchOmekaMetadata(url);
+      }
+    });
+  }
+  
+  // Manual Override Input Listeners
+  if (inputItemTitle) {
+    inputItemTitle.addEventListener("input", (e) => {
+      if (creditTitle) creditTitle.textContent = e.target.value.trim() || "Black Joy & Resilience Archive";
+    });
+  }
+  
+  if (inputItemCreator) {
+    inputItemCreator.addEventListener("input", (e) => {
+      if (creditCreator) creditCreator.textContent = e.target.value.trim() || "PACSCL Community";
     });
   }
 

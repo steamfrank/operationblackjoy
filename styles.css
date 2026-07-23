@@ -525,57 +525,75 @@ h1 {
 /* ==========================================================================
    8. INDEX.HTML LANDING PAGE SPECIFIC STYLES
    ========================================================================== */
-/* Landing Page Grid & Cards */
-.landing-grid-container {
-  max-width: 900px;
-  margin: 2rem auto 0 auto;
+/* Cassette Grid Layout */
+.cassette-section {
+  margin: 2rem 0;
 }
 
-.landing-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  align-items: stretch;
-}
-
-.cassette-link-card {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 1.75rem;
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e2e8f0;
-  text-decoration: none;
-  color: inherit;
+.cassette-grid {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  text-align: center;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.cassette-link-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px -10px rgba(37, 99, 235, 0.15);
-  border-color: #cbd5e1;
+  gap: 2rem;
+  flex-wrap: wrap;
 }
 
 .cassette-img {
+  max-width: 320px;
   width: 100%;
-  max-width: 260px;
   height: auto;
-  margin-bottom: 1.25rem;
   filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.12));
 }
 
-.card-info h2 {
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: #0f172a;
-  margin-bottom: 0.5rem;
+/* Badges Grid Layout */
+.badges-section {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
 }
 
-.card-info p {
-  font-size: 0.95rem;
+.badges-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.graphic-item {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+
+.graphic-item:hover {
+  transform: translateY(-4px);
+}
+
+.inline-graphic {
+  max-width: 220px;
+  width: 100%;
+  height: auto;
+}
+
+.welcome-graphic {
+  max-width: 260px;
+  width: 100%;
+  height: auto;
+}
+
+.welcome-center-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.welcome-label {
+  font-size: 0.875rem;
+  font-weight: 600;
   color: #475569;
-  line-height: 1.5;
+  text-align: center;
+}
+
+.soft-fade-shadow {
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.1));
 }

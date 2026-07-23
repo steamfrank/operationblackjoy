@@ -90,9 +90,13 @@
         <div class="postcard-stage">
           <div id="postcard-element" class="postcard-wrapper">
             
-            <div id="card-front-wrapper" class="card-side card-front format-landscape">
+            <div id="card-front-wrapper" class="card-side card-front format-landscape empty-state">
               <div class="photo-frame">
-                <img id="postcard-photo" src="assets/default-postcard.png" alt="Postcard Front Image">
+                <img id="postcard-photo" alt="Postcard Front Preview" style="display: none;">
+                <div id="photo-placeholder" class="photo-placeholder-content">
+                  <span class="placeholder-icon">📷</span>
+                  <p>Upload an image above to preview your postcard front</p>
+                </div>
               </div>
             </div>
 

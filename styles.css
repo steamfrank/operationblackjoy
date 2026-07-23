@@ -525,31 +525,57 @@ h1 {
 /* ==========================================================================
    8. INDEX.HTML LANDING PAGE SPECIFIC STYLES
    ========================================================================== */
+/* Landing Page Grid & Cards */
+.landing-grid-container {
+  max-width: 900px;
+  margin: 2rem auto 0 auto;
+}
+
 .landing-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
-  margin-top: 2.5rem;
+  align-items: stretch;
 }
 
 .cassette-link-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.75rem;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
+  text-decoration: none;
+  color: inherit;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-decoration: none;
-  color: inherit;
-  transition: transform 0.25s ease;
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .cassette-link-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 15px 35px -10px rgba(37, 99, 235, 0.15);
+  border-color: #cbd5e1;
 }
 
 .cassette-img {
   width: 100%;
-  max-width: 320px;
+  max-width: 260px;
   height: auto;
-  border: none;
-  /* Soft, blended drop shadow for borderless graphic */
-  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.12));
+  margin-bottom: 1.25rem;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.12));
+}
+
+.card-info h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+}
+
+.card-info p {
+  font-size: 0.95rem;
+  color: #475569;
+  line-height: 1.5;
 }

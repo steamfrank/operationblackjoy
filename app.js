@@ -21,27 +21,26 @@ document.addEventListener("DOMContentLoaded", () => {
   const defaultFallbackImage = "assets/default-postcard.png";
 
   // 1. Modal Event Selection (Fixed Stamp Image Switch)
-    if (startAppBtn) {
-      startAppBtn.addEventListener("click", () => {
-        const selectedRadio = document.querySelector('input[name="event-selection"]:checked');
-        const selectedEvent = selectedRadio ? selectedRadio.value : "aaam";
-        
-        // Select correct stamp path based on radio value
-        activeStampPath = (selectedEvent === "sugarhill" || selectedEvent === "anyonecanfly") 
-          ? "assets/stamp-anyonecanfly.png" 
-          : "assets/stamp-aaam2026.png";
-        
-        // Force update the visible image element immediately
-        if (selectedStampImg) {
-          selectedStampImg.src = activeStampPath;
-        }
-        
-        if (eventModal) {
-          eventModal.style.display = "none";
-        }
-      });
-    }
-
+  if (startAppBtn) {
+    startAppBtn.addEventListener("click", () => {
+      const selectedRadio = document.querySelector('input[name="event-selection"]:checked');
+      const selectedEvent = selectedRadio ? selectedRadio.value : "aaam";
+      
+      // Select correct stamp path based on radio value
+      activeStampPath = (selectedEvent === "sugarhill" || selectedEvent === "anyonecanfly") 
+        ? "assets/stamp-anyonecanfly.png" 
+        : "assets/stamp-aaam2026.png";
+      
+      // Force update the visible image element immediately
+      if (selectedStampImg) {
+        selectedStampImg.src = activeStampPath;
+      }
+      
+      if (eventModal) {
+        eventModal.style.display = "none";
+      }
+    });
+  }
 
   // 2. Handwritten Message & Counter
   if (messageInput) {
@@ -121,51 +120,58 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-    // 7. Save Postcard to Scrapbook with Validation
-    if (saveScrapbookBtn) {
-      saveScrapbookBtn.addEventListener("click", () => {
-        if (!imageUploadInput.files || imageUploadInput.files.length === 0) {
-          alert("Please upload an image file for the front of your postcard!");
-          imageUploadInput.focus();
-          return;
-        }
-  
-        if (!archiveUrlInput.value.trim()) {
-          alert("Please enter the PACSCL Archive item address for credit attribution!");
-          archiveUrlInput.focus();
-          return;
-        }
-  
-        const typedNote = messageInput ? messageInput.value.trim() : "";
-        if (!typedNote) {
-          alert("Please type a message for your postcard!");
-          messageInput.focus();
-          return;
-        }
-  
-        const isPortrait = cardFrontWrapper ? cardFrontWrapper.classList.contains("format-portrait") : false;
-  
-        const postcardData = {
-          id: Date.now(),
-          frontImage: postcardPhoto ? postcardPhoto.src : defaultFallbackImage,
-          orientation: isPortrait ? "portrait" : "landscape",
-          message: typedNote,
-          note: typedNote,
-          stamp: activeStampPath,
-          archiveUrl: archiveUrlInput.value.trim(),
-          dateCreated: new Date().toLocaleDateString()
-        };
-  
-        const existingScrapbook = JSON.parse(localStorage.getItem("operationBlackJoyScrapbook")) || [];
-        
-        // Use unshift instead of push so newest cards are always saved first!
-        existingScrapbook.unshift(postcardData);
-        localStorage.setItem("operationBlackJoyScrapbook", JSON.stringify(existingScrapbook));
-  
-        alert("✨ Postcard saved! It has been added to your Virtual Scrapbook.");
-      });
-    }
+  // 7. Save Postcard to Firestore with Validation
+  if (saveScrapbookBtn) {
+    saveScrapbookBtn.addEventListener("click", () => {
+      if (!imageUploadInput.files || imageUploadInput.files.length === 0) {
+        alert("Please upload an image file for the front of your postcard!");
+        imageUploadInput.focus();
+        return;
+      }
 
+      if (!archiveUrlInput.value.trim()) {
+        alert("Please enter the PACSCL Archive item address for credit attribution!");
+        archiveUrlInput.focus();
+        return;
+      }
+
+      const typedNote = messageInput ? messageInput.value.trim() : "";
+      if (!typedNote) {
+        alert("Please type a message for your postcard!");
+        messageInput.focus();
+        return;
+      }
+
+      const isPortrait = cardFrontWrapper ? cardFrontWrapper.classList.contains("format-portrait") : false;
+
+      const postcardData = {
+        frontImage: postcardPhoto ? postcardPhoto.src : defaultFallbackImage,
+        orientation: isPortrait ? "portrait" : "landscape",
+        message: typedNote,
+        note: typedNote,
+        stamp: activeStampPath,
+        archiveUrl: archiveUrlInput.value.trim(),
+        dateCreated: firebase.firestore.FieldValue.serverTimestamp()
+      };
+
+      // Disable button during network save
+      saveScrapbookBtn.disabled = true;
+      saveScrapbookBtn.textContent = "Saving...";
+
+      // Save globally to Firebase Cloud Firestore
+      db.collection("postcards").add(postcardData)
+        .then(() => {
+          alert("✨ Postcard saved globally to the Virtual Scrapbook!");
+          window.location.href = "scrapbook.html";
+        })
+        .catch((error) => {
+          console.error("Error saving to Firestore:", error);
+          alert("There was an issue saving to the global database. Please try again.");
+          saveScrapbookBtn.disabled = false;
+          saveScrapbookBtn.textContent = "✨ Save to Scrapbook";
+        });
+    });
+  }
 
   // Initial setup with fallback asset
   processImageAspect(defaultFallbackImage);

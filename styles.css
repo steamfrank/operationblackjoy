@@ -910,3 +910,16 @@ h1 {
   filter: drop-shadow(0 12px 22px rgba(0,0,0,0.22));
   transition: transform 0.3s ease;
 }
+/* ==========================================================================
+   SIDE B SPECIFIC COLOR OVERRIDES (#1e656d)
+   ========================================================================== */
+
+/* Overrides track title and number color for Side B */
+.side-b-color {
+  color: #1e656d !important;
+}
+
+/* Optional: Slight color adjustment for the track number background pill on Side B */
+.track-num.side-b-color {
+  background-color: #e2f0f1;
+}

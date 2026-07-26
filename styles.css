@@ -812,23 +812,24 @@ h1 {
    SIDE A/B - J-CARD (TOP) & TABLETOP ITEMS (BOTTOM)
    ========================================================================== */
 
-/* 1. J-Card Section & Reduced Overlay Box */
+/* 1. J-Card Section & Scaled Display Stage */
 .jcard-display-section {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
+/* Scaled up J-Card stage (150% of 500px = 750px max-width) */
 .jcard-stage {
   position: relative;
   width: 100%;
-  max-width: 500px;
+  max-width: 750px; 
   aspect-ratio: 1 / 1;
   background-color: #ffffff;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.14);
   border: 1px solid #e2e8f0;
 }
 
@@ -839,19 +840,19 @@ h1 {
   display: block;
 }
 
-/* Overlay Box: ~20% narrower (36% width) & ~half height (45% height) */
+/* Overlay Box: Clipped 20% narrower (now 28% width) & 30% shorter (now 34% height) */
 .jcard-right-overlay {
   position: absolute;
-  top: 10%;
-  right: 5%;
-  width: 36%; 
-  max-height: 48%; 
+  top: 8%;
+  right: 6%;
+  width: 28%; 
+  max-height: 34%; 
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(2px);
-  border-radius: 8px;
-  padding: 0.65rem;
+  border-radius: 6px;
+  padding: 0.55rem;
   box-sizing: border-box;
-  overflow-y: auto;
+  overflow: hidden; /* Clips extra white space cleanly */
   border: 1px solid rgba(0, 0, 0, 0.08);
   z-index: 10;
 }
@@ -862,12 +863,12 @@ h1 {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 .track-item {
   border-bottom: 1px dashed #cbd5e1;
-  padding-bottom: 0.45rem;
+  padding-bottom: 0.35rem;
 }
 
 .track-item:last-child {
@@ -891,19 +892,19 @@ h1 {
   gap: 0.35rem;
 }
 
-/* Color changed to #3a7e7b for track number & title */
+/* Both Track Number and Track Title set explicitly to #3a7e7b */
 .track-num {
   font-family: monospace;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 700;
   color: #3a7e7b;
   background-color: #f0f7f6;
-  padding: 0.1rem 0.3rem;
+  padding: 0.08rem 0.28rem;
   border-radius: 4px;
 }
 
 .track-title {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 700;
   color: #3a7e7b;
   flex: 1;
@@ -915,13 +916,13 @@ h1 {
 }
 
 .track-subheading {
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   color: #475569;
   margin-top: 0.15rem;
-  line-height: 1.3;
+  line-height: 1.25;
 }
 
-/* 2. Tabletop Section: Angled Cassette & Walkman */
+/* 2. Tabletop Section: Scaled Walkman (150%) & Cassette (50%) */
 .tabletop-display-section {
   width: 100%;
   display: flex;
@@ -933,53 +934,53 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 1.5rem;
   width: 100%;
-  max-width: 600px;
+  max-width: 750px;
 }
 
-/* Walkman rotated slightly to the left (-6deg) */
+/* Walkman scaled up (150%) */
 .tabletop-walkman {
-  width: 45%;
-  max-width: 240px;
+  width: 60%;
+  max-width: 360px;
   height: auto;
   transform: rotate(-6deg);
-  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.2));
+  filter: drop-shadow(0 12px 22px rgba(0,0,0,0.22));
   transition: transform 0.3s ease;
 }
 
-/* Transparent tape rotated slightly to the right (8deg) */
+/* Tape scaled down (50%) */
 .tabletop-tape {
-  width: 45%;
-  max-width: 240px;
+  width: 22%;
+  max-width: 120px;
   height: auto;
   transform: rotate(8deg);
-  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.18));
+  filter: drop-shadow(0 8px 14px rgba(0,0,0,0.18));
   transition: transform 0.3s ease;
 }
 
 .tabletop-walkman:hover,
 .tabletop-tape:hover {
-  transform: rotate(0deg) scale(1.02); /* Straightens slightly on hover */
+  transform: rotate(0deg) scale(1.02);
 }
 
 /* Mobile Adjustments */
-@media (max-width: 520px) {
+@media (max-width: 600px) {
   .jcard-right-overlay {
-    width: 40%;
-    max-height: 52%;
-    padding: 0.45rem;
+    width: 32%;
+    max-height: 38%;
+    padding: 0.4rem;
   }
 
   .track-title {
-    font-size: 0.72rem;
+    font-size: 0.7rem;
   }
 
   .track-subheading {
-    font-size: 0.62rem;
+    font-size: 0.58rem;
   }
 
   .tabletop-stage {
-    gap: 0.5rem;
+    gap: 0.75rem;
   }
 }

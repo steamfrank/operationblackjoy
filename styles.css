@@ -186,35 +186,23 @@ h1 {
 }
 
 .banner-header-wrapper {
-  position: relative;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
-  max-width: 900px;
-  margin: 0 auto 1rem auto;
+  max-width: 900px; /* Slightly widened container to fit the larger graphic */
+  margin: 0 auto 1.5rem auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
 }
 
-/* Hero Logo Banner */
+.back-btn-link,
+.scrapbook-link-wrapper {
+  flex: 0 0 auto; /* Keeps side graphics fixed to their content width */
+}
+
 .hero-logo-banner {
-  max-width: 100%;
-  height: auto;
-  max-height: 140px;
-  object-fit: contain;
-  display: block;
-}
-
-/* Absolute Positioned Back Button on Secondary Pages */
-.back-btn-link {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-  z-index: 10;
+  margin: 0 auto; /* Ensures the middle logo stays centered */
 }
 
 .back-btn-link:hover {
@@ -962,11 +950,4 @@ h1 {
 .scrapbook-link-wrapper:hover {
   transform: scale(1.05);
   opacity: 0.9;
-}
-
-/* Mobile responsive scaling */
-@media (max-width: 600px) {
-  .scrapbook-link-img {
-    height: 36px;
-  }
 }

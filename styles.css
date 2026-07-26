@@ -945,10 +945,18 @@ h1 {
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
+/* Scrapbook Link Image Styling (Tripled Size) */
 .scrapbook-link-img {
-  height: 48px; /* Adjust height to match your header proportions */
+  height: 144px; /* Increased from 48px to 144px (3x size) */
   width: auto;
   display: block;
+}
+
+/* Mobile responsive scaling */
+@media (max-width: 600px) {
+  .scrapbook-link-img {
+    height: 108px; /* Tripled from 36px for small screens */
+  }
 }
 
 .scrapbook-link-wrapper:hover {

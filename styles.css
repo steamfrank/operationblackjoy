@@ -814,29 +814,29 @@ h1 {
 /* 1. Tracklist Overlay Box (Scaled up & Left-Aligned) */
 
 /* ==========================================================================
-   CENTERED & SCALED J-CARD STAGE (200-250%)
+   CENTERED & RESIZED J-CARD STAGE (65-75% SCALE)
    ========================================================================== */
 
 .jcard-display-section {
   width: 100%;
   display: flex;
-  justify-content: center; /* Ensures horizontal centering */
+  justify-content: center;
   align-items: center;
-  margin: 0 auto 3rem auto;
+  margin: 0 auto 2.5rem auto;
 }
 
 .jcard-stage {
   position: relative;
   width: 100%;
-  /* Scaled up to ~1100px (approx 220% of the original 500px size) */
-  max-width: 1100px; 
+  /* Scaled down to ~780px (approx 70% of the 1100px size) */
+  max-width: 780px; 
   aspect-ratio: 1 / 1;
   background-color: #ffffff;
-  border-radius: 16px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.14);
   border: 1px solid #e2e8f0;
-  margin: 0 auto; /* Hard backup for centering */
+  margin: 0 auto; /* Keeps it centered */
 }
 
 .jcard-base-img {
@@ -845,6 +845,7 @@ h1 {
   object-fit: cover;
   display: block;
 }
+
 .jcard-right-overlay {
   position: absolute;
   top: 50%;

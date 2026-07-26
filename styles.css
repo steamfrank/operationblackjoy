@@ -923,3 +923,42 @@ h1 {
 .track-num.side-b-color {
   background-color: #e2f0f1;
 }
+/* ==========================================================================
+   HEADER BANNER & SCRAPBOOK LINK STYLING
+   ========================================================================== */
+
+.banner-header-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Spreads back button, logo, and scrapbook link */
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 1.5rem auto;
+  position: relative;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+/* Scrapbook Link Image Styling */
+.scrapbook-link-wrapper {
+  display: inline-block;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.scrapbook-link-img {
+  height: 48px; /* Adjust height to match your header proportions */
+  width: auto;
+  display: block;
+}
+
+.scrapbook-link-wrapper:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+/* Mobile responsive scaling */
+@media (max-width: 600px) {
+  .scrapbook-link-img {
+    height: 36px;
+  }
+}

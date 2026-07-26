@@ -846,21 +846,22 @@ h1 {
   display: block;
 }
 
+/* Overlay Box: Shifted 25% to the right */
 .jcard-right-overlay {
   position: absolute;
   top: 50%;
-  right: 26%;
+  right: 1%; /* Moved ~25% further right */
   transform: translateY(-50%);
-  width: 32%; /* Slightly widened to fit 150% scaled text comfortably */
+  width: 32%; 
   max-height: 58%; 
   background-color: #f3e9dc;
   border-radius: 6px;
   padding: 0.85rem;
   box-sizing: border-box;
-  overflow-y: auto; /* Allows subtle scrolling if text overflows on smaller screens */
+  overflow-y: auto;
   border: 1px solid rgba(0, 0, 0, 0.1);
   z-index: 10;
-  text-align: left; /* Reverted back to Left-Aligned */
+  text-align: left;
 }
 
 .track-header {

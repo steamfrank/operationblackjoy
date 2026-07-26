@@ -807,12 +807,11 @@ h1 {
     font-size: 1.35rem !important;
   }
 }
-
 /* ==========================================================================
    SIDE A/B - J-CARD (TOP) & TABLETOP ITEMS (BOTTOM)
    ========================================================================== */
 
-/* 1. J-Card Section & Scaled Display Stage */
+/* 1. J-Card Section & Shifted Overlay Box */
 .jcard-display-section {
   width: 100%;
   display: flex;
@@ -820,7 +819,6 @@ h1 {
   margin-bottom: 2.5rem;
 }
 
-/* Scaled up J-Card stage (150% of 500px = 750px max-width) */
 .jcard-stage {
   position: relative;
   width: 100%;
@@ -840,21 +838,22 @@ h1 {
   display: block;
 }
 
-/* Overlay Box: Clipped 20% narrower (now 28% width) & 30% shorter (now 34% height) */
+/* Overlay Box: Background updated to #f3e9dc */
 .jcard-right-overlay {
   position: absolute;
-  top: 8%;
-  right: 6%;
+  top: 50%;
+  right: 26%; /* Shifted ~20% to the left */
+  transform: translateY(-50%); /* Centered vertically on the J-card */
   width: 28%; 
-  max-height: 34%; 
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(2px);
+  max-height: 42%; 
+  background-color: #f3e9dc; /* Warm cream background */
   border-radius: 6px;
-  padding: 0.55rem;
+  padding: 0.65rem;
   box-sizing: border-box;
-  overflow: hidden; /* Clips extra white space cleanly */
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   z-index: 10;
+  text-align: center;
 }
 
 .jcard-tracklist {
@@ -863,12 +862,12 @@ h1 {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.5rem;
 }
 
 .track-item {
   border-bottom: 1px dashed #cbd5e1;
-  padding-bottom: 0.35rem;
+  padding-bottom: 0.4rem;
 }
 
 .track-item:last-child {
@@ -888,11 +887,11 @@ h1 {
 
 .track-header {
   display: flex;
-  align-items: baseline;
+  align-items: center;
+  justify-content: center; /* Center aligns header content */
   gap: 0.35rem;
 }
 
-/* Both Track Number and Track Title set explicitly to #3a7e7b */
 .track-num {
   font-family: monospace;
   font-size: 0.7rem;
@@ -907,7 +906,6 @@ h1 {
   font-size: 0.78rem;
   font-weight: 700;
   color: #3a7e7b;
-  flex: 1;
   line-height: 1.2;
 }
 
@@ -922,40 +920,41 @@ h1 {
   line-height: 1.25;
 }
 
-/* 2. Tabletop Section: Scaled Walkman (150%) & Cassette (50%) */
+/* 2. Tabletop Section: Scaled Walkman (~250%) & Cassette (~200%) */
 .tabletop-display-section {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
+  overflow: hidden; /* Prevents oversized elements from breaking scrollbar */
 }
 
 .tabletop-stage {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 2rem;
   width: 100%;
-  max-width: 750px;
+  max-width: 900px;
 }
 
-/* Walkman scaled up (150%) */
+/* Walkman scaled up ~250% (max-width: 600px) */
 .tabletop-walkman {
-  width: 60%;
-  max-width: 360px;
+  width: 65%;
+  max-width: 600px;
   height: auto;
   transform: rotate(-6deg);
-  filter: drop-shadow(0 12px 22px rgba(0,0,0,0.22));
+  filter: drop-shadow(0 14px 28px rgba(0,0,0,0.25));
   transition: transform 0.3s ease;
 }
 
-/* Tape scaled down (50%) */
+/* Tape scaled up ~200% (max-width: 240px) */
 .tabletop-tape {
-  width: 22%;
-  max-width: 120px;
+  width: 30%;
+  max-width: 240px;
   height: auto;
   transform: rotate(8deg);
-  filter: drop-shadow(0 8px 14px rgba(0,0,0,0.18));
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.2));
   transition: transform 0.3s ease;
 }
 
@@ -965,22 +964,23 @@ h1 {
 }
 
 /* Mobile Adjustments */
-@media (max-width: 600px) {
+@media (max-width: 650px) {
   .jcard-right-overlay {
-    width: 32%;
-    max-height: 38%;
-    padding: 0.4rem;
-  }
-
-  .track-title {
-    font-size: 0.7rem;
-  }
-
-  .track-subheading {
-    font-size: 0.58rem;
+    right: 15%;
+    width: 36%;
+    max-height: 48%;
+    padding: 0.45rem;
   }
 
   .tabletop-stage {
-    gap: 0.75rem;
+    gap: 1rem;
+  }
+
+  .tabletop-walkman {
+    max-width: 320px;
+  }
+
+  .tabletop-tape {
+    max-width: 140px;
   }
 }

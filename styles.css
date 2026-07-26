@@ -582,11 +582,14 @@ h1 {
 
 .handwritten-text {
   font-family: 'Caveat', cursive !important;
-  font-size: 1.85rem !important;
-  line-height: 1.25 !important;
+  font-size: 1.75rem !important; /* Slightly reduced for better fit */
+  line-height: 1.2 !important;
   color: #1e1b4b !important;
   margin: 0;
   width: 100%;
+  max-height: 100%;
+  overflow: hidden; /* Prevents overflow visual glitches */
+  word-wrap: break-word;
 }
 
 /* Divider Line */

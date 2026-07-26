@@ -808,179 +808,68 @@ h1 {
   }
 }
 /* ==========================================================================
-   SIDE A/B - J-CARD (TOP) & TABLETOP ITEMS (BOTTOM)
+   UPDATED J-CARD OVERLAY & CASSETTE TAPE STYLES
    ========================================================================== */
 
-/* 1. J-Card Section & Shifted Overlay Box */
-.jcard-display-section {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 2.5rem;
-}
-
-.jcard-stage {
-  position: relative;
-  width: 100%;
-  max-width: 750px; 
-  aspect-ratio: 1 / 1;
-  background-color: #ffffff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.14);
-  border: 1px solid #e2e8f0;
-}
-
-.jcard-base-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* Overlay Box: Background updated to #f3e9dc */
+/* 1. Tracklist Overlay Box (Scaled up & Left-Aligned) */
 .jcard-right-overlay {
   position: absolute;
   top: 50%;
-  right: 26%; /* Shifted ~20% to the left */
-  transform: translateY(-50%); /* Centered vertically on the J-card */
-  width: 28%; 
-  max-height: 42%; 
-  background-color: #f3e9dc; /* Warm cream background */
+  right: 26%;
+  transform: translateY(-50%);
+  width: 32%; /* Slightly widened to fit 150% scaled text comfortably */
+  max-height: 58%; 
+  background-color: #f3e9dc;
   border-radius: 6px;
-  padding: 0.65rem;
+  padding: 0.85rem;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow-y: auto; /* Allows subtle scrolling if text overflows on smaller screens */
   border: 1px solid rgba(0, 0, 0, 0.1);
   z-index: 10;
-  text-align: center;
-}
-
-.jcard-tracklist {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.track-item {
-  border-bottom: 1px dashed #cbd5e1;
-  padding-bottom: 0.4rem;
-}
-
-.track-item:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-.track-link {
-  text-decoration: none;
-  display: block;
-  transition: transform 0.15s ease;
-}
-
-.track-link:hover {
-  transform: translateX(2px);
+  text-align: left; /* Reverted back to Left-Aligned */
 }
 
 .track-header {
   display: flex;
-  align-items: center;
-  justify-content: center; /* Center aligns header content */
-  gap: 0.35rem;
+  align-items: baseline;
+  justify-content: flex-start; /* Left aligns track number & title */
+  gap: 0.45rem;
 }
 
+/* Track Number scaled ~150% */
 .track-num {
   font-family: monospace;
-  font-size: 0.7rem;
+  font-size: 1.05rem; /* Scaled from 0.7rem */
   font-weight: 700;
   color: #3a7e7b;
-  background-color: #f0f7f6;
-  padding: 0.08rem 0.28rem;
+  background-color: #e4d8c8;
+  padding: 0.12rem 0.4rem;
   border-radius: 4px;
 }
 
+/* Track Title scaled ~150% */
 .track-title {
-  font-size: 0.78rem;
+  font-size: 1.15rem; /* Scaled from 0.78rem */
   font-weight: 700;
   color: #3a7e7b;
-  line-height: 1.2;
-}
-
-.track-link:hover .track-title {
-  text-decoration: underline;
-}
-
-.track-subheading {
-  font-size: 0.65rem;
-  color: #475569;
-  margin-top: 0.15rem;
   line-height: 1.25;
 }
 
-/* 2. Tabletop Section: Scaled Walkman (~250%) & Cassette (~200%) */
-.tabletop-display-section {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 3.5rem;
-  overflow: hidden; /* Prevents oversized elements from breaking scrollbar */
+/* Track Subheading scaled ~150% */
+.track-subheading {
+  font-size: 0.95rem; /* Scaled from 0.65rem */
+  color: #475569;
+  margin-top: 0.25rem;
+  line-height: 1.35;
 }
 
-.tabletop-stage {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  width: 100%;
-  max-width: 900px;
-}
 
-/* Walkman scaled up ~250% (max-width: 600px) */
-.tabletop-walkman {
-  width: 65%;
-  max-width: 600px;
-  height: auto;
-  transform: rotate(-6deg);
-  filter: drop-shadow(0 14px 28px rgba(0,0,0,0.25));
-  transition: transform 0.3s ease;
-}
-
-/* Tape scaled up ~200% (max-width: 240px) */
+/* 2. Cassette Tape Graphic (Doubled in size) */
 .tabletop-tape {
-  width: 30%;
-  max-width: 240px;
+  width: 60%; /* Doubled from 30% */
+  max-width: 480px; /* Doubled from 240px */
   height: auto;
   transform: rotate(8deg);
-  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.2));
+  filter: drop-shadow(0 12px 22px rgba(0,0,0,0.22));
   transition: transform 0.3s ease;
-}
-
-.tabletop-walkman:hover,
-.tabletop-tape:hover {
-  transform: rotate(0deg) scale(1.02);
-}
-
-/* Mobile Adjustments */
-@media (max-width: 650px) {
-  .jcard-right-overlay {
-    right: 15%;
-    width: 36%;
-    max-height: 48%;
-    padding: 0.45rem;
-  }
-
-  .tabletop-stage {
-    gap: 1rem;
-  }
-
-  .tabletop-walkman {
-    max-width: 320px;
-  }
-
-  .tabletop-tape {
-    max-width: 140px;
-  }
 }

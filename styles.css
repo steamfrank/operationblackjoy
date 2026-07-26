@@ -66,7 +66,22 @@ h1 {
   text-align: center;
   margin: 0 auto;
 }
+/* ==========================================================================
+   FIX: STANDALONE LOGO CENTERING (INDEX.HTML)
+   ========================================================================== */
 
+/* If the banner wrapper ONLY contains the logo (like on index.html), center it directly */
+.banner-header-wrapper:not(:has(.back-btn-link)):not(:has(.scrapbook-link-wrapper)) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Fallback for standard logo centering if placed directly inside .hero-section */
+.hero-section > .hero-logo-banner {
+  display: block;
+  margin: 0 auto 1.5rem auto;
+}
 /* Perfectly Centered 3-Column Banner Grid */
 .banner-header-wrapper {
   display: grid;

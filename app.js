@@ -27,9 +27,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const selectedEvent = selectedRadio ? selectedRadio.value : "aaam";
       
       // Select correct stamp path based on radio value
-      activeStampPath = (selectedEvent === "sugarhill" || selectedEvent === "anyonecanfly") 
-        ? "assets/stamp-anyonecanfly.png" 
-        : "assets/stamp-aaam2026.png";
+      if (selectedEvent === "none") {
+        activeStampPath = "assets/stamp-steamfrank.png";
+      } else if (selectedEvent === "sugarhill" || selectedEvent === "anyonecanfly") {
+        activeStampPath = "assets/stamp-anyonecanfly.png";
+      } else {
+        activeStampPath = "assets/stamp-aaam2026.png";
+      }
       
       // Force update the visible image element immediately
       if (selectedStampImg) {
@@ -41,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
 
   // 2. Handwritten Message & Counter
   if (messageInput) {

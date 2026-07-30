@@ -1648,3 +1648,41 @@ h1 {
 .placeholder-card .graphic-card-title {
   color: #64748b;
 }
+/* ==========================================================================
+   PANEL 3 CREASE & HEADER COLOR OVERRIDES
+   ========================================================================== */
+
+/* Force vertical crease line between Panel 3 and Panel 4 */
+.jcard-panel.panel-3,
+.panel-3 {
+  border-right: 2px dashed rgba(255, 255, 255, 0.35) !important;
+  box-shadow: inset -3px 0 6px rgba(0, 0, 0, 0.08);
+  position: relative;
+  z-index: 2;
+}
+
+/* Center Panel 3 Titles */
+.panel-3 .panel-section-title,
+.panel-3 .track-card-header,
+.panel-3 .track-title {
+  text-align: center !important;
+  display: block !important;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+/* Side A Heading Color (#dda136) */
+.panel-3 .panel-section-title,
+.panel-3 .track-title {
+  color: #dda136 !important;
+  border-bottom: 1px solid rgba(221, 161, 54, 0.4) !important;
+}
+
+/* Side B Heading Color (#b15b5b) */
+.side-b-page .panel-3 .panel-section-title,
+.side-b-page .panel-3 .track-title,
+.side-b-assets .panel-3 .panel-section-title,
+.side-b-assets .panel-3 .track-title {
+  color: #b15b5b !important;
+  border-bottom-color: rgba(177, 91, 91, 0.4) !important;
+}

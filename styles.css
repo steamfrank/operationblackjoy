@@ -1458,3 +1458,56 @@ h1 {
     max-width: 40%;
   }
 }
+
+/* ==========================================================================
+   ADDED TRACK MENU HEADER & SUBHEADING HELPERS
+   ========================================================================== */
+
+.track-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.track-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.track-num {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #3a7e7b;
+}
+
+.track-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #3a7e7b;
+}
+
+/* Side B Header Colors */
+.side-b-color {
+  color: #1e656d !important;
+}
+
+/* Hover effects */
+.side-a-page .track-link:hover .track-num,
+.side-a-page .track-link:hover .track-title {
+  color: #dda136;
+}
+
+.side-b-page .track-link:hover .side-b-color {
+  color: #b15b5b !important;
+}
+
+.track-subheading {
+  font-size: 0.8rem;
+  color: #3a3a3a;
+  margin: 0;
+  line-height: 1.35;
+  opacity: 0.9;
+}

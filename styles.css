@@ -1243,8 +1243,8 @@ h1 {
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
   width: 100%;
-  max-width: 520px;
-  aspect-ratio: 1.6 / 1;
+  max-width: 540px;
+  min-height: 320px; /* Replaced fixed aspect-ratio so content never cuts off */
   border-radius: 8px;
   overflow: hidden;
   position: relative;
@@ -1261,7 +1261,7 @@ h1 {
 }
 
 .menu-panel {
-  padding: 1rem;
+  padding: 1.25rem; /* Slightly roomier padding */
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -1299,20 +1299,20 @@ h1 {
 .menu-tracks-card {
   background-color: #f3e9dc;
   border-radius: 6px;
-  padding: 0.75rem;
+  padding: 0.85rem;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .menu-tracks-header {
   border-bottom: 2px solid;
   padding-bottom: 0.25rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .side-a-page .menu-tracks-header {
@@ -1339,7 +1339,7 @@ h1 {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.5rem;
 }
 
 .side-a-page .track-link:hover .track-num,
@@ -1354,7 +1354,6 @@ h1 {
 @media (max-width: 550px) {
   .jcard-menu-container {
     grid-template-columns: 1fr;
-    aspect-ratio: auto;
     max-width: 100%;
   }
 
@@ -1368,7 +1367,6 @@ h1 {
     max-width: 50%;
   }
 }
-
 /* ==========================================================================
    13. TRACK PAGE ASSETS & EMBEDS
    ========================================================================== */
@@ -1491,19 +1489,19 @@ h1 {
 }
 
 /* ==========================================================================
-   14. PANEL 3 & 4 OVERRIDES (FOLD CREASE + CENTERED TITLES + SIDE COLORS)
+   14. PANEL 3 & 4 OVERRIDES (UNIFORM CREASE & TITLES)
    ========================================================================== */
 
-/* Force vertical dashed crease line between Panel 3 and Panel 4 */
+/* Exactly match Panel 1 & Panel 2 crease styling */
 .jcard-track-container .panel-3,
 .jcard-panel.panel-3 {
-  border-right: 2px dashed rgba(255, 255, 255, 0.35) !important;
-  box-shadow: inset -3px 0 6px rgba(0, 0, 0, 0.08);
+  border-right: 1px dashed rgba(255, 255, 255, 0.25) !important;
+  box-shadow: inset -2px 0 5px rgba(0, 0, 0, 0.05) !important;
   position: relative;
   z-index: 2;
 }
 
-/* Ensure Panel 4 outer right border remains clean */
+/* Ensure Panel 4 has no right border crease */
 .jcard-track-container .panel-4 {
   border-right: none !important;
   box-shadow: none !important;
@@ -1534,5 +1532,3 @@ h1 {
   color: #b15b5b !important;
   border-bottom-color: rgba(177, 91, 91, 0.4) !important;
 }
-
-```

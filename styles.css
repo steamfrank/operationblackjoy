@@ -983,7 +983,7 @@ h1 {
   }
 }
 /* ==========================================================================
-   J-CARD TRACK PAGE (4-PANEL FOLD LAYOUT)
+   J-CARD TRACK PAGE (UPDATED SIDE A BRANDING & FOLD LINES)
    ========================================================================== */
 
 .jcard-track-wrapper {
@@ -993,7 +993,6 @@ h1 {
   margin: 1.5rem auto 3rem auto;
 }
 
-/* Desktop Layout: Panel 1 (1fr) | Panel 2 (0.33fr) | Panel 3 (1.5fr) | Panel 4 (2fr) */
 .jcard-track-container {
   display: grid;
   grid-template-columns: 1fr 0.35fr 1.5fr 2fr;
@@ -1006,20 +1005,29 @@ h1 {
   border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
-/* Panels & Simulated Creases */
+/* Base Panel Styling & Subtle Fold Creases */
 .jcard-panel {
   padding: 1.5rem;
   box-sizing: border-box;
-  color: #ffffff;
+  color: #f3e9dc; /* Cream text */
   position: relative;
-  /* Visual crease effect where panels adjoin */
-  border-right: 2px dashed rgba(0, 0, 0, 0.25);
-  box-shadow: inset -4px 0 8px rgba(0, 0, 0, 0.08);
+  /* Subtler fold line effect: thin, light dashed border with inner score line */
+  border-right: 1px dashed rgba(255, 255, 255, 0.25);
+  box-shadow: inset -2px 0 5px rgba(0, 0, 0, 0.05);
 }
 
 .jcard-panel:last-child {
   border-right: none;
   box-shadow: none;
+}
+
+/* Accent Color Accents (#dda136) */
+.jcard-side-tag, 
+.jcard-track-num,
+.panel-section-title,
+.track-meta,
+.domain-subdomain-tag {
+  color: #dda136;
 }
 
 /* Panel 1: Summary Section */
@@ -1035,7 +1043,6 @@ h1 {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  opacity: 0.9;
 }
 
 .jcard-track-name {
@@ -1043,11 +1050,13 @@ h1 {
   font-weight: 800;
   line-height: 1.2;
   margin-top: 0.2rem;
+  color: #f3e9dc;
 }
 
 .panel-1-summary {
   font-size: 0.9rem;
   line-height: 1.45;
+  color: #f3e9dc;
   opacity: 0.95;
 }
 
@@ -1056,7 +1065,7 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.08); /* Subtle contrast shift for spine */
+  background-color: rgba(0, 0, 0, 0.08);
   padding: 1rem 0.25rem;
 }
 
@@ -1068,6 +1077,7 @@ h1 {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   white-space: nowrap;
+  color: #f3e9dc;
   opacity: 0.9;
 }
 
@@ -1083,7 +1093,7 @@ h1 {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid rgba(221, 161, 54, 0.4);
   padding-bottom: 0.4rem;
 }
 
@@ -1094,10 +1104,10 @@ h1 {
 }
 
 .media-asset-card {
-  background: rgba(255, 255, 255, 0.95);
+  background: #f3e9dc;
   border-radius: 8px;
   padding: 0.75rem;
-  color: #1e293b;
+  color: #3a3a3a;
   min-height: 120px;
 }
 
@@ -1106,18 +1116,20 @@ h1 {
   align-items: center;
   justify-content: center;
   height: 100%;
-  border: 1.5px dashed #cbd5e1;
+  border: 1.5px dashed #3a3a3a;
   border-radius: 6px;
-  color: #64748b;
+  color: #3a3a3a;
   font-size: 0.85rem;
   font-weight: 600;
 }
 
-/* Panel 4: Episode Header & Spotify Embed */
+/* Panel 4: Main Episode Player & Info (Centered Text) */
 .panel-4 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
+  text-align: center;
   gap: 1.25rem;
 }
 
@@ -1126,20 +1138,30 @@ h1 {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  opacity: 0.85;
+  color: #f3e9dc;
+  display: block;
+}
+
+.track-meta {
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: 0.2rem;
 }
 
 .main-track-heading {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 800;
   line-height: 1.25;
-  margin-top: 0.25rem;
+  margin-top: 0.3rem;
+  color: #f3e9dc;
 }
 
 .spotify-embed-container {
   width: 100%;
-  min-height: 152px; /* Standard Spotify episode player height */
-  background: rgba(255, 255, 255, 0.95);
+  min-height: 152px;
+  background: #f3e9dc;
   border-radius: 12px;
   overflow: hidden;
   display: flex;
@@ -1148,7 +1170,7 @@ h1 {
 }
 
 .spotify-placeholder {
-  color: #1e293b;
+  color: #3a3a3a;
   font-size: 0.9rem;
   font-weight: 600;
   padding: 1rem;
@@ -1166,21 +1188,18 @@ h1 {
   font-size: 0.85rem;
   line-height: 1.35;
   margin-top: 0.35rem;
-  opacity: 0.9;
+  color: #f3e9dc;
   font-style: italic;
+  opacity: 0.95;
 }
 
-/* ==========================================================================
-   MOBILE RESPONSIVE STYLES (STACKED & REVERSED ORDER)
-   ========================================================================== */
-
+/* Mobile Responsive Adjustments */
 @media (max-width: 850px) {
   .jcard-track-container {
     display: flex;
-    flex-direction: column; /* Stack vertically */
+    flex-direction: column;
   }
 
-  /* Reverse Panel Order on Mobile: Panel 4 -> Panel 3 -> Panel 2 -> Panel 1 */
   .panel-4 { order: 1; }
   .panel-3 { order: 2; }
   .panel-2 { order: 3; }
@@ -1188,11 +1207,10 @@ h1 {
 
   .jcard-panel {
     border-right: none;
-    border-bottom: 2px dashed rgba(0, 0, 0, 0.25);
-    box-shadow: inset 0 -4px 8px rgba(0, 0, 0, 0.08);
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.25);
+    box-shadow: inset 0 -2px 5px rgba(0, 0, 0, 0.05);
   }
 
-  /* Panel 1 Side-by-Side layout on Mobile */
   .panel-1 {
     display: flex;
     flex-direction: row;
@@ -1207,11 +1225,10 @@ h1 {
 
   .panel-1-summary {
     flex: 1.2;
-    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
     padding-left: 1rem;
   }
 
-  /* Panel 2 Horizontal Orientation on Mobile */
   .panel-2 {
     padding: 0.85rem;
   }

@@ -1244,7 +1244,7 @@ h1 {
   grid-template-columns: 0.8fr 1.2fr;
   width: 100%;
   max-width: 540px;
-  min-height: 320px; /* Replaced fixed aspect-ratio so content never cuts off */
+  min-height: 320px;
   border-radius: 8px;
   overflow: hidden;
   position: relative;
@@ -1261,7 +1261,7 @@ h1 {
 }
 
 .menu-panel {
-  padding: 1.25rem; /* Slightly roomier padding */
+  padding: 1.25rem;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -1367,6 +1367,7 @@ h1 {
     max-width: 50%;
   }
 }
+
 /* ==========================================================================
    13. TRACK PAGE ASSETS & EMBEDS
    ========================================================================== */
@@ -1507,35 +1508,6 @@ h1 {
   box-shadow: none !important;
 }
 
-/* Center Panel 3 headers and titles */
-.panel-3 .panel-section-title,
-.panel-3 .track-card-header,
-.panel-3 .track-title {
-  text-align: center !important;
-  justify-content: center !important;
-  display: block !important;
-  width: 100%;
-}
-
-/* Side A Panel 3 Heading Color (#dda136) */
-.panel-3 .panel-section-title,
-.panel-3 .track-title {
-  color: #dda136 !important;
-  border-bottom: 1px solid rgba(221, 161, 54, 0.4) !important;
-}
-
-/* Side B Panel 3 Heading Color (#b15b5b) */
-.side-b-page .panel-3 .panel-section-title,
-.side-b-page .panel-3 .track-title,
-.side-b-assets .panel-3 .panel-section-title,
-.side-b-assets .panel-3 .track-title {
-  color: #b15b5b !important;
-  border-bottom-color: rgba(177, 91, 91, 0.4) !important;
-}
-/* ==========================================================================
-   PANEL 3 HEADER UNIFORM FORMATTING
-   ========================================================================== */
-
 /* Base Panel 3 Title Setup */
 .panel-3 .panel-section-title,
 .panel-3 .track-card-header,
@@ -1544,7 +1516,7 @@ h1 {
   justify-content: center !important;
   display: block !important;
   width: 100%;
-  font-size: 0.85rem !important; /* Scaled so 'RESILIENCE | COMMUNITY' fits on line 1 */
+  font-size: 0.85rem !important;
   font-weight: 800 !important;
   text-transform: uppercase !important;
   letter-spacing: 0.03em !important;
@@ -1554,10 +1526,10 @@ h1 {
   word-break: keep-all;
 }
 
-/* Helper spans if you structure the HTML with line breaks */
+/* Helper spans for structured line breaks */
 .panel-3 .panel-section-title span.title-top {
   display: block;
-  white-space: nowrap; /* Prevents DOMAIN | SUBDOMAIN from wrapping prematurely */
+  white-space: nowrap;
 }
 
 .panel-3 .panel-section-title span.title-bottom {
@@ -1579,8 +1551,9 @@ h1 {
   color: #b15b5b !important;
   border-bottom-color: rgba(177, 91, 91, 0.4) !important;
 }
+
 /* ==========================================================================
-   QR OVERLAY & DIARY MODAL STYLING
+   15. QR OVERLAY & DIARY MODAL STYLING
    ========================================================================== */
 
 /* Container for Image + QR Overlay */
@@ -1612,94 +1585,5 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-  transition: transform 0.2s ease, background 0.2s ease;
-}
-
-.qr-overlay-badge:hover {
-  transform: scale(1.05);
-  background: #f3e9dc;
-}
-
-.qr-code-img {
-  width: 55px;
-  height: 55px;
-  border-radius: 3px;
-}
-
-.qr-label {
-  font-size: 0.6rem;
-  font-weight: 800;
-  color: #3a3a3a;
-  text-transform: uppercase;
-  margin-top: 3px;
-  letter-spacing: 0.02em;
-}
-
-/* Diary Modal Styling */
-.diary-modal-backdrop {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(4px);
-  z-index: 9999;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-  box-sizing: border-box;
-}
-
-.diary-modal-content {
-  background: #f3e9dc;
-  border: 2px solid #dda136;
-  border-radius: 10px;
-  max-width: 600px;
-  width: 100%;
-  max-height: 85vh;
-  overflow-y: auto;
-  padding: 2rem;
-  position: relative;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
-}
-
-.diary-modal-close {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  font-size: 1.8rem;
-  background: none;
-  border: none;
-  color: #3a3a3a;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.diary-tag {
-  font-size: 0.75rem;
-  font-weight: 800;
-  color: #dda136;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.diary-title {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: #3a7e7b;
-  margin: 0.25rem 0 1rem 0;
-  border-bottom: 1px solid rgba(221, 161, 54, 0.4);
-  padding-bottom: 0.5rem;
-}
-
-.diary-body p {
-  font-size: 0.92rem;
-  line-height: 1.6;
-  color: #333;
-  margin-bottom: 1rem;
-  font-family: Georgia, serif;
+  z-index: 10;
 }

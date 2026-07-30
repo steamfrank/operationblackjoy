@@ -1572,20 +1572,21 @@ h1 {
   height: 100%;
 }
 
-/* Graphic Link Cards */
+/* Graphic Link Cards - Updated to #f3e9dc background */
 .graphic-card {
   display: block;
   text-decoration: none;
-  background-color: #ffffff;
+  background-color: #f3e9dc;
   border: 2px solid #3a7e7b;
   border-radius: 8px;
   padding: 1rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
 .graphic-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+  background-color: #e8ded1; /* Slightly darker cream tint on hover */
 }
 
 .graphic-card-body {
@@ -1635,10 +1636,10 @@ h1 {
   display: block;
 }
 
-/* Dashed Placeholder Card */
+/* Dashed Placeholder Card - Updated background */
 .placeholder-card {
   border: 2px dashed #cbd5e1;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: #f3e9dc;
   padding: 1rem;
   border-radius: 8px;
   text-align: center;

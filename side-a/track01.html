@@ -45,12 +45,22 @@
 
         <div class="jcard-panel panel-3">
           <h3 class="panel-section-title">
-              <span class="title-top">JOY | PLAY</span> 
-              <span class="title-bottom">RESOURCES</span>
+            <span class="title-top">JOY | PLAY</span>
+            <span class="title-bottom">RESOURCES</span>
           </h3>
+        
           <div class="asset-embed-container">
-            <div class="placeholder-card">
-              <span class="graphic-card-title">Asset 1 Placeholder</span>
+            <div class="qr-overlay-card">
+              <img src="assets/joy/joy-diary-image.jpg" alt="Dr. Martin Luther King Jr. on Chicken Bone Beach" class="diary-base-img" />
+              
+              <div class="qr-overlay-badge" onclick="openDiaryModal()">
+                <img 
+                  src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fexample.com%2Fdiary%23mlk-chicken-bone-beach" 
+                  alt="Scan for Joy Diary" 
+                  class="qr-code-img" 
+                />
+                <span class="qr-label">Scan / Tap for Diary Entry</span>
+              </div>
             </div>
         
             <div class="video-embed">
@@ -61,6 +71,22 @@
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                 allowfullscreen>
               </iframe>
+            </div>
+          </div>
+        
+        <div id="diaryModal" class="diary-modal-backdrop" onclick="closeDiaryModal(event)">
+          <div class="diary-modal-content">
+            <button class="diary-modal-close" onclick="closeDiaryModal(event)">&times;</button>
+            <div class="diary-header">
+              <span class="diary-tag">JOY DIARY ENTRY</span>
+              <h2 class="diary-title">Dr. MLK Jr. &amp; Chicken Bone Beach</h2>
+            </div>
+            <div class="diary-body">
+              <p>Lately I’ve been inspired by this 1956 image of Dr. Martin Luther King, Jr. posed for a snapshot while relaxing on the segregated Missouri Avenue section of Atlantic City, also known as Chicken Bone Beach. Self-taught photographer John W. Mosley captured this photo as well as over 3,000 images of Black life in the mid-20th century. His extensive collection, housed at the Temple University Libraries Charles L. Blockson Afro-American Collection, provides a crucial visual history of Black leisure, community, and resistance, focusing on events, celebrities, and everyday joy.</p>
+              
+              <p>Similar to Dr. King, we are living in what the media would have us to believe are unprecedented times that actually just demonstrate how circular time is. The federally, and in some cases locally, legislated rights that our Civil Rights Movement forebears secured for us are actively being stripped away through Executive Orders, state-sanctioned violence, both physical and symbolic, and resource scarcity. Yet somehow, we all found time to learn how to get our boots on the ground and line dance the pain away, even if just for a fleeting moment.</p>
+              
+              <p>And this is what it’s all about. When I look at this image of Dr. King, I see Black leisure. I see a human, flesh and bone just like us who not only deserves radical rest but actually implemented it. I don’t know what all was going on around him but I know at this moment he knew he was fly. He has a swagger that reflects the culture and reminds us who we are as African Americans deserving of life, liberty, and the pursuit of happiness. It reminds me specifically to take a minute to stop and appreciate the moment. There is always work to be done but if we don’t take a second to honor rest, care, and joy, we may become too exhausted to be resilient.</p>
             </div>
           </div>
         </div>

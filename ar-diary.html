@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>AR Diary Experience</title>
   
   <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
@@ -15,6 +15,7 @@
       margin: 0;
       overflow: hidden;
       font-family: sans-serif;
+      touch-action: none; /* Prevents default browser zooming/scrolling interfering with gestures */
     }
     
     .ar-instruction {
@@ -37,7 +38,7 @@
 </head>
 <body>
 
-  <div class="ar-instruction">Pinch to zoom • One finger to rotate • Two fingers to drag</div>
+  <div class="ar-instruction">Pinch to zoom • Drag to move</div>
 
   <a-scene 
     embedded 
@@ -53,12 +54,12 @@
 
     <a-plane 
       src="#diary-img" 
-      position="0 0 -2.5" 
-      width="1.2" 
-      height="2.1" 
+      position="0 0 -2" 
+      width="1" 
+      height="1.77" 
       material="transparent: true; opacity: 0.98;"
       class="cantarget"
-      gesture-handler="minScale: 0.2; maxScale: 5;">
+      gesture-handler="minScale: 0.3; maxScale: 4; rotationEnabled: false">
     </a-plane>
 
   </a-scene>

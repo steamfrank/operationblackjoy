@@ -1287,7 +1287,7 @@ h1 {
   background-position: top left;
 }
 /* ==========================================================================
-   2-PANEL J-CARD INDEX / SIDE MENU PAGES (SIDE A & SIDE B)
+   2-PANEL J-CARD INDEX / SIDE MENU PAGES (REVISED)
    ========================================================================== */
 
 .jcard-menu-wrapper {
@@ -1300,49 +1300,53 @@ h1 {
 
 .jcard-menu-container {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Two equal size panels */
+  grid-template-columns: 1fr 1fr; /* Equal width panels */
   width: 100%;
-  max-width: 960px;
-  border-radius: 12px;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18);
+  /* Redesigned: Half as wide as before (e.g., max 960px -> 480px) */
+  max-width: 480px; 
+  border-radius: 10px;
   overflow: hidden;
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  position: relative;
+  /* Added: Accent color outline and shadow for definition */
+  border: 2px solid; 
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
 }
 
-/* Side Specific Colors */
+/* Side Specific Accent Colors for the Outline */
 .side-a-page .jcard-menu-container {
-  background-color: #3a7e7b;
+  border-color: #dda136;
 }
 
 .side-b-page .jcard-menu-container {
-  background-color: #1e656d;
+  border-color: #b15b5b;
 }
 
-/* Panel Structure & Fold Line */
+/* Base Panel Styling */
 .menu-panel {
-  padding: 2rem;
+  padding: 1.5rem;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+}
+
+/* Left Panel: Centered Content and Specific Background Color */
+.menu-panel-left {
+  background-color: #f3e9dc; /* Specific background color added */
   justify-content: center;
   align-items: center;
-  position: relative;
+  /* Redesigned fold line */
+  border-right: 1px dashed rgba(58, 58, 58, 0.25);
+  box-shadow: inset -2px 0 5px rgba(0, 0, 0, 0.05);
 }
 
-/* Middle Fold Line */
-.menu-panel-left {
-  border-right: 1px dashed rgba(255, 255, 255, 0.3);
-  box-shadow: inset -2px 0 5px rgba(0, 0, 0, 0.08);
-}
-
-/* Left Panel Logo */
+/* Redesigned Left Panel Logo size */
 .menu-panel-left .menu-logo {
   max-width: 80%;
   height: auto;
   object-fit: contain;
 }
 
-/* Right Panel Tiled Backgrounds */
+/* Right Panel: Tiled Backgrounds */
 .side-a-page .menu-panel-right {
   background-image: url('assets/joy/side-a-background.png');
   background-repeat: repeat;
@@ -1355,21 +1359,21 @@ h1 {
   background-size: 500px 500px;
 }
 
-/* Content Box on Right Panel for Legibility */
+/* Right Panel Content Card for Legibility */
 .menu-tracks-card {
   background-color: #f3e9dc;
-  border-radius: 10px;
-  padding: 1.75rem 1.5rem;
+  border-radius: 8px;
+  padding: 1.25rem 1rem;
   width: 100%;
   box-sizing: border-box;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   color: #3a3a3a;
 }
 
 .menu-tracks-header {
   border-bottom: 2px solid;
-  padding-bottom: 0.5rem;
-  margin-bottom: 1.25rem;
+  padding-bottom: 0.4rem;
+  margin-bottom: 1rem;
 }
 
 .side-a-page .menu-tracks-header {
@@ -1381,12 +1385,13 @@ h1 {
 }
 
 .menu-tracks-title {
-  font-size: 1.4rem;
+  font-size: 1.15rem; /* Adjusted for smaller card */
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin: 0;
   color: #3a3a3a;
+  text-align: center;
 }
 
 /* Track Links List */
@@ -1396,17 +1401,17 @@ h1 {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1rem; /* Tighter spacing */
 }
 
 .track-item {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: 0.15rem;
 }
 
 .track-link {
-  font-size: 1.1rem;
+  font-size: 1rem; /* Adjusted for smaller card */
   font-weight: 700;
   text-decoration: none;
   transition: color 0.2s ease;
@@ -1428,26 +1433,28 @@ h1 {
   color: #b15b5b;
 }
 
-.track-subheading {
-  font-size: 0.85rem;
+/* Redesigned Track Subheading (replacing domain/subdomain) */
+.track-subheading-revised {
+  font-size: 0.8rem;
   color: #3a3a3a;
-  opacity: 0.8;
+  opacity: 0.9;
   font-weight: 500;
+  line-height: 1.3;
 }
 
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
+/* Mobile Responsiveness (adjusted for narrower card) */
+@media (max-width: 550px) {
   .jcard-menu-container {
     grid-template-columns: 1fr;
   }
   
   .menu-panel-left {
     border-right: none;
-    border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
-    padding: 1.5rem;
+    border-bottom: 1px dashed rgba(58, 58, 58, 0.2);
+    padding: 1.25rem;
   }
 
   .menu-panel-left .menu-logo {
-    max-width: 50%;
+    max-width: 40%;
   }
 }

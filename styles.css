@@ -66,22 +66,19 @@ h1 {
   text-align: center;
   margin: 0 auto;
 }
-/* ==========================================================================
-   FIX: STANDALONE LOGO CENTERING (INDEX.HTML)
-   ========================================================================== */
 
-/* If the banner wrapper ONLY contains the logo (like on index.html), center it directly */
+/* Standalone Logo Centering (Index.html) */
 .banner-header-wrapper:not(:has(.back-btn-link)):not(:has(.scrapbook-link-wrapper)) {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* Fallback for standard logo centering if placed directly inside .hero-section */
 .hero-section > .hero-logo-banner {
   display: block;
   margin: 0 auto 1.5rem auto;
 }
+
 /* Perfectly Centered 3-Column Banner Grid */
 .banner-header-wrapper {
   display: grid;
@@ -130,7 +127,7 @@ h1 {
 }
 
 .scrapbook-link-img {
-  height: 144px; /* Tripled size */
+  height: 144px;
   width: auto;
   display: block;
 }
@@ -338,7 +335,7 @@ h1 {
   font-family: monospace;
   font-size: 1.05rem;
   font-weight: 700;
-  color: #3a7e7b; /* Default Side A Color */
+  color: #3a7e7b;
   background-color: #e4d8c8;
   padding: 0.12rem 0.4rem;
   border-radius: 4px;
@@ -347,7 +344,7 @@ h1 {
 .track-title {
   font-size: 1.15rem;
   font-weight: 700;
-  color: #3a7e7b; /* Default Side A Color */
+  color: #3a7e7b;
   line-height: 1.25;
 }
 
@@ -362,7 +359,7 @@ h1 {
   line-height: 1.35;
 }
 
-/* Side B Color Overrides (#1e656d) */
+/* Side B Color Overrides */
 .side-b-color {
   color: #1e656d !important;
 }
@@ -982,15 +979,21 @@ h1 {
     font-size: 1.35rem !important;
   }
 }
+
 /* ==========================================================================
-   J-CARD TRACK PAGE (UPDATED SIDE A BRANDING & FOLD LINES)
+   10. J-CARD TRACK PAGE LAYOUT & BASE PANELS
    ========================================================================== */
 
 .jcard-track-wrapper {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin: 1.5rem auto 3rem auto;
+  padding: 3rem 1rem; 
+  box-sizing: border-box;
+  background-image: url('assets/joy/side-a-background.png');
+  background-repeat: repeat;
+  background-size: 500px 500px;
+  background-position: top left;
 }
 
 .jcard-track-container {
@@ -1005,23 +1008,17 @@ h1 {
   border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
-/* Base Panel Styling & Subtle Fold Creases */
+/* Base Panel Styling */
 .jcard-panel {
   padding: 1.5rem;
   box-sizing: border-box;
-  color: #f3e9dc; /* Cream text */
+  color: #f3e9dc;
   position: relative;
-  /* Subtler fold line effect: thin, light dashed border with inner score line */
   border-right: 1px dashed rgba(255, 255, 255, 0.25);
   box-shadow: inset -2px 0 5px rgba(0, 0, 0, 0.05);
 }
 
-.jcard-panel:last-child {
-  border-right: none;
-  box-shadow: none;
-}
-
-/* Accent Color Accents (#dda136) */
+/* Accent Colors */
 .jcard-side-tag, 
 .jcard-track-num,
 .panel-section-title,
@@ -1030,7 +1027,7 @@ h1 {
   color: #dda136;
 }
 
-/* Panel 1: Summary Section */
+/* Panel 1 */
 .panel-1 {
   display: flex;
   flex-direction: column;
@@ -1060,7 +1057,7 @@ h1 {
   opacity: 0.95;
 }
 
-/* Panel 2: Narrow Vertical Spine */
+/* Panel 2 */
 .panel-2 {
   display: flex;
   align-items: center;
@@ -1081,7 +1078,7 @@ h1 {
   opacity: 0.9;
 }
 
-/* Panel 3: Multimedia Assets */
+/* Panel 3 */
 .panel-3 {
   display: flex;
   flex-direction: column;
@@ -1097,33 +1094,7 @@ h1 {
   padding-bottom: 0.4rem;
 }
 
-.media-assets-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.media-asset-card {
-  background: #f3e9dc;
-  border-radius: 8px;
-  padding: 0.75rem;
-  color: #3a3a3a;
-  min-height: 120px;
-}
-
-.asset-placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  border: 1.5px dashed #3a3a3a;
-  border-radius: 6px;
-  color: #3a3a3a;
-  font-size: 0.85rem;
-  font-weight: 600;
-}
-
-/* Panel 4: Main Episode Player & Info (Centered Text) */
+/* Panel 4 */
 .panel-4 {
   display: flex;
   flex-direction: column;
@@ -1169,14 +1140,6 @@ h1 {
   justify-content: center;
 }
 
-.spotify-placeholder {
-  color: #3a3a3a;
-  font-size: 0.9rem;
-  font-weight: 600;
-  padding: 1rem;
-  text-align: center;
-}
-
 .domain-subdomain-tag {
   font-size: 1.1rem;
   font-weight: 800;
@@ -1192,27 +1155,7 @@ h1 {
   font-style: italic;
   opacity: 0.95;
 }
-/* Restores the dashed fold line / crease between panels */
-.jcard-panel {
-  padding: 1.5rem;
-  box-sizing: border-box;
-  color: #f3e9dc;
-  position: relative;
-  border-right: 1px dashed rgba(255, 255, 255, 0.25);
-  box-shadow: inset -2px 0 5px rgba(0, 0, 0, 0.05);
-}
 
-/* Ensure Panel 3 specifically shows its right border crease before Panel 4 */
-.panel-3 {
-  border-right: 1px dashed rgba(255, 255, 255, 0.25) !important;
-  box-shadow: inset -2px 0 5px rgba(0, 0, 0, 0.05);
-}
-
-/* Remove the border only on the last panel (Panel 4) */
-.panel-4 {
-  border-right: none !important;
-  box-shadow: none;
-}
 /* Mobile Responsive Adjustments */
 @media (max-width: 850px) {
   .jcard-track-container {
@@ -1239,9 +1182,7 @@ h1 {
     gap: 1.25rem;
   }
 
-  .panel-1-header {
-    flex: 1;
-  }
+  .panel-1-header { flex: 1; }
 
   .panel-1-summary {
     flex: 1.2;
@@ -1249,9 +1190,7 @@ h1 {
     padding-left: 1rem;
   }
 
-  .panel-2 {
-    padding: 0.85rem;
-  }
+  .panel-2 { padding: 0.85rem; }
 
   .spine-text {
     writing-mode: horizontal-tb;
@@ -1260,33 +1199,15 @@ h1 {
     text-align: center;
   }
 }
+
 /* ==========================================================================
-   TILED BACKGROUND FOR J-CARD SECTION ONLY
+   11. SIDE B BRANDING & TILED BACKGROUND
    ========================================================================== */
 
-.jcard-track-wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 3rem 1rem; 
-  box-sizing: border-box;
-
-  /* Path relative to styles.css in the root folder (no ../ needed) */
-  background-image: url('assets/joy/side-a-background.png');
-  background-repeat: repeat;       /* Tiles naturally */
-  background-size: 500px 500px;     /* Preserves native resolution */
-  background-position: top left;
-}
-/* ==========================================================================
-   SIDE B BRANDING & TILED BACKGROUND
-   ========================================================================== */
-
-/* Side B J-Card Container Background */
 .side-b-page .jcard-track-container {
   background-color: #1e656d;
 }
 
-/* Side B Accent Colors (#b15b5b) */
 .side-b-page .jcard-side-tag,
 .side-b-page .jcard-track-num,
 .side-b-page .panel-section-title,
@@ -1299,15 +1220,15 @@ h1 {
   border-bottom-color: rgba(177, 91, 91, 0.4);
 }
 
-/* Side B Tiled Wrapper Background */
 .side-b-page .jcard-track-wrapper {
   background-image: url('assets/resilience/side-b-background.png');
   background-repeat: repeat;
   background-size: 500px 500px;
   background-position: top left;
 }
+
 /* ==========================================================================
-   10. 2-PANEL J-CARD INDEX / SIDE MENU PAGES (PROPORTIONAL CASSETTE FIX)
+   12. 2-PANEL J-CARD INDEX / SIDE MENU PAGES
    ========================================================================== */
 
 .jcard-menu-wrapper {
@@ -1320,10 +1241,10 @@ h1 {
 
 .jcard-menu-container {
   display: grid;
-  grid-template-columns: 0.8fr 1.2fr; /* Fits standard J-card cover:spine/back proportions */
+  grid-template-columns: 0.8fr 1.2fr;
   width: 100%;
-  max-width: 520px; /* Tight cassette scale */
-  aspect-ratio: 1.6 / 1; /* Classic cassette J-card aspect ratio */
+  max-width: 520px;
+  aspect-ratio: 1.6 / 1;
   border-radius: 8px;
   overflow: hidden;
   position: relative;
@@ -1331,7 +1252,6 @@ h1 {
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
 }
 
-/* Side-Specific Outline Accents */
 .side-a-page .jcard-menu-container {
   border-color: #dda136;
 }
@@ -1340,7 +1260,6 @@ h1 {
   border-color: #b15b5b;
 }
 
-/* Base Panel Layout */
 .menu-panel {
   padding: 1rem;
   box-sizing: border-box;
@@ -1348,7 +1267,6 @@ h1 {
   flex-direction: column;
 }
 
-/* Left Panel Styling */
 .menu-panel-left {
   background-color: #f3e9dc;
   justify-content: center;
@@ -1364,22 +1282,20 @@ h1 {
   object-fit: contain;
 }
 
-/* Right Panel Background Colors & Pattern Overlay */
 .side-a-page .menu-panel-right {
-  background-color: #3a7e7b; /* Side A Right Panel BG */
+  background-color: #3a7e7b;
   background-image: url('assets/joy/side-a-background.png');
   background-repeat: repeat;
   background-size: 300px 300px;
 }
 
 .side-b-page .menu-panel-right {
-  background-color: #1e656d; /* Side B Right Panel BG */
+  background-color: #1e656d;
   background-image: url('assets/resilience/side-b-background.png');
   background-repeat: repeat;
   background-size: 300px 300px;
 }
 
-/* Track Card Container Inside Right Panel */
 .menu-tracks-card {
   background-color: #f3e9dc;
   border-radius: 6px;
@@ -1417,57 +1333,15 @@ h1 {
   text-align: center;
 }
 
-/* Track List Spacing */
 .track-list {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem; /* Tightened so text won't overflow the cassette frame */
-}
-
-.track-item {
-  border-bottom: 1px dashed rgba(58, 58, 58, 0.2);
-  padding-bottom: 0.3rem;
-}
-
-.track-item:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-.track-link {
-  display: flex;
-  flex-direction: column;
-  gap: 0.1rem;
-  text-decoration: none;
-}
-
-.track-header {
-  display: flex;
-  align-items: baseline;
   gap: 0.4rem;
 }
 
-.track-num {
-  font-size: 0.85rem;
-  font-weight: 800;
-  color: #3a7e7b;
-}
-
-.track-title {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: #3a7e7b;
-  line-height: 1.1;
-}
-
-.side-b-color {
-  color: #1e656d !important;
-}
-
-/* Hover Accent Colors */
 .side-a-page .track-link:hover .track-num,
 .side-a-page .track-link:hover .track-title {
   color: #dda136;
@@ -1477,20 +1351,10 @@ h1 {
   color: #b15b5b !important;
 }
 
-/* Subheading Styling */
-.track-subheading {
-  font-size: 0.7rem;
-  color: #3a3a3a !important; /* Fixed color requirement */
-  margin: 0;
-  line-height: 1.2;
-  opacity: 0.9;
-}
-
-/* Responsive Adjustments for Small Mobile Screens */
 @media (max-width: 550px) {
   .jcard-menu-container {
     grid-template-columns: 1fr;
-    aspect-ratio: auto; /* Drops fixed ratio on tiny screens so text doesn't clip */
+    aspect-ratio: auto;
     max-width: 100%;
   }
 
@@ -1504,8 +1368,9 @@ h1 {
     max-width: 50%;
   }
 }
+
 /* ==========================================================================
-   TRACK PAGE ASSETS & EMBEDS (UPDATED)
+   13. TRACK PAGE ASSETS & EMBEDS
    ========================================================================== */
 
 .track-assets-container {
@@ -1517,7 +1382,6 @@ h1 {
   padding: 0 1rem;
 }
 
-/* Remove card background & borders */
 .track-card {
   background: transparent;
   box-shadow: none;
@@ -1554,7 +1418,6 @@ h1 {
   gap: 1.25rem;
 }
 
-/* 16:9 Video Embed Wrapper */
 .video-embed {
   position: relative;
   padding-bottom: 56.25%;
@@ -1572,7 +1435,7 @@ h1 {
   height: 100%;
 }
 
-/* Graphic Link Cards - Updated to #f3e9dc background */
+/* Graphic Link Cards (#f3e9dc background) */
 .graphic-card {
   display: block;
   text-decoration: none;
@@ -1586,7 +1449,7 @@ h1 {
 .graphic-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
-  background-color: #e8ded1; /* Slightly darker cream tint on hover */
+  background-color: #e8ded1;
 }
 
 .graphic-card-body {
@@ -1608,35 +1471,17 @@ h1 {
   margin-top: 0.25rem;
 }
 
-.side-b-graphic {
+/* Side B Graphic Cards */
+.side-b-graphic,
+.side-b-page .graphic-card {
   border-color: #1e656d;
 }
 
-.side-b-graphic .graphic-card-title {
+.side-b-graphic .graphic-card-title,
+.side-b-page .graphic-card-title {
   color: #1e656d;
 }
 
-/* Netflix Poster Embed */
-.netflix-poster-card {
-  display: block;
-  text-decoration: none;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease;
-}
-
-.netflix-poster-card:hover {
-  transform: scale(1.02);
-}
-
-.netflix-poster-img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Dashed Placeholder Card - Updated background */
 .placeholder-card {
   border: 2px dashed #cbd5e1;
   background-color: #f3e9dc;
@@ -1645,40 +1490,43 @@ h1 {
   text-align: center;
 }
 
-.placeholder-card .graphic-card-title {
-  color: #64748b;
-}
 /* ==========================================================================
-   PANEL 3 CREASE & HEADER COLOR OVERRIDES
+   14. PANEL 3 & 4 OVERRIDES (FOLD CREASE + CENTERED TITLES + SIDE COLORS)
    ========================================================================== */
 
-/* Force vertical crease line between Panel 3 and Panel 4 */
-.jcard-panel.panel-3,
-.panel-3 {
+/* Force vertical dashed crease line between Panel 3 and Panel 4 */
+.jcard-track-container .panel-3,
+.jcard-panel.panel-3 {
   border-right: 2px dashed rgba(255, 255, 255, 0.35) !important;
   box-shadow: inset -3px 0 6px rgba(0, 0, 0, 0.08);
   position: relative;
   z-index: 2;
 }
 
-/* Center Panel 3 Titles */
+/* Ensure Panel 4 outer right border remains clean */
+.jcard-track-container .panel-4 {
+  border-right: none !important;
+  box-shadow: none !important;
+}
+
+/* Center Panel 3 headers and titles */
 .panel-3 .panel-section-title,
 .panel-3 .track-card-header,
 .panel-3 .track-title {
   text-align: center !important;
+  justify-content: center !important;
   display: block !important;
   width: 100%;
-  margin-bottom: 1rem;
 }
 
-/* Side A Heading Color (#dda136) */
+/* Side A Panel 3 Heading Color (#dda136) */
 .panel-3 .panel-section-title,
 .panel-3 .track-title {
   color: #dda136 !important;
   border-bottom: 1px solid rgba(221, 161, 54, 0.4) !important;
 }
 
-/* Side B Heading Color (#b15b5b) */
+/* Side B Panel 3 Heading Color (#b15b5b) */
 .side-b-page .panel-3 .panel-section-title,
 .side-b-page .panel-3 .track-title,
 .side-b-assets .panel-3 .panel-section-title,
@@ -1686,3 +1534,5 @@ h1 {
   color: #b15b5b !important;
   border-bottom-color: rgba(177, 91, 91, 0.4) !important;
 }
+
+```

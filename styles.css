@@ -1286,3 +1286,168 @@ h1 {
   background-size: 500px 500px;
   background-position: top left;
 }
+/* ==========================================================================
+   2-PANEL J-CARD INDEX / SIDE MENU PAGES (SIDE A & SIDE B)
+   ========================================================================== */
+
+.jcard-menu-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 3rem 1rem;
+  box-sizing: border-box;
+}
+
+.jcard-menu-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal size panels */
+  width: 100%;
+  max-width: 960px;
+  border-radius: 12px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+/* Side Specific Colors */
+.side-a-page .jcard-menu-container {
+  background-color: #3a7e7b;
+}
+
+.side-b-page .jcard-menu-container {
+  background-color: #1e656d;
+}
+
+/* Panel Structure & Fold Line */
+.menu-panel {
+  padding: 2rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Middle Fold Line */
+.menu-panel-left {
+  border-right: 1px dashed rgba(255, 255, 255, 0.3);
+  box-shadow: inset -2px 0 5px rgba(0, 0, 0, 0.08);
+}
+
+/* Left Panel Logo */
+.menu-panel-left .menu-logo {
+  max-width: 80%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Right Panel Tiled Backgrounds */
+.side-a-page .menu-panel-right {
+  background-image: url('assets/joy/side-a-background.png');
+  background-repeat: repeat;
+  background-size: 500px 500px;
+}
+
+.side-b-page .menu-panel-right {
+  background-image: url('assets/resilience/side-b-background.png');
+  background-repeat: repeat;
+  background-size: 500px 500px;
+}
+
+/* Content Box on Right Panel for Legibility */
+.menu-tracks-card {
+  background-color: #f3e9dc;
+  border-radius: 10px;
+  padding: 1.75rem 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  color: #3a3a3a;
+}
+
+.menu-tracks-header {
+  border-bottom: 2px solid;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.side-a-page .menu-tracks-header {
+  border-bottom-color: #dda136;
+}
+
+.side-b-page .menu-tracks-header {
+  border-bottom-color: #b15b5b;
+}
+
+.menu-tracks-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+  color: #3a3a3a;
+}
+
+/* Track Links List */
+.track-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.track-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.track-link {
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.side-a-page .track-link {
+  color: #3a7e7b;
+}
+
+.side-a-page .track-link:hover {
+  color: #dda136;
+}
+
+.side-b-page .track-link {
+  color: #1e656d;
+}
+
+.side-b-page .track-link:hover {
+  color: #b15b5b;
+}
+
+.track-subheading {
+  font-size: 0.85rem;
+  color: #3a3a3a;
+  opacity: 0.8;
+  font-weight: 500;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .jcard-menu-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .menu-panel-left {
+    border-right: none;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
+    padding: 1.5rem;
+  }
+
+  .menu-panel-left .menu-logo {
+    max-width: 50%;
+  }
+}

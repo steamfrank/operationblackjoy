@@ -1556,34 +1556,54 @@ h1 {
    15. QR OVERLAY & DIARY MODAL STYLING
    ========================================================================== */
 
-/* Container for Image + QR Overlay */
+/* Container: Side-by-Side Layout */
 .qr-overlay-card {
-  position: relative;
-  width: 100%;
-  border-radius: 8px;
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #f3e9dc;
+  border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  border: 2px solid #dda136;
+  border: 2px solid #dda136; /* Accent border */
 }
 
+/* Scaled-down Base Image */
 .diary-base-img {
-  width: 100%;
+  width: 65%;
   height: auto;
-  display: block;
+  border-radius: 6px;
   object-fit: cover;
+  border: 2px solid #dda136; /* Matching accent border */
 }
 
-/* QR Code Badge Overlay (Bottom Right Corner) */
+/* Dedicated QR Code Badge (Side Column) */
 .qr-overlay-badge {
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
-  background: rgba(243, 233, 220, 0.92);
-  border: 1.5px solid #dda136;
-  border-radius: 6px;
-  padding: 6px;
+  position: static; /* Removes absolute positioning */
+  width: 30%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 10;
+  justify-content: center;
+  background: #ffffff;
+  border: 2px solid #dda136;
+  border-radius: 8px;
+  padding: 0.5rem;
+}
+
+.qr-overlay-badge img {
+  width: 100%;
+  max-width: 90px; /* Ensures scanability without dominating */
+  height: auto;
+  display: block;
+}
+
+.qr-overlay-badge span {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #0f172a;
+  margin-top: 0.35rem;
+  text-align: center;
 }

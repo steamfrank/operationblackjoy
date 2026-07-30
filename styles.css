@@ -1248,13 +1248,12 @@ h1 {
   width: 100%;
   display: flex;
   justify-content: center;
-  /* Add padding so the pattern extends slightly beyond the J-Card bounds */
   padding: 3rem 1rem; 
   box-sizing: border-box;
 
-  /* Tiled Background Image */
-  background-image: url('../assets/joy/side-a-background.png');
-  background-repeat: repeat;       /* Tiles the 500x500px image naturally */
-  background-size: 500px 500px;     /* Preserves original dimensions without stretching */
+  /* Path relative to styles.css in the root folder (no ../ needed) */
+  background-image: url('assets/joy/side-a-background.png');
+  background-repeat: repeat;       /* Tiles naturally */
+  background-size: 500px 500px;     /* Preserves native resolution */
   background-position: top left;
 }

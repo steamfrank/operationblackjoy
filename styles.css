@@ -1485,108 +1485,63 @@ h1 {
   }
 }
 /* ==========================================================================
-   TRACK PAGE ASSETS STYLING
+   TRACK PAGE ASSETS & EMBEDS (UPDATED)
    ========================================================================== */
 
 .track-assets-container {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2rem;
   max-width: 600px;
   margin: 2rem auto;
   padding: 0 1rem;
 }
 
+/* Remove card background & borders */
 .track-card {
-  background-color: #f3e9dc;
-  border-radius: 8px;
-  padding: 1.25rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(58, 58, 58, 0.15);
-}
-
-.side-a-assets .track-card {
-  border-left: 4px solid #3a7e7b;
-}
-
-.side-b-assets .track-card {
-  border-left: 4px solid #1e656d;
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  padding: 0;
 }
 
 .track-card-header {
-  display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
-  margin-bottom: 0.75rem;
-  border-bottom: 1px dashed rgba(58, 58, 58, 0.2);
-  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #3a7e7b;
+  padding-bottom: 0.4rem;
+  margin-bottom: 1.25rem;
 }
 
-.track-card-header .track-num {
-  font-size: 1rem;
-  font-weight: 800;
-  color: #3a7e7b;
+.side-b-assets .track-card-header {
+  border-bottom-color: #1e656d;
 }
 
 .track-card-header .track-title {
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-size: 1.15rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   margin: 0;
   color: #3a7e7b;
 }
 
-.asset-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+.side-b-assets .track-card-header .track-title {
+  color: #1e656d;
 }
-
-.asset-link {
-  color: #3a3a3a;
-  text-decoration: none;
-  font-size: 0.9rem;
-  padding: 0.4rem 0.6rem;
-  background-color: rgba(255, 255, 255, 0.6);
-  border-radius: 4px;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.asset-link:hover {
-  background-color: #dda136;
-  color: #ffffff;
-}
-
-.side-b-link:hover {
-  background-color: #b15b5b;
-  color: #ffffff;
-}
-/* ==========================================================================
-   GRAPHIC ASSETS & EMBEDS
-   ========================================================================== */
 
 .asset-embed-container {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1.25rem;
 }
 
-.asset-label {
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #3a3a3a;
-  margin: 0.5rem 0 0.2rem 0;
-}
-
-/* Responsive 16:9 Video Wrapper */
+/* 16:9 Video Embed Wrapper */
 .video-embed {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  padding-bottom: 56.25%;
   height: 0;
   overflow: hidden;
-  border-radius: 6px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .video-embed iframe {
@@ -1597,21 +1552,20 @@ h1 {
   height: 100%;
 }
 
-/* Visual Graphic Link Cards */
+/* Graphic Link Cards */
 .graphic-card {
   display: block;
   text-decoration: none;
   background-color: #ffffff;
   border: 2px solid #3a7e7b;
-  border-radius: 6px;
-  padding: 0.75rem 1rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  border-radius: 8px;
+  padding: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .graphic-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
-  background-color: #fcf9f5;
 }
 
 .graphic-card-body {
@@ -1620,18 +1574,19 @@ h1 {
 }
 
 .graphic-card-title {
-  font-size: 0.95rem;
+  display: block;
+  font-size: 1rem;
   font-weight: 800;
   color: #3a7e7b;
 }
 
 .graphic-card-sub {
-  font-size: 0.8rem;
+  display: block;
+  font-size: 0.85rem;
   color: #3a3a3a;
-  margin-top: 0.2rem;
+  margin-top: 0.25rem;
 }
 
-/* Side B Styling Overrides */
 .side-b-graphic {
   border-color: #1e656d;
 }
@@ -1639,6 +1594,36 @@ h1 {
 .side-b-graphic .graphic-card-title {
   color: #1e656d;
 }
-.asset-label {
-  font-weight: 700;
+
+/* Netflix Poster Embed */
+.netflix-poster-card {
+  display: block;
+  text-decoration: none;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.netflix-poster-card:hover {
+  transform: scale(1.02);
+}
+
+.netflix-poster-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Dashed Placeholder Card */
+.placeholder-card {
+  border: 2px dashed #cbd5e1;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.placeholder-card .graphic-card-title {
+  color: #64748b;
 }

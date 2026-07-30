@@ -1607,3 +1607,46 @@ h1 {
   margin-top: 0.35rem;
   text-align: center;
 }
+/* Modal Backdrop (Hidden by default) */
+.diary-modal-backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Modal Content Box */
+.diary-modal-content {
+  background: #f3e9dc;
+  color: #1e293b;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  border: 2px solid #dda136;
+}
+
+/* Close Button */
+.diary-modal-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #1e293b;
+}

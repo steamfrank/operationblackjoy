@@ -1532,3 +1532,50 @@ h1 {
   color: #b15b5b !important;
   border-bottom-color: rgba(177, 91, 91, 0.4) !important;
 }
+/* ==========================================================================
+   PANEL 3 HEADER UNIFORM FORMATTING
+   ========================================================================== */
+
+/* Base Panel 3 Title Setup */
+.panel-3 .panel-section-title,
+.panel-3 .track-card-header,
+.panel-3 .track-title {
+  text-align: center !important;
+  justify-content: center !important;
+  display: block !important;
+  width: 100%;
+  font-size: 0.85rem !important; /* Scaled so 'RESILIENCE | COMMUNITY' fits on line 1 */
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.03em !important;
+  line-height: 1.25 !important;
+  padding-bottom: 0.5rem !important;
+  margin-bottom: 1rem !important;
+  word-break: keep-all;
+}
+
+/* Helper spans if you structure the HTML with line breaks */
+.panel-3 .panel-section-title span.title-top {
+  display: block;
+  white-space: nowrap; /* Prevents DOMAIN | SUBDOMAIN from wrapping prematurely */
+}
+
+.panel-3 .panel-section-title span.title-bottom {
+  display: block;
+}
+
+/* Side A Color Override (#dda136) */
+.panel-3 .panel-section-title,
+.panel-3 .track-title {
+  color: #dda136 !important;
+  border-bottom: 1px solid rgba(221, 161, 54, 0.4) !important;
+}
+
+/* Side B Color Override (#b15b5b) */
+.side-b-page .panel-3 .panel-section-title,
+.side-b-page .panel-3 .track-title,
+.side-b-assets .panel-3 .panel-section-title,
+.side-b-assets .panel-3 .track-title {
+  color: #b15b5b !important;
+  border-bottom-color: rgba(177, 91, 91, 0.4) !important;
+}

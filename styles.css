@@ -1257,3 +1257,32 @@ h1 {
   background-size: 500px 500px;     /* Preserves native resolution */
   background-position: top left;
 }
+/* ==========================================================================
+   SIDE B BRANDING & TILED BACKGROUND
+   ========================================================================== */
+
+/* Side B J-Card Container Background */
+.side-b-page .jcard-track-container {
+  background-color: #1e656d;
+}
+
+/* Side B Accent Colors (#b15b5b) */
+.side-b-page .jcard-side-tag,
+.side-b-page .jcard-track-num,
+.side-b-page .panel-section-title,
+.side-b-page .track-meta,
+.side-b-page .domain-subdomain-tag {
+  color: #b15b5b;
+}
+
+.side-b-page .panel-section-title {
+  border-bottom-color: rgba(177, 91, 91, 0.4);
+}
+
+/* Side B Tiled Wrapper Background */
+.side-b-page .jcard-track-wrapper {
+  background-image: url('assets/resilience/side-b-background.png');
+  background-repeat: repeat;
+  background-size: 500px 500px;
+  background-position: top left;
+}

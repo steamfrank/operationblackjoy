@@ -982,3 +982,244 @@ h1 {
     font-size: 1.35rem !important;
   }
 }
+/* ==========================================================================
+   J-CARD TRACK PAGE (4-PANEL FOLD LAYOUT)
+   ========================================================================== */
+
+.jcard-track-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem auto 3rem auto;
+}
+
+/* Desktop Layout: Panel 1 (1fr) | Panel 2 (0.33fr) | Panel 3 (1.5fr) | Panel 4 (2fr) */
+.jcard-track-container {
+  display: grid;
+  grid-template-columns: 1fr 0.35fr 1.5fr 2fr;
+  width: 100%;
+  max-width: 1180px;
+  background-color: #3a7e7b;
+  border-radius: 12px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+/* Panels & Simulated Creases */
+.jcard-panel {
+  padding: 1.5rem;
+  box-sizing: border-box;
+  color: #ffffff;
+  position: relative;
+  /* Visual crease effect where panels adjoin */
+  border-right: 2px dashed rgba(0, 0, 0, 0.25);
+  box-shadow: inset -4px 0 8px rgba(0, 0, 0, 0.08);
+}
+
+.jcard-panel:last-child {
+  border-right: none;
+  box-shadow: none;
+}
+
+/* Panel 1: Summary Section */
+.panel-1 {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.jcard-side-tag, .jcard-track-num {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.9;
+}
+
+.jcard-track-name {
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-top: 0.2rem;
+}
+
+.panel-1-summary {
+  font-size: 0.9rem;
+  line-height: 1.45;
+  opacity: 0.95;
+}
+
+/* Panel 2: Narrow Vertical Spine */
+.panel-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.08); /* Subtle contrast shift for spine */
+  padding: 1rem 0.25rem;
+}
+
+.spine-text {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0.9;
+}
+
+/* Panel 3: Multimedia Assets */
+.panel-3 {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.panel-section-title {
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 0.4rem;
+}
+
+.media-assets-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.media-asset-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  padding: 0.75rem;
+  color: #1e293b;
+  min-height: 120px;
+}
+
+.asset-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  border: 1.5px dashed #cbd5e1;
+  border-radius: 6px;
+  color: #64748b;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Panel 4: Episode Header & Spotify Embed */
+.panel-4 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+.main-project-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.85;
+}
+
+.main-track-heading {
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.25;
+  margin-top: 0.25rem;
+}
+
+.spotify-embed-container {
+  width: 100%;
+  min-height: 152px; /* Standard Spotify episode player height */
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spotify-placeholder {
+  color: #1e293b;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 1rem;
+  text-align: center;
+}
+
+.domain-subdomain-tag {
+  font-size: 1.1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.project-subheading {
+  font-size: 0.85rem;
+  line-height: 1.35;
+  margin-top: 0.35rem;
+  opacity: 0.9;
+  font-style: italic;
+}
+
+/* ==========================================================================
+   MOBILE RESPONSIVE STYLES (STACKED & REVERSED ORDER)
+   ========================================================================== */
+
+@media (max-width: 850px) {
+  .jcard-track-container {
+    display: flex;
+    flex-direction: column; /* Stack vertically */
+  }
+
+  /* Reverse Panel Order on Mobile: Panel 4 -> Panel 3 -> Panel 2 -> Panel 1 */
+  .panel-4 { order: 1; }
+  .panel-3 { order: 2; }
+  .panel-2 { order: 3; }
+  .panel-1 { order: 4; }
+
+  .jcard-panel {
+    border-right: none;
+    border-bottom: 2px dashed rgba(0, 0, 0, 0.25);
+    box-shadow: inset 0 -4px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Panel 1 Side-by-Side layout on Mobile */
+  .panel-1 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+  }
+
+  .panel-1-header {
+    flex: 1;
+  }
+
+  .panel-1-summary {
+    flex: 1.2;
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    padding-left: 1rem;
+  }
+
+  /* Panel 2 Horizontal Orientation on Mobile */
+  .panel-2 {
+    padding: 0.85rem;
+  }
+
+  .spine-text {
+    writing-mode: horizontal-tb;
+    transform: none;
+    font-size: 1.1rem;
+    text-align: center;
+  }
+}

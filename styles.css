@@ -1484,3 +1484,83 @@ h1 {
     max-width: 50%;
   }
 }
+/* ==========================================================================
+   TRACK PAGE ASSETS STYLING
+   ========================================================================== */
+
+.track-assets-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.track-card {
+  background-color: #f3e9dc;
+  border-radius: 8px;
+  padding: 1.25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(58, 58, 58, 0.15);
+}
+
+.side-a-assets .track-card {
+  border-left: 4px solid #3a7e7b;
+}
+
+.side-b-assets .track-card {
+  border-left: 4px solid #1e656d;
+}
+
+.track-card-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px dashed rgba(58, 58, 58, 0.2);
+  padding-bottom: 0.5rem;
+}
+
+.track-card-header .track-num {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #3a7e7b;
+}
+
+.track-card-header .track-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
+  color: #3a7e7b;
+}
+
+.asset-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.asset-link {
+  color: #3a3a3a;
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.6rem;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 4px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.asset-link:hover {
+  background-color: #dda136;
+  color: #ffffff;
+}
+
+.side-b-link:hover {
+  background-color: #b15b5b;
+  color: #ffffff;
+}
+
+.asset-label {
+  font-weight: 700;
+}

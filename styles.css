@@ -1192,7 +1192,27 @@ h1 {
   font-style: italic;
   opacity: 0.95;
 }
+/* Restores the dashed fold line / crease between panels */
+.jcard-panel {
+  padding: 1.5rem;
+  box-sizing: border-box;
+  color: #f3e9dc;
+  position: relative;
+  border-right: 1px dashed rgba(255, 255, 255, 0.25);
+  box-shadow: inset -2px 0 5px rgba(0, 0, 0, 0.05);
+}
 
+/* Ensure Panel 3 specifically shows its right border crease before Panel 4 */
+.panel-3 {
+  border-right: 1px dashed rgba(255, 255, 255, 0.25) !important;
+  box-shadow: inset -2px 0 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Remove the border only on the last panel (Panel 4) */
+.panel-4 {
+  border-right: none !important;
+  box-shadow: none;
+}
 /* Mobile Responsive Adjustments */
 @media (max-width: 850px) {
   .jcard-track-container {

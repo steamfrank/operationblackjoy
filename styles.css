@@ -1650,3 +1650,14 @@ h1 {
   cursor: pointer;
   color: #1e293b;
 }
+/* Postcard Left-Side Message Container */
+.postcard-message-area {
+  font-size: 0.85rem; /* Shrinks the font so 100+ characters fit easily */
+  line-height: 1.4;
+  color: #1e293b;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}

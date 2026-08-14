@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         activeStampPath = "assets/stamp-steamfrank.png";
       } else if (selectedEvent === "sugarhill" || selectedEvent === "anyonecanfly") {
         activeStampPath = "assets/stamp-anyonecanfly.png";
-      } else if (selectedEvent === "safespaces" || selectedEvent === "safespaces") {
+      } else if (selectedEvent === "safespaces" || selectedEvent === "safe-spaces") {
         activeStampPath = "assets/stamp-safespaces.png";
       } else {
         activeStampPath = "assets/stamp-aaam2026.png";

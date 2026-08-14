@@ -103,19 +103,50 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
-  // 5. Input 1: Direct File Upload for Front Photo
-  if (imageUploadInput) {
-    imageUploadInput.addEventListener("change", (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (event) => {
-          processImageAspect(event.target.result);
+  // 5. Input 1: Direct File Upload for Front Photo (With Compression)
+if (imageUploadInput) {
+  imageUploadInput.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const img = new Image();
+        img.src = event.target.result;
+        img.onload = () => {
+          const canvas = document.createElement("canvas");
+          const ctx = canvas.getContext("2d");
+
+          // Max dimensions for compression
+          const MAX_WIDTH = 800;
+          const MAX_HEIGHT = 800;
+          let width = img.width;
+          let height = img.height;
+
+          if (width > height) {
+            if (width > MAX_WIDTH) {
+              height *= MAX_WIDTH / width;
+              width = MAX_WIDTH;
+            }
+          } else {
+            if (height > MAX_HEIGHT) {
+              width *= MAX_HEIGHT / height;
+              height = MAX_HEIGHT;
+            }
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+          ctx.drawImage(img, 0, 0, width, height);
+
+          // Compress to JPEG with 0.7 quality (keeps file size tiny)
+          const compressedDataUrl = canvas.toDataURL("image/jpeg", 0.7);
+          processImageAspect(compressedDataUrl);
         };
-        reader.readAsDataURL(file);
-      }
-    });
-  }
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+}
 
   // 6. Simplified Link Handler for Postcard Back
   if (archiveUrlInput) {

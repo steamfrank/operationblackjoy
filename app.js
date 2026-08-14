@@ -173,7 +173,8 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch((error) => {
           console.error("Error saving to Firestore:", error);
-          alert("There was an issue saving to the global database. Please try again.");
+          // THIS WILL SHOW YOU THE EXACT ERROR CODE
+          alert("Firebase Error: " + error.code + " - " + error.message);
           saveScrapbookBtn.disabled = false;
           saveScrapbookBtn.textContent = "✨ Save to Scrapbook";
         });
